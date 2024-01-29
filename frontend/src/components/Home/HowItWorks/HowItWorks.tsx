@@ -4,6 +4,9 @@ import Section from "@/components/Common/Section/Section";
 import React from "react";
 import HowItWorksItem from "./HowItWorksItem";
 import classNames from "classnames";
+import ExelPNG from "../../../../public/Exel.png";
+import ApiPNG from "../../../../public/Api.png";
+import CheckPNG from "../../../../public/Check.png";
 
 const HowItWorks = () => {
 	return (
@@ -30,18 +33,25 @@ const HowItWorks = () => {
 						)}
 					></div>
 				</div>
-				<div className="flex flex-wrap lg:flex-nowrap justify-center lg:justify-between gap-10">
+				<div className="flex flex-wrap lg:flex-nowrap justify-center lg:justify-between gap-4 lg:gap-7">
 					<HowItWorksItem
+						image={ApiPNG.src}
+						imageSize={70}
 						title="Використовуй АПІ"
 						description="Посилай запити на кінцеві точки нашого АПІ та отримуй завжди актуальні товари для вашого магазину онлайн."
+						href=""
 					/>
 					<HowItWorksItem
+						image={ExelPNG.src}
 						title="Скачуй файл вручну"
 						description="Скачуй файл з набором товарів з вашого кабінета. Їх також можна одразу відфільтрувати."
+						href=""
 					/>
 					<HowItWorksItem
+						image={CheckPNG.src}
 						title="Перевіряй замовлення"
 						description="Перевіряйте замовлення в вашому кабінеті. Зручно перевіряй товар та дані клієнта."
+						href=""
 					/>
 				</div>
 			</Section>
