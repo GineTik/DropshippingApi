@@ -7,6 +7,7 @@ import classNames from "classnames";
 import ExelPNG from "../../../../public/Exel.png";
 import ApiPNG from "../../../../public/Api.png";
 import CheckPNG from "../../../../public/Check.png";
+import RouteConstants from "../../../../constants/RouteConstants";
 
 const HowItWorks = () => {
 	return (
@@ -39,19 +40,19 @@ const HowItWorks = () => {
 						imageSize={70}
 						title="Використовуй АПІ"
 						description="Посилай запити на кінцеві точки нашого АПІ та отримуй завжди актуальні товари для вашого магазину онлайн."
-						href=""
+						href={RouteConstants.Login}
 					/>
 					<HowItWorksItem
 						image={ExelPNG.src}
 						title="Скачуй файл вручну"
 						description="Скачуй файл з набором товарів з вашого кабінета. Їх також можна одразу відфільтрувати."
-						href=""
+						href={RouteConstants.Login}
 					/>
 					<HowItWorksItem
 						image={CheckPNG.src}
 						title="Перевіряй замовлення"
 						description="Перевіряйте замовлення в вашому кабінеті. Зручно перевіряй товар та дані клієнта."
-						href=""
+						href={RouteConstants.Login}
 					/>
 				</div>
 			</Section>

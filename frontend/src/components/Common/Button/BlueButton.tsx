@@ -4,9 +4,10 @@ import { BaseButtonProps } from "./BaseButton";
 
 interface BlueButtonProps extends BaseButtonProps {}
 
-const BlueButton = ({ className, children }: BlueButtonProps) => {
+const BlueButton = ({ className, children, ...other }: BlueButtonProps) => {
 	return (
 		<ColoredButton
+			{...other}
 			color="bg-blue-500 text-white"
 			hoverColor="hover:bg-blue-600"
 			children={children}

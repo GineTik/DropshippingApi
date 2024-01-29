@@ -12,9 +12,11 @@ const ColoredButton = ({
 	children,
 	color,
 	hoverColor,
+	...other
 }: ColoredButtonProps) => {
 	return (
 		<BaseButton
+			{...other}
 			className={classNames(className, color, hoverColor)}
 			children={children}
 		/>
