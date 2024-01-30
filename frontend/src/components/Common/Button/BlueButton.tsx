@@ -4,7 +4,7 @@ import { BaseButtonProps } from "./BaseButton";
 
 interface BlueButtonProps extends BaseButtonProps {}
 
-const BlueButton = ({ className, children, ...other }: BlueButtonProps) => {
+const BlueButton = ({ children, ...other }: BlueButtonProps) => {
 	return (
 		<ColoredButton
 			{...other}
