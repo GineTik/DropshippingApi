@@ -1,5 +1,5 @@
 import React from "react";
-import HeaderAuthentication from "./Authentication";
+import HeaderAuthentication from "./HeaderAuthentication";
 import Image from "next/image";
 import Section from "../Section/Section";
 import Logo from "../../../../public/logo.svg";

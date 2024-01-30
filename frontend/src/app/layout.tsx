@@ -22,10 +22,10 @@ export default function RootLayout({
 	return (
 		<html lang="en" className="h-full">
 			<body
-				className={`${montserrat.className} h-full bg-white dark:bg-zinc-900`}
+				className={`${montserrat.className} h-full bg-white dark:bg-zinc-900 flex flex-col`}
 			>
 				<Header />
-				<main className="w-full">{children}</main>
+				<main className="w-full flex-1">{children}</main>
 				<Footer />
 			</body>
 		</html>

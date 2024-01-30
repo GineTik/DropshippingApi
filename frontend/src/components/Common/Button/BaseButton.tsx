@@ -6,11 +6,15 @@ export interface BaseButtonProps {
 	className?: string;
 	children: string | React.ReactElement | (string | React.ReactElement)[];
 	href?: string;
+	onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }
 
-const BaseButton = ({ className, children, href }: BaseButtonProps) => {
-	console.log(href);
-
+const BaseButton = ({
+	className,
+	children,
+	href,
+	onClick,
+}: BaseButtonProps) => {
 	return (
 		<Link
 			className={classNames(
@@ -21,6 +25,7 @@ const BaseButton = ({ className, children, href }: BaseButtonProps) => {
 				"inline-flex items-center"
 			)}
 			href={href ?? "#"}
+			onClick={onClick}
 		>
 			{children}
 		</Link>
