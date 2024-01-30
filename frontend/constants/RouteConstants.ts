@@ -1,5 +1,6 @@
 export default {
     Home: "/",
     Login: "/login",
-    Registration: "/registration"
+    Registration: "/registration",
+    Account: "/account"
 };

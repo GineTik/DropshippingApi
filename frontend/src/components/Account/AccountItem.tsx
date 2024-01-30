@@ -17,9 +17,9 @@ const AccountItem = ({ icon, title, description }: AccountItemProps) => {
 			</div>
 			<H4 className="mt-3">{title}</H4>
 			<div className="my-3 text-sm">{description}</div>
-			<BlueButton className="w-full flex justify-center text-sm">
+			{/* <BlueButton className="w-full flex justify-center text-sm">
 				Більше
-			</BlueButton>
+			</BlueButton> */}
 		</div>
 	);
 };
