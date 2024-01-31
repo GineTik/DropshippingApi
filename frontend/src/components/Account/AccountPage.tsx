@@ -8,7 +8,8 @@ import H4 from "../Common/Headings/H4";
 import { Tab } from "@headlessui/react";
 import AccountTab from "./AccountTab";
 import AccountTabPanel from "./AccountTabPanel";
-import ApiKeys from "./Tabs/ApiKeys";
+import ApiKeys from "./Tabs/ApiKeys/ApiKeys";
+import ApiEndpoints from "./Tabs/ApiEndpoints/ApiEndpoints";
 
 const AccountPage = () => {
 	return (
@@ -74,30 +75,7 @@ const AccountPage = () => {
 							<ApiKeys />
 						</AccountTabPanel>
 						<AccountTabPanel>
-							<div className="">
-								<H4 className="sm:hidden ml-3 mb-3">
-									Почни пробний період та оціни сервіс
-								</H4>
-								<div className="flex gap-5 lg:mt-6 mb-10 items-center">
-									<div className="bg-blue-50 p-5 rounded-full">
-										<span className="font-bold mr-2">
-											Free
-										</span>
-										<span className="line-through text-blue-300 font-bold">
-											10$
-										</span>
-									</div>
-									<span className="max-sm:hidden">
-										Почни пробний період та оціни сервіс
-									</span>
-									<BlueButton className="max-sm:w-full max-sm:flex max-sm:justify-center sm:ml-auto">
-										Почати{" "}
-										<span className="max-lg:hidden ml-1">
-											пробний період
-										</span>
-									</BlueButton>
-								</div>
-							</div>
+							<ApiEndpoints />
 						</AccountTabPanel>
 						<AccountTabPanel>Content 3</AccountTabPanel>
 					</Tab.Panels>

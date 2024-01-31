@@ -1,3 +1,4 @@
+import IconButton from "@/components/Common/Button/IconButton";
 import H4 from "@/components/Common/Headings/H4";
 import {
 	ArrowPathIcon,
@@ -24,18 +25,27 @@ const ApiKeys = () => {
 					<div className="ml-auto">Дії</div>
 				</div>
 				{keys.map((key) => (
-					<div className="flex py-2">
+					<div
+						key={crypto.randomUUID()}
+						className="flex items-center"
+					>
 						<div className="w-1/2 truncate pr-4">{key}</div>
 						<div
-							className="resize-none outline-1 rounded-lg px-1 scroll-px-2 outline-blue-500 truncate w-1/3 focus:text-clip"
+							className="cursor-pointer focus:cursor-text hover:bg-gray-100 transition p-1 resize-none outline-1 rounded-lg px-1 scroll-px-2 outline-blue-500 truncate w-1/3 focus:text-clip"
 							contentEditable
 						>
 							https://localhost:3000
 						</div>
-						<div className="flex gap-3 ml-auto">
-							<DocumentDuplicateIcon className="w-5" />
-							<ArrowPathIcon className="w-5" />
-							<TrashIcon className="w-5" />
+						<div className="flex ml-auto -mr-6">
+							<IconButton tooltip="Копіювати АПІ ключ">
+								<DocumentDuplicateIcon className="w-5" />
+							</IconButton>
+							<IconButton tooltip="Перегенерувати">
+								<ArrowPathIcon className="w-5" />
+							</IconButton>
+							<IconButton isDanger>
+								<TrashIcon className="w-5" />
+							</IconButton>
 						</div>
 					</div>
 				))}
