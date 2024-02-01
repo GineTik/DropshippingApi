@@ -6,7 +6,6 @@ const ApiEndpoints = () => {
 	return (
 		<>
 			<div className="space-y-3">
-				<div className="h-2"></div>
 				<GetRange />
 				<div className="h-3"></div>
 				<GetOne />

@@ -1,7 +1,6 @@
 import React from "react";
-import DynamicHeroIcon from "../Common/DynamicHeroIcon/DynamicHeroIcon";
-import H4 from "../Common/Headings/H4";
-import BlueButton from "../Common/Button/BlueButton";
+import H4 from "@/components/Common/Headings/H4";
+import DynamicHeroIcon from "@/components/Common/DynamicHeroIcon/DynamicHeroIcon";
 
 interface AccountItemProps {
 	icon: string;

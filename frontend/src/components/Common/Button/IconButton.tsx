@@ -1,41 +1,48 @@
 import classNames from "classnames";
 import React from "react";
 
-interface IconButtonProps {
-	children: React.ReactElement;
-	onClick?: () => void;
+interface ScaledButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+	children: any;
 	isDanger?: boolean;
 	tooltip?: string;
+	withoutActiveStyle?: boolean;
+	disabled?: boolean;
 }
 
-const IconButton = ({
+const ScaledButton = ({
 	children,
-	onClick,
 	isDanger,
 	tooltip,
-}: IconButtonProps) => {
+	className,
+	withoutActiveStyle,
+	disabled,
+	...other
+}: ScaledButtonProps) => {
 	return (
 		<div
+			{...other}
 			className={classNames(
-				"w-10 h-10 group relative cursor-pointer flex justify-center items-center",
-				"active:scale-90",
+				"group relative cursor-pointer flex items-center",
 				{
-					"hover:text-rose-500 transition": isDanger,
-				}
+					"active:scale-90": !withoutActiveStyle && !disabled,
+					"hover:text-rose-500 transition": isDanger && !disabled,
+				},
+				className
 			)}
-			onClick={onClick}
 		>
-			<div
-				className={classNames(
-					"w-10 h-10 scale-0",
-					"-z-10 absolute",
-					"absolute cursor-pointer rounded-lg transition duration-75",
-					"group-hover:scale-100",
-					isDanger
-						? "group-hover:bg-rose-100"
-						: "group-hover:bg-gray-100"
-				)}
-			></div>
+			{!disabled && (
+				<div
+					className={classNames(
+						"w-full h-full scale-0",
+						"-z-10 absolute top-0 left-0",
+						"absolute cursor-pointer rounded-lg transition duration-75",
+						"group-hover:scale-100",
+						isDanger
+							? "group-hover:bg-rose-100"
+							: "group-hover:bg-gray-100"
+					)}
+				></div>
+			)}
 			{tooltip && (
 				<div
 					className={classNames(
@@ -54,4 +61,4 @@ const IconButton = ({
 	);
 };
 
-export default IconButton;
+export default ScaledButton;

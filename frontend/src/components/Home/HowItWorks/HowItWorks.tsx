@@ -40,19 +40,19 @@ const HowItWorks = () => {
 						imageSize={70}
 						title="Використовуй АПІ"
 						description="Посилай запити на кінцеві точки нашого АПІ та отримуй завжди актуальні товари для вашого магазину онлайн."
-						href={RouteConstants.Login}
+						href={RouteConstants.Api}
 					/>
 					<HowItWorksItem
 						image={ExelPNG.src}
 						title="Скачуй файл вручну"
 						description="Скачуй файл з набором товарів з вашого кабінета. Їх також можна одразу відфільтрувати."
-						href={RouteConstants.Login}
+						href={RouteConstants.Account}
 					/>
 					<HowItWorksItem
 						image={CheckPNG.src}
 						title="Перевіряй замовлення"
 						description="Перевіряйте замовлення в вашому кабінеті. Зручно перевіряй товар та дані клієнта."
-						href={RouteConstants.Login}
+						href={RouteConstants.Account}
 					/>
 				</div>
 			</Section>

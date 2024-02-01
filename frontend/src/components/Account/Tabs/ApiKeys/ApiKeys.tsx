@@ -1,4 +1,4 @@
-import IconButton from "@/components/Common/Button/IconButton";
+import ScaledButton from "@/components/Common/Button/IconButton";
 import H4 from "@/components/Common/Headings/H4";
 import {
 	ArrowPathIcon,
@@ -30,22 +30,29 @@ const ApiKeys = () => {
 						className="flex items-center"
 					>
 						<div className="w-1/2 truncate pr-4">{key}</div>
-						<div
-							className="cursor-pointer focus:cursor-text hover:bg-gray-100 transition p-1 resize-none outline-1 rounded-lg px-1 scroll-px-2 outline-blue-500 truncate w-1/3 focus:text-clip"
+						<ScaledButton
+							className="p-2 outline-blue-500 rounded-lg"
 							contentEditable
+							withoutActiveStyle
 						>
 							https://localhost:3000
-						</div>
+						</ScaledButton>
 						<div className="flex ml-auto -mr-6">
-							<IconButton tooltip="Копіювати АПІ ключ">
+							<ScaledButton
+								tooltip="Копіювати АПІ ключ"
+								className="p-3"
+							>
 								<DocumentDuplicateIcon className="w-5" />
-							</IconButton>
-							<IconButton tooltip="Перегенерувати">
+							</ScaledButton>
+							<ScaledButton
+								tooltip="Перегенерувати"
+								className="p-3"
+							>
 								<ArrowPathIcon className="w-5" />
-							</IconButton>
-							<IconButton isDanger>
+							</ScaledButton>
+							<ScaledButton isDanger className="p-3">
 								<TrashIcon className="w-5" />
-							</IconButton>
+							</ScaledButton>
 						</div>
 					</div>
 				))}

@@ -11,6 +11,7 @@ import DynamicHeroIcon from "../DynamicHeroIcon/DynamicHeroIcon";
 import Link from "next/link";
 import { Menu, Transition } from "@headlessui/react";
 import ProfileMenuItem from "./ProfileMenuItem";
+import ScaledButton from "../Button/IconButton";
 
 const HeaderAuthentication = () => {
 	const pathname = usePathname();
@@ -39,26 +40,28 @@ const HeaderAuthentication = () => {
 				</>
 			) : (
 				<Menu as="div" className="relative">
-					<Menu.Button className="flex items-center p-1 pr-2 transition hover:bg-blue-50 rounded-2xl">
-						<Image
-							src={UserLogo.src}
-							alt="User"
-							width={50}
-							height={50}
-							className="mr-3"
-						/>
-						<div className="mr-1">
-							<div className="w-28 truncate">
-								densheva9999999@gmail.com
+					<Menu.Button>
+						<ScaledButton className="flex items-center p-1 pr-2">
+							<Image
+								src={UserLogo.src}
+								alt="User"
+								width={50}
+								height={50}
+								className="mr-3"
+							/>
+							<div className="mr-1">
+								<div className="w-28 truncate">
+									densheva9999999@gmail.com
+								</div>
+								<div className="text-gray-400 text-xs text-left">
+									Немає підписки
+								</div>
 							</div>
-							<div className="text-gray-400 text-xs text-left">
-								Немає підписки
-							</div>
-						</div>
-						<DynamicHeroIcon
-							icon="ChevronDownIcon"
-							className="w-4"
-						/>
+							<DynamicHeroIcon
+								icon="ChevronDownIcon"
+								className="w-4"
+							/>
+						</ScaledButton>
 					</Menu.Button>
 					<Transition
 						as={Fragment}
@@ -70,7 +73,7 @@ const HeaderAuthentication = () => {
 						leaveTo="transform opacity-0 scale-95"
 					>
 						<Menu.Items className="rounded-2xl absolute right-0 origin-top-right divide-y divide-gray-100 bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-							<div className="p-1">
+							<div className="p-2">
 								<Menu.Item>
 									<ProfileMenuItem
 										href={RouteConstants.Account}
@@ -79,7 +82,9 @@ const HeaderAuthentication = () => {
 									</ProfileMenuItem>
 								</Menu.Item>
 								<Menu.Item>
-									<ProfileMenuItem href="/settings">
+									<ProfileMenuItem
+										href={RouteConstants.Settings}
+									>
 										Налаштування
 									</ProfileMenuItem>
 								</Menu.Item>

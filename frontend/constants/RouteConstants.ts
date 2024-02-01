@@ -2,5 +2,7 @@ export default {
     Home: "/",
     Login: "/login",
     Registration: "/registration",
-    Account: "/account"
+    Account: "/account",
+    Api: "/api",
+    Settings: "/settings"
 };

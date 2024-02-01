@@ -1,15 +1,16 @@
 "use client";
 import React from "react";
-import Section from "../Common/Section/Section";
 import AccountItem from "./AccountItem";
-import H2 from "../Common/Headings/H2";
-import BlueButton from "../Common/Button/BlueButton";
-import H4 from "../Common/Headings/H4";
 import { Tab } from "@headlessui/react";
 import AccountTab from "./AccountTab";
 import AccountTabPanel from "./AccountTabPanel";
-import ApiKeys from "./Tabs/ApiKeys/ApiKeys";
-import ApiEndpoints from "./Tabs/ApiEndpoints/ApiEndpoints";
+import Section from "@/components/Common/Section/Section";
+import H2 from "@/components/Common/Headings/H2";
+import H4 from "@/components/Common/Headings/H4";
+import BlueButton from "@/components/Common/Button/BlueButton";
+import ApiKeys from "../Tabs/ApiKeys/ApiKeys";
+import ApiEndpoints from "../Tabs/ApiEndpoints/ApiEndpoints";
+import GetAsFile from "../Tabs/GetAsFile/GetAsFile";
 
 const AccountPage = () => {
 	return (
@@ -61,8 +62,8 @@ const AccountPage = () => {
 				<Tab.Group>
 					<Tab.List className="flex flex-wrap">
 						<AccountTab>АПІ ключі</AccountTab>
-						<AccountTab>АПІ (кінцеві точки)</AccountTab>
-						<AccountTab>Файли</AccountTab>
+						<AccountTab>Документація</AccountTab>
+						<AccountTab>Скачати у файлі</AccountTab>
 						<AccountTab className="flex gap-2 items-center">
 							Усі замовлення{" "}
 							<div className="bg-blue-100 rounded-full px-2">
@@ -77,7 +78,9 @@ const AccountPage = () => {
 						<AccountTabPanel>
 							<ApiEndpoints />
 						</AccountTabPanel>
-						<AccountTabPanel>Content 3</AccountTabPanel>
+						<AccountTabPanel>
+							<GetAsFile />
+						</AccountTabPanel>
 					</Tab.Panels>
 				</Tab.Group>
 			</div>

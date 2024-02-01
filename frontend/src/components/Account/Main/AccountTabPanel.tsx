@@ -6,7 +6,7 @@ interface AccountTabPanelProps {
 }
 
 const AccountTabPanel = ({ children }: AccountTabPanelProps) => {
-	return <Tab.Panel className="p-5 outline-none">{children}</Tab.Panel>;
+	return <Tab.Panel className="p-5 pt-10 outline-none">{children}</Tab.Panel>;
 };
 
 export default AccountTabPanel;

@@ -1,7 +1,8 @@
-import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import ScaledButton from "../Button/IconButton";
+import classNames from "classnames";
 
 interface ProfileMenuItemProps {
 	children: string | string[];
