@@ -1,39 +1,57 @@
-import { Body, Controller, Get, HttpCode, Post, Res, UsePipes, ValidationPipe } from '@nestjs/common';
-import { AuthService } from './services/auth.service';
+import { Body, Controller, Get, HttpCode, Param, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
-import { Response } from 'express';
+import { Request, Response } from 'express';
+import { JwtAuthGuard } from './auth.guard';
 
 @Controller('auth')
 export class AuthController {
+  private AGE_30D = 30 * 24 * 60 * 60 * 1000
+
   constructor(private readonly authService: AuthService) {}
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
   @Post('login')
-  async login(@Body() dto: AuthDto) {
-    return this.authService.login(dto);
+  async login(@Body() dto: AuthDto, @Res({ passthrough: true }) response: Response) {
+    const result = await this.authService.login(dto)
+    this.saveRefreshTokenToCookie(response, result.refreshToken)
+    return result
   }
 
+  @UsePipes(new ValidationPipe())
   @Post('registration')
   @HttpCode(200)
   async registration(@Body() dto: AuthDto, @Res({ passthrough: true }) response: Response) {
     const result = await this.authService.registration(dto)
-    response.cookie('refreshToken', result.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+    this.saveRefreshTokenToCookie(response, result.refreshToken)
     return result
   }
   
   @Post('logout')
-  async logout() {
-
+  @HttpCode(200)
+  async logout(@Req() request: Request, @Res() response: Response) {
+    const { refreshToken } = request.cookies
+    await this.authService.logout(refreshToken)
+    response.clearCookie('refreshToken')
   }
 
-  @Get('activate/:link')
-  async activate() {
-
+  @UseGuards(JwtAuthGuard)
+  @Post('activate/:code')
+  @HttpCode(200)
+  async activate(@Param('code') code: number, @Req() request: Request) {
+    await this.authService.activate(request.user['_id'], code)
   }
 
   @Get('refresh')
-  async refresh() {
-
+  async refresh(@Req() request: Request, @Res() response: Response) {
+    const { refreshToken } = request.cookies
+    const newTokens = await this.authService.refresh(refreshToken)
+    this.saveRefreshTokenToCookie(response, newTokens.refreshToken)
+    return newTokens
+  }
+  
+  private saveRefreshTokenToCookie(response: Response<any, Record<string, any>>, refreshToken: string) {
+    response.cookie('refreshToken', refreshToken, { maxAge: this.AGE_30D, httpOnly: true });
   }
 }

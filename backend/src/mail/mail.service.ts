@@ -1,5 +1,5 @@
 import { MailerService } from "@nestjs-modules/mailer";
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { HttpException, Injectable } from "@nestjs/common";
 import { join } from "path";
 
 @Injectable()
@@ -12,7 +12,7 @@ export class MailService {
         await this.mailerService.sendMail({
             to: to,
             subject: 'Підтвердження реєстрації',
-            template: join(__dirname, './../templates', 'confirm-registration'),
+            template: join(__dirname, './templates', 'confirm-registration'),
             context: {
                 code,
             },
