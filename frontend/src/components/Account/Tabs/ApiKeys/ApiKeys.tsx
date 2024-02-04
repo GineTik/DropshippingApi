@@ -1,18 +1,17 @@
-import ScaledButton from "@/components/Common/Button/IconButton";
-import H4 from "@/components/Common/Headings/H4";
+import ScaledButton from '@/components/Common/Button/ScaledButton'
+import H4 from '@/components/Common/Headings/H4'
 import {
 	ArrowPathIcon,
 	DocumentDuplicateIcon,
-	TrashIcon,
-} from "@heroicons/react/24/outline";
-import React from "react";
+	TrashIcon
+} from '@heroicons/react/24/outline'
 
 const ApiKeys = () => {
 	const keys = [
-		"jliskdfljka;sdflkj;dsfajlk;dfasljk;dafsjlk;fda;jlakfd",
-		"jksdfakdjfsjior1jkr101f0-1f0fj01-01jdfasfajkdfsaljk;",
-		"asdfjlkadsfjkldfasjkladfsjkl;jldaskf;ljk;adsfalsd;jkfadsflj;k",
-	];
+		'jliskdfljka;sdflkj;dsfajlk;dfasljk;dafsjlk;fda;jlakfd',
+		'jksdfakdjfsjior1jkr101f0-1f0fj01-01jdfasfajkdfsaljk;',
+		'asdfjlkadsfjkldfasjkladfsjkl;jldaskf;ljk;adsfalsd;jkfadsflj;k'
+	]
 
 	return (
 		<div>
@@ -25,10 +24,7 @@ const ApiKeys = () => {
 					<div className="ml-auto">Дії</div>
 				</div>
 				{keys.map((key) => (
-					<div
-						key={crypto.randomUUID()}
-						className="flex items-center"
-					>
+					<div key={crypto.randomUUID()} className="flex items-center">
 						<div className="w-1/2 truncate pr-4">{key}</div>
 						<ScaledButton
 							className="p-2 outline-blue-500 rounded-lg"
@@ -38,16 +34,10 @@ const ApiKeys = () => {
 							https://localhost:3000
 						</ScaledButton>
 						<div className="flex ml-auto -mr-6">
-							<ScaledButton
-								tooltip="Копіювати АПІ ключ"
-								className="p-3"
-							>
+							<ScaledButton tooltip="Копіювати АПІ ключ" className="p-3">
 								<DocumentDuplicateIcon className="w-5" />
 							</ScaledButton>
-							<ScaledButton
-								tooltip="Перегенерувати"
-								className="p-3"
-							>
+							<ScaledButton tooltip="Перегенерувати" className="p-3">
 								<ArrowPathIcon className="w-5" />
 							</ScaledButton>
 							<ScaledButton isDanger className="p-3">
@@ -117,7 +107,7 @@ const ApiKeys = () => {
 				{/* <BlueButton>Збільшити кількість</BlueButton> */}
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default ApiKeys;
+export default ApiKeys

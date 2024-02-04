@@ -1,12 +1,14 @@
-import classNames from "classnames";
-import Link from "next/link";
-import React from "react";
+'use client'
+import classNames from 'classnames'
+import Link from 'next/link'
+import React from 'react'
 
 export interface BaseButtonProps {
-	className?: string;
-	children: string | React.ReactElement | (string | React.ReactElement)[];
-	href?: string;
-	onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+	className?: string
+	children: string | React.ReactElement | (string | React.ReactElement)[]
+	href?: string
+	onClick?: React.MouseEventHandler<HTMLAnchorElement>
+	disabled?: boolean
 }
 
 const BaseButton = ({
@@ -14,22 +16,25 @@ const BaseButton = ({
 	children,
 	href,
 	onClick,
+	disabled
 }: BaseButtonProps) => {
 	return (
 		<Link
 			className={classNames(
 				className,
-				"rounded-full px-7 py-[10px] cursor-pointer",
-				"font-medium",
-				"transition ease-in-out",
-				"inline-flex items-center"
+				'rounded-full px-7 py-[10px] cursor-pointer',
+				'font-medium',
+				'transition ease-in-out',
+				'inline-flex items-center'
 			)}
-			href={href ?? "#"}
-			onClick={onClick}
+			href={href ?? '#'}
+			onClick={(e) => {
+				if (!disabled && onClick) onClick(e)
+			}}
 		>
 			{children}
 		</Link>
-	);
-};
+	)
+}
 
-export default BaseButton;
+export default BaseButton

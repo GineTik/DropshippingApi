@@ -1,14 +1,13 @@
 import { HttpException, Injectable, UnauthorizedException } from '@nestjs/common';
-import { AuthDto } from './dto/auth.dto';
-import { InjectModel } from 'nestjs-typegoose';
-import { UserModel } from 'src/user/user.model';
 import { ModelType } from '@typegoose/typegoose/lib/types';
 import { compare, genSalt, hash } from 'bcryptjs';
-import { ConfigService } from '@nestjs/config';
-import { TokenService } from './token/token.service';
-import { MailService } from '../mail/mail.service';
-import { SuccessAuthDto } from './dto/success-auth.dto';
 import { Types } from 'mongoose';
+import { InjectModel } from 'nestjs-typegoose';
+import { UserModel } from 'src/user/user.model';
+import { MailService } from '../mail/mail.service';
+import { AuthDto } from './dto/auth.dto';
+import { SuccessAuthDto } from './dto/success-auth.dto';
+import { TokenService } from './token/token.service';
 
 @Injectable()
 export class AuthService {
@@ -76,14 +75,23 @@ export class AuthService {
         await this.tokenService.removeRefreshToken(refreshToken);
     }
 
-    async refresh(refreshToken: string) {
+    async refresh(refreshToken: string): Promise<SuccessAuthDto> {
         if (!refreshToken) throw new UnauthorizedException('Refresh token is undefined')
 
         const result = await this.tokenService.validateRefreshToken(refreshToken)
-        if (!result.successfully) throw new UnauthorizedException()
+        if (!result.successfully) throw new UnauthorizedException(result.error)
 
         const newTokens = await this.tokenService.generateAndSaveToken(result.userId)
-        return newTokens
+        const user = await this.userModel.findOne({ _id: result.userId })
+        
+        return { 
+            ...newTokens, 
+            user: {
+                id: user._id,
+                email: user.email,
+                isActivated: user.isActivated
+            }
+        }
     }
 
     generate6NumberCode() {

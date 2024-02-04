@@ -1,8 +1,8 @@
-import { Body, Controller, Get, HttpCode, Param, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, HttpCode, Param, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
-import { Request, Response } from 'express';
-import { JwtAuthGuard } from './auth.guard';
+import { JwtAuthGuard } from './token/access-token.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -30,7 +30,7 @@ export class AuthController {
   
   @Post('logout')
   @HttpCode(200)
-  async logout(@Req() request: Request, @Res() response: Response) {
+  async logout(@Req() request: Request, @Res({ passthrough: true }) response: Response) {
     const { refreshToken } = request.cookies
     await this.authService.logout(refreshToken)
     response.clearCookie('refreshToken')
@@ -43,15 +43,15 @@ export class AuthController {
     await this.authService.activate(request.user['_id'], code)
   }
 
-  @Get('refresh')
-  async refresh(@Req() request: Request, @Res() response: Response) {
+  @Post('refresh')
+  async refresh(@Req() request: Request, @Res({ passthrough: true }) response: Response) {
     const { refreshToken } = request.cookies
-    const newTokens = await this.authService.refresh(refreshToken)
-    this.saveRefreshTokenToCookie(response, newTokens.refreshToken)
-    return newTokens
+    const result = await this.authService.refresh(refreshToken)
+    this.saveRefreshTokenToCookie(response, result.refreshToken)
+    return result
   }
   
-  private saveRefreshTokenToCookie(response: Response<any, Record<string, any>>, refreshToken: string) {
+  private saveRefreshTokenToCookie(response: Response, refreshToken: string) {
     response.cookie('refreshToken', refreshToken, { maxAge: this.AGE_30D, httpOnly: true });
   }
 }

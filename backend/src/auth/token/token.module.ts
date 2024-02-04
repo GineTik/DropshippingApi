@@ -1,14 +1,17 @@
-import { Module, Global } from '@nestjs/common';
-import { TokenService } from './token.service';
+import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { JwtModule, JwtService } from '@nestjs/jwt';
-import { getJwtConfig } from 'src/config/jwt.config';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 import { TypegooseModule } from 'nestjs-typegoose';
+import { getJwtConfig } from 'src/config/jwt.config';
+import { JwtStrategy } from './access-token.guard';
 import { TokenModel } from './models/token.model';
+import { TokenService } from './token.service';
 
 @Global()
 @Module({
 	imports: [
+		PassportModule,
 		TypegooseModule.forFeature([
 			{
 				typegooseClass: TokenModel,
@@ -24,7 +27,7 @@ import { TokenModel } from './models/token.model';
 			useFactory: getJwtConfig
 		}),
 	],
-	providers: [TokenService],
-	exports: [TokenService]
+	providers: [TokenService, JwtStrategy],
+	exports: [TokenService, JwtStrategy]
 })
 export class TokenModule {}

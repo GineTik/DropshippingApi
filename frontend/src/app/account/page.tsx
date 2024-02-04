@@ -1,8 +1,16 @@
-import AccountPage from "@/components/Account/Main/AccountPage";
-import React from "react";
+'use client'
+import AccountPage from '@/components/Account/Main/AccountPage'
+import { StateType } from '@/store/store'
+import { useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
+import RouteConstants from '../../../constants/RouteConstants'
 
 const page = () => {
-	return <AccountPage />;
-};
+	const router = useRouter()
+	const { auth } = useSelector((state: StateType) => state)
 
-export default page;
+	if (!auth.loggedIn) router.push(RouteConstants.Login)
+	return <AccountPage />
+}
+
+export default page

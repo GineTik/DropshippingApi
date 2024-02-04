@@ -1,10 +1,10 @@
-import { HttpException, Injectable, UnauthorizedException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
-import { TokenModel } from "./models/token.model";
-import { InjectModel } from "nestjs-typegoose";
 import { ModelType } from "@typegoose/typegoose/lib/types";
 import { Types } from "mongoose";
+import { InjectModel } from "nestjs-typegoose";
+import { TokenModel } from "./models/token.model";
 
 @Injectable()
 export class TokenService {
@@ -16,11 +16,11 @@ export class TokenService {
 
     async generateTokens(_id: Types.ObjectId) {
         const payload = { _id }
-        const accessToken = await this.jwtService.sign(payload, {
+        const accessToken = await this.jwtService.signAsync(payload, {
             secret: this.configService.get('JWT_SECRET'),
             expiresIn: '15m'
         })
-        const refreshToken = await this.jwtService.sign(payload,  {
+        const refreshToken = await this.jwtService.signAsync(payload,  {
             secret: this.configService.get('JWT_REFRESH'),
             expiresIn: '30d'
         })
@@ -53,19 +53,23 @@ export class TokenService {
         await this.tokenModel.deleteOne({ refreshToken })
     }
 
-    async validateRefreshToken(refreshToken: string): Promise<{ successfully: boolean, userId: Types.ObjectId | undefined }> {
+    async validateRefreshToken(refreshToken: string): Promise<{ successfully: boolean, userId: Types.ObjectId | undefined, error: any }> {
         try {
-            const payload = await this.jwtService.verifyAsync(refreshToken, this.configService.get('JWT_REFRESH'))
-            return { successfully: true, userId: payload._id }
+            const payload = await this.jwtService.verifyAsync(refreshToken, {
+                secret: this.configService.get('JWT_REFRESH')
+            })
+            return { successfully: true, userId: payload._id, error: undefined }
         }
         catch (e) {
-            return { successfully: false, userId: undefined }
+            return { successfully: false, userId: undefined, error: e }
         }
     }
 
     async validateAccessToken(accessToken: string): Promise<{ successfully: boolean, userId: Types.ObjectId | undefined }> {
         try {
-            const payload = await this.jwtService.verifyAsync(accessToken, this.configService.get('JWT_SECRET'))
+            const payload = await this.jwtService.verifyAsync(accessToken, {
+                secret: this.configService.get('JWT_SECRET')
+            })
             return { successfully: true, userId: payload._id }
         }
         catch (e) {
