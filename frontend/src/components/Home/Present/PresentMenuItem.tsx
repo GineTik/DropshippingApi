@@ -1,8 +1,7 @@
-import React from "react";
-import DynamicHeroIcon from "../../Common/DynamicHeroIcon/DynamicHeroIcon";
+import DynamicHeroIcon from '../../common/dynamic-hero-icon/DynamicHeroIcon'
 
 interface PresentMenuItemProps {
-	text: string;
+	text: string
 }
 
 const PresentMenuItem = ({ text }: PresentMenuItemProps) => {
@@ -11,7 +10,7 @@ const PresentMenuItem = ({ text }: PresentMenuItemProps) => {
 			<DynamicHeroIcon icon="CheckCircleIcon" className="w-5" />
 			{text}
 		</div>
-	);
-};
+	)
+}
 
-export default PresentMenuItem;
+export default PresentMenuItem

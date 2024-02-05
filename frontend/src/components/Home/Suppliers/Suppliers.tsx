@@ -1,11 +1,10 @@
-import H2 from "@/components/Common/Headings/H2";
-import Section from "@/components/Common/Section/Section";
-import React from "react";
-import SuppliersItem from "./SuppliersItem";
-import MSDROPLogo from "../../../../public/logos-of-suppliers/MS DROP.png";
-import ZimaLogo from "../../../../public/logos-of-suppliers/zima.svg";
-import WebSkladLogo from "../../../../public/logos-of-suppliers/WebSklad.png";
-import ColoredButton from "@/components/Common/Button/ColoredButton";
+import H2 from '@/components/Common/Headings/H2'
+import Section from '@/components/Common/Section/Section'
+import ColoredButton from '@/components/common/buttons/ColoredButton'
+import MSDROPLogo from '../../../../public/logos-of-suppliers/MS DROP.png'
+import WebSkladLogo from '../../../../public/logos-of-suppliers/WebSklad.png'
+import ZimaLogo from '../../../../public/logos-of-suppliers/zima.svg'
+import SuppliersItem from './SuppliersItem'
 
 const Suppliers = () => {
 	return (
@@ -14,8 +13,8 @@ const Suppliers = () => {
 				<div className="mx-auto w-full max-w-[800px] text-center text-white">
 					<H2 className="text-white mb-4">Деякі із постачальників</H2>
 					<div className="text-white block leading-normal text-xl mb-12 md:mb-20">
-						Ви можете використовувати цих постачальників та їх
-						товари для заробітку на дропшипінгу.
+						Ви можете використовувати цих постачальників та їх товари для
+						заробітку на дропшипінгу.
 					</div>
 				</div>
 				<div className="flex flex-wrap lg:flex-nowrap justify-center lg:justify-between gap-10">
@@ -45,7 +44,7 @@ const Suppliers = () => {
 				</ColoredButton>
 			</Section>
 		</div>
-	);
-};
+	)
+}
 
-export default Suppliers;
+export default Suppliers

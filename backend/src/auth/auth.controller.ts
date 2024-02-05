@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Param, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
@@ -53,5 +53,11 @@ export class AuthController {
   
   private saveRefreshTokenToCookie(response: Response, refreshToken: string) {
     response.cookie('refreshToken', refreshToken, { maxAge: this.AGE_30D, httpOnly: true });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('test')
+  async test() {
+    return 'success'
   }
 }

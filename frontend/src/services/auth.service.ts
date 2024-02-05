@@ -18,5 +18,9 @@ export const AuthService = {
 
     async refresh() {
         return await $api.post('auth/refresh')
+    },
+
+    async test() {
+        return await $api.get('auth/test')
     }
 }

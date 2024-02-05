@@ -12,16 +12,18 @@ interface AuthProviderProps {
 }
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-	const { login, startLoadingProfile } = useActions()
+	const { login, startLoadingProfile, endLoadingProfile } = useActions()
 
 	const { mutateAsync: refresh } = useMutation<AxiosResponse<SuccessAuthDto>>({
 		mutationKey: ['refresh'],
 		mutationFn: () => AuthService.refresh(),
 		onSuccess: (result) => {
 			login(result.data)
+			endLoadingProfile()
 		},
 		onError: (err) => {
 			console.log(err)
+			endLoadingProfile()
 		}
 	})
 

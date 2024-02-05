@@ -1,5 +1,6 @@
 'use client'
 import classNames from 'classnames'
+import { Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
@@ -9,6 +10,7 @@ export interface BaseButtonProps {
 	href?: string
 	onClick?: React.MouseEventHandler<HTMLAnchorElement>
 	disabled?: boolean
+	isPending?: boolean
 }
 
 const BaseButton = ({
@@ -16,7 +18,8 @@ const BaseButton = ({
 	children,
 	href,
 	onClick,
-	disabled
+	disabled,
+	isPending
 }: BaseButtonProps) => {
 	return (
 		<Link
@@ -29,10 +32,10 @@ const BaseButton = ({
 			)}
 			href={href ?? '#'}
 			onClick={(e) => {
-				if (!disabled && onClick) onClick(e)
+				if (!disabled && !isPending && onClick) onClick(e)
 			}}
 		>
-			{children}
+			{isPending ? <Loader2 className="animate-spin" size={20} /> : children}
 		</Link>
 	)
 }

@@ -11,9 +11,9 @@ import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import RouteConstants from '../../../../constants/RouteConstants'
 import UserLogo from '../../../../public/UserLogo.png'
-import BlueButton from '../Button/BlueButton'
-import BorderedButton from '../Button/BorderedButton'
-import ScaledButton from '../Button/ScaledButton'
+import BlueButton from '../buttons/BlueButton'
+import BorderedButton from '../buttons/BorderedButton'
+import ScaledButton from '../buttons/ScaledButton'
 import ProfileMenuItem from './ProfileMenuItem'
 
 const HeaderAuthentication = () => {
@@ -25,7 +25,7 @@ const HeaderAuthentication = () => {
 		<div className="text-sm font-medium flex">
 			{auth.isLoadingProfile ? (
 				<Loader2 className="animate-spin" size={24} />
-			) : auth.loggedIn ? (
+			) : auth.user ? (
 				<Menu as="div" className="relative">
 					<Menu.Button>
 						<ScaledButton className="flex items-center p-1 pr-2">

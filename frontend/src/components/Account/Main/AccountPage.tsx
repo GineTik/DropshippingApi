@@ -1,18 +1,28 @@
-"use client";
-import React from "react";
-import AccountItem from "./AccountItem";
-import { Tab } from "@headlessui/react";
-import AccountTab from "./AccountTab";
-import AccountTabPanel from "./AccountTabPanel";
-import Section from "@/components/Common/Section/Section";
-import H2 from "@/components/Common/Headings/H2";
-import H4 from "@/components/Common/Headings/H4";
-import BlueButton from "@/components/Common/Button/BlueButton";
-import ApiKeys from "../Tabs/ApiKeys/ApiKeys";
-import ApiEndpoints from "../Tabs/ApiEndpoints/ApiEndpoints";
-import GetAsFile from "../Tabs/GetAsFile/GetAsFile";
+'use client'
+import BlueButton from '@/components/common/buttons/BlueButton'
+import H2 from '@/components/common/headings/H2'
+import H4 from '@/components/common/headings/H4'
+import Section from '@/components/common/section/Section'
+import { AuthService } from '@/services/auth.service'
+import { Tab } from '@headlessui/react'
+import { useMutation } from '@tanstack/react-query'
+import ApiEndpoints from '../tabs/api-endpoints/ApiEndpoints'
+import ApiKeys from '../tabs/api-keys/ApiKeys'
+import GetAsFile from '../tabs/get-as-file/GetAsFile'
+import AccountItem from './AccountItem'
+import AccountTab from './AccountTab'
+import AccountTabPanel from './AccountTabPanel'
 
 const AccountPage = () => {
+	const { mutateAsync: testAsync } = useMutation({
+		mutationKey: ['test'],
+		mutationFn: () => AuthService.test(),
+		onSuccess: (res) => {
+			console.log(res)
+		},
+		onError: (err) => [console.log(err)]
+	})
+
 	return (
 		<Section className="max-w-[800px]">
 			<H2 className="mb-10 mt-16">Доступні дії</H2>
@@ -42,18 +52,16 @@ const AccountPage = () => {
 				<div className="flex gap-5 lg:mt-6 mb-10 items-center">
 					<div className="bg-blue-50 p-5 rounded-full">
 						<span className="font-bold mr-2">Free</span>
-						<span className="line-through text-blue-300 font-bold">
-							10$
-						</span>
+						<span className="line-through text-blue-300 font-bold">10$</span>
 					</div>
 					<span className="max-sm:hidden">
 						Почни пробний період та оціни сервіс
 					</span>
-					<BlueButton className="max-sm:w-full max-sm:flex max-sm:justify-center sm:ml-auto">
-						Почати{" "}
-						<span className="max-lg:hidden ml-1">
-							пробний період
-						</span>
+					<BlueButton
+						className="max-sm:w-full max-sm:flex max-sm:justify-center sm:ml-auto"
+						onClick={() => testAsync()}
+					>
+						Почати <span className="max-lg:hidden ml-1">пробний період</span>
 					</BlueButton>
 				</div>
 			</div>
@@ -65,10 +73,8 @@ const AccountPage = () => {
 						<AccountTab>Документація</AccountTab>
 						<AccountTab>Скачати у файлі</AccountTab>
 						<AccountTab className="flex gap-2 items-center">
-							Усі замовлення{" "}
-							<div className="bg-blue-100 rounded-full px-2">
-								5
-							</div>
+							Усі замовлення{' '}
+							<div className="bg-blue-100 rounded-full px-2">5</div>
 						</AccountTab>
 					</Tab.List>
 					<Tab.Panels>
@@ -85,7 +91,7 @@ const AccountPage = () => {
 				</Tab.Group>
 			</div>
 		</Section>
-	);
-};
+	)
+}
 
-export default AccountPage;
+export default AccountPage

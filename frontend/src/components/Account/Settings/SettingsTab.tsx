@@ -1,5 +1,5 @@
 'use client'
-import ScaledButton from '@/components/Common/Button/ScaledButton'
+import ScaledButton from '@/components/common/buttons/ScaledButton'
 import { Tab } from '@headlessui/react'
 import classNames from 'classnames'
 
@@ -11,7 +11,7 @@ const SettingsTab = ({ children }: SettingsTabProps) => {
 	return (
 		<Tab
 			className={({ selected }) =>
-				classNames('w-full', {
+				classNames('w-full outline-none', {
 					'bg-gray-100 rounded-lg': selected
 				})
 			}

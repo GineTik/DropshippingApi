@@ -1,8 +1,6 @@
-import Header from "@/components/Common/Header/Header";
-import Present from "@/components/Home/Present/Present";
-import React from "react";
-import HowItWorks from "./HowItWorks/HowItWorks";
-import Suppliers from "./Suppliers/Suppliers";
+import Present from '@/components/home/present/Present'
+import HowItWorks from './how-it-works/HowItWorks'
+import Suppliers from './suppliers/Suppliers'
 
 const HomePage = () => {
 	return (
@@ -11,7 +9,7 @@ const HomePage = () => {
 			<HowItWorks />
 			<Suppliers />
 		</>
-	);
-};
+	)
+}
 
-export default HomePage;
+export default HomePage

@@ -1,11 +1,10 @@
-import React from "react";
-import H4 from "@/components/Common/Headings/H4";
-import DynamicHeroIcon from "@/components/Common/DynamicHeroIcon/DynamicHeroIcon";
+import DynamicHeroIcon from '@/components/common/dynamic-hero-icon/DynamicHeroIcon'
+import H4 from '@/components/common/headings/H4'
 
 interface AccountItemProps {
-	icon: string;
-	title: string;
-	description: string;
+	icon: string
+	title: string
+	description: string
 }
 
 const AccountItem = ({ icon, title, description }: AccountItemProps) => {
@@ -20,7 +19,7 @@ const AccountItem = ({ icon, title, description }: AccountItemProps) => {
 				Більше
 			</BlueButton> */}
 		</div>
-	);
-};
+	)
+}
 
-export default AccountItem;
+export default AccountItem
