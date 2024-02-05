@@ -1,5 +1,5 @@
 'use client'
-import AccountPage from '@/components/Account/Main/AccountPage'
+import AccountPage from '@/components/Account/main/AccountPage'
 import { StateType } from '@/store/store'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
