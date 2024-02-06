@@ -1,16 +1,16 @@
 'use client'
 import AuthPage from '@/components/Authentication/AuthPage'
-import { getState } from '@/store/store'
+import { StateType } from '@/store/store'
 import { useParams, useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import RouteConstants from '../../../../constants/RouteConstants'
 
 const page = () => {
 	const { type } = useParams<{ type: 'login' | 'registration' }>()
-	const { auth } = useSelector(getState)
+	const { user } = useSelector((state: StateType) => state.auth)
 	const router = useRouter()
 
-	if (auth.user && auth.user.isActivated) {
+	if (user && user.isActivated) {
 		router.push(RouteConstants.Account)
 		return
 	}

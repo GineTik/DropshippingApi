@@ -1,5 +1,5 @@
 'use client'
-import RefreshTokensMiddleware from '@/middlewares/RefreshTokensMiddleware'
+import RefreshTokensMiddleware from '@/middlewares/RefreshMiddleware'
 import { persistor, store } from '@/store/store'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Provider } from 'react-redux'

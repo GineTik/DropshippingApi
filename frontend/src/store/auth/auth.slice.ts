@@ -1,7 +1,6 @@
 import { SuccessAuthDto } from "@/dtos/user/success-auth.dto";
 import { User } from "@/dtos/user/user.dto";
 import { createSlice } from "@reduxjs/toolkit";
-import LocalStorageConstants from "../../../constants/LocalStorageConstants";
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -16,12 +15,10 @@ export const authSlice = createSlice({
         login: (state, {payload}: {payload: SuccessAuthDto}) => {
             state.user = payload.user
             state.accessToken = payload.accessToken
-            localStorage.setItem(LocalStorageConstants.AccessToken, payload.accessToken)
         },
         logout: (state) => {
             state.user = undefined as unknown as User
             state.accessToken = undefined as unknown as string
-            localStorage.removeItem(LocalStorageConstants.AccessToken)
         }
     }
 })

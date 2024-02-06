@@ -7,7 +7,7 @@ import HeaderAuthentication from './HeaderAuthentication'
 
 const Header = () => {
 	return (
-		<Section className="flex mt-5 items-center">
+		<Section className="flex mt-5 items-center z-50">
 			<Link href={RouteConstants.Home}>
 				<Image src={Logo.src} alt="Logo" width={40} height={40} />
 			</Link>

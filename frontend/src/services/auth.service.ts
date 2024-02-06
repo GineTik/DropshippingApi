@@ -1,4 +1,5 @@
 import { AuthDto } from "@/dtos/user/auth.dto";
+import { ConfirmChangePasswordDto } from "@/dtos/user/confirm-change-password.dto";
 import { SuccessAuthDto } from "@/dtos/user/success-auth.dto";
 import { AxiosResponse } from "axios";
 import $api from "./api";
@@ -18,6 +19,18 @@ export const AuthService = {
 
     async refresh() {
         return await $api.post('auth/refresh')
+    },
+
+    async logout() {
+        return await $api.post('auth/logout')
+    },
+
+    async sendChangePasswordRequest() {
+        return await $api.post('auth/change-password-request')
+    },
+
+    async confirmChangePassword(dto: ConfirmChangePasswordDto) {
+        return await $api.post('auth/confirm-change-password', dto)
     },
 
     async test() {

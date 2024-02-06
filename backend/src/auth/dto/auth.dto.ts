@@ -1,12 +1,12 @@
-import { IsString, MinLength } from "class-validator"
+import { IsEmail, IsString, MinLength } from "class-validator"
 
 export class AuthDto {
-    @IsString()
+    @IsEmail()
     email: string
 
     @IsString()
     @MinLength(6, {
-        message: 'Password cannot be less than 6 characters!'
+        message: 'Пароль має бути довше 6 символів'
     })
     password: string
 }

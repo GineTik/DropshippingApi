@@ -1,7 +1,11 @@
-import { UserProfileDto } from "src/user/user-profile.dto"
+import { Types } from "mongoose"
 
 export class SuccessAuthDto {
     accessToken: string
     refreshToken: string
-    user: UserProfileDto
+    user: {
+        id: Types.ObjectId
+        email: string
+        isActivated: boolean
+    }
 }

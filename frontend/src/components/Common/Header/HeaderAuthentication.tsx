@@ -1,8 +1,10 @@
 'use client'
 import { useActions } from '@/hooks/useActions'
+import { AuthService } from '@/services/auth.service'
 import { StateType } from '@/store/store'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { useMutation } from '@tanstack/react-query'
 import classNames from 'classnames'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
@@ -19,6 +21,14 @@ const HeaderAuthentication = () => {
 	const pathname = usePathname()
 	const { user } = useSelector((state: StateType) => state.auth)
 	const { logout } = useActions()
+
+	const { mutateAsync: logoutAsync } = useMutation({
+		mutationKey: ['logout'],
+		mutationFn: () => AuthService.logout(),
+		onSuccess: () => {
+			logout()
+		}
+	})
 
 	return (
 		<div className="text-sm font-medium flex">
@@ -64,7 +74,7 @@ const HeaderAuthentication = () => {
 									</ProfileMenuItem>
 								</Menu.Item>
 								<Menu.Item>
-									<ProfileMenuItem onClick={() => logout()} isDanger>
+									<ProfileMenuItem onClick={() => logoutAsync()} isDanger>
 										Вийти
 									</ProfileMenuItem>
 								</Menu.Item>

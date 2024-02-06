@@ -24,4 +24,21 @@ export class MailService {
             );
         })
     }
+
+    async sendChangePasswordMail(to: string, code: number) {
+        await this.mailerService.sendMail({
+            to: to,
+            subject: 'Підтвердити зміну паролю',
+            template: join(__dirname, './templates', 'confirm-change-password'),
+            context: {
+                code,
+            },
+        })
+        .catch((e) => {
+            throw new HttpException(
+              `Помилка роботи почти: ${JSON.stringify(e)}`,
+              500,
+            );
+        })
+    }
 }

@@ -1,14 +1,17 @@
 import { Body, Controller, Get, HttpCode, Param, Post, Req, Res, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto/auth.dto';
+import { ConfirmChangePasswordDto } from './dto/confirm-change-password.dto';
 import { JwtAuthGuard } from './token/access-token.guard';
 
 @Controller('auth')
 export class AuthController {
-  private AGE_30D = 30 * 24 * 60 * 60 * 1000
-
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly configService: ConfigService
+  ) {}
 
   @UsePipes(new ValidationPipe())
   @HttpCode(200)
@@ -30,10 +33,8 @@ export class AuthController {
   
   @Post('logout')
   @HttpCode(200)
-  async logout(@Req() request: Request, @Res({ passthrough: true }) response: Response) {
-    const { refreshToken } = request.cookies
-    await this.authService.logout(refreshToken)
-    response.clearCookie('refreshToken')
+  async logout(@Res({ passthrough: true }) response: Response) {
+    response.clearCookie(this.configService.get('COOKIE_REFRESH_TOKEN_KEY'))
   }
 
   @UseGuards(JwtAuthGuard)
@@ -50,14 +51,32 @@ export class AuthController {
     this.saveRefreshTokenToCookie(response, result.refreshToken)
     return result
   }
-  
-  private saveRefreshTokenToCookie(response: Response, refreshToken: string) {
-    response.cookie('refreshToken', refreshToken, { maxAge: this.AGE_30D, httpOnly: true });
+
+  @UseGuards(JwtAuthGuard)
+  @Post('change-password-request')
+  async changePassword(@Req() request: Request) {
+    await this.authService.changePasswordRequest(request.user['_id'])
+  }
+
+  @UsePipes(new ValidationPipe())
+  @UseGuards(JwtAuthGuard)
+  @Post('confirm-change-password')
+  async confirmChangePassword(@Body() confirmChangePasswordDto: ConfirmChangePasswordDto, @Req() request: Request) {
+    await this.authService.confirmChangePassword(request.user['_id'], confirmChangePasswordDto)
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('test')
   async test() {
     return 'success'
+  }
+
+  private saveRefreshTokenToCookie(response: Response, refreshToken: string) {
+    const maxAge = Number(this.configService.get('SAVE_REFRESH_TOKEN_IN_COOKIE_IN_MINUTES')) * 60
+    response.cookie(
+      this.configService.get('COOKIE_REFRESH_TOKEN_KEY'), 
+      refreshToken, 
+      { maxAge, httpOnly: true }
+      );
   }
 }

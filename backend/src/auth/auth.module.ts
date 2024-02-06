@@ -26,8 +26,9 @@ import { TokenModule } from './token/token.module';
       },
     ]),
     TokenModule,
+    ConfigModule
   ],
   controllers: [AuthController],
-  providers: [AuthService, MailService],
+  providers: [AuthService, MailService, ConfigService],
 })
 export class AuthModule {}
