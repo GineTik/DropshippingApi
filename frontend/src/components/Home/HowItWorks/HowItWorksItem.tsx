@@ -1,15 +1,14 @@
-import H4 from "@/components/Common/Headings/H4";
-import classNames from "classnames";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import H4 from '@/components/Common/Headings/H4'
+import classNames from 'classnames'
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface HowItWorksItemProps {
-	image: string;
-	title: string;
-	description: string;
-	imageSize?: number;
-	href: string;
+	image: string
+	title: string
+	description: string
+	imageSize?: number
+	href: string
 }
 
 const HowItWorksItem = ({
@@ -17,14 +16,14 @@ const HowItWorksItem = ({
 	title,
 	description,
 	imageSize,
-	href,
+	href
 }: HowItWorksItemProps) => {
 	return (
 		<Link
 			className={classNames(
-				"text-center w-80",
-				"rounded-3xl p-5",
-				"hover:bg-gray-200/30 cursor-pointer transition"
+				'text-center w-80',
+				'rounded-3xl p-5',
+				'hover:bg-gray-200/30 cursor-pointer transition'
 			)}
 			href={href}
 		>
@@ -39,7 +38,7 @@ const HowItWorksItem = ({
 			<H4 className="mt-8 mb-3">{title}</H4>
 			<div className="leading-7">{description}</div>
 		</Link>
-	);
-};
+	)
+}
 
-export default HowItWorksItem;
+export default HowItWorksItem

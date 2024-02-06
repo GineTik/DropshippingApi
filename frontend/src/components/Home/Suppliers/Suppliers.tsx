@@ -1,6 +1,6 @@
+import ColoredButton from '@/components/Common/Buttons/ColoredButton'
 import H2 from '@/components/Common/Headings/H2'
 import Section from '@/components/Common/Section/Section'
-import ColoredButton from '@/components/common/buttons/ColoredButton'
 import MSDROPLogo from '../../../../public/logos-of-suppliers/MS DROP.png'
 import WebSkladLogo from '../../../../public/logos-of-suppliers/WebSklad.png'
 import ZimaLogo from '../../../../public/logos-of-suppliers/zima.svg'

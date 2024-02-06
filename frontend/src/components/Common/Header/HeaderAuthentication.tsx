@@ -10,19 +10,19 @@ import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import RouteConstants from '../../../../constants/RouteConstants'
 import UserLogo from '../../../../public/UserLogo.png'
-import BlueButton from '../buttons/BlueButton'
-import BorderedButton from '../buttons/BorderedButton'
-import ScaledButton from '../buttons/ScaledButton'
+import BlueButton from '../Buttons/BlueButton'
+import BorderedButton from '../Buttons/BorderedButton'
+import ScaledButton from '../Buttons/ScaledButton'
 import ProfileMenuItem from './ProfileMenuItem'
 
 const HeaderAuthentication = () => {
 	const pathname = usePathname()
-	const { auth } = useSelector((state: StateType) => state)
+	const { user } = useSelector((state: StateType) => state.auth)
 	const { logout } = useActions()
 
 	return (
 		<div className="text-sm font-medium flex">
-			{auth.user ? (
+			{user ? (
 				<Menu as="div" className="relative">
 					<Menu.Button>
 						<ScaledButton className="flex items-center p-1 pr-2">
@@ -34,7 +34,7 @@ const HeaderAuthentication = () => {
 								className="mr-3"
 							/>
 							<div className="mr-1">
-								<div className="w-28 truncate">{auth.user?.email}</div>
+								<div className="w-28 truncate">{user?.email}</div>
 								<div className="text-gray-400 text-xs text-left">
 									Немає підписки
 								</div>

@@ -1,8 +1,7 @@
-import classNames from "classnames";
-import React, { RefAttributes } from "react";
+import classNames from 'classnames'
 
 interface SectionProps extends React.HTMLAttributes<HTMLDivElement> {
-	children: React.ReactElement | React.ReactElement[];
+	children: React.ReactElement | React.ReactElement[]
 }
 
 const Section = ({ children, ...divAttributes }: SectionProps) => {
@@ -10,13 +9,13 @@ const Section = ({ children, ...divAttributes }: SectionProps) => {
 		<div
 			{...divAttributes}
 			className={classNames(
-				"w-full max-w-[1136px] mx-auto px-3",
+				'w-full max-w-[1136px] mx-auto px-3',
 				divAttributes.className
 			)}
 		>
 			{children}
 		</div>
-	);
-};
+	)
+}
 
-export default Section;
+export default Section

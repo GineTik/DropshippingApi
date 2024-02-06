@@ -1,5 +1,5 @@
-import ScaledButton from '@/components/common/buttons/ScaledButton'
-import H4 from '@/components/common/headings/H4'
+import ScaledButton from '@/components/Common/Buttons/ScaledButton'
+import H4 from '@/components/Common/Headings/H4'
 import {
 	ArrowPathIcon,
 	DocumentDuplicateIcon,

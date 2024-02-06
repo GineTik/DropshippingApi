@@ -1,7 +1,7 @@
 'use client'
 import { getState } from '@/store/store'
 import { useSelector } from 'react-redux'
-import Section from '../common/section/Section'
+import Section from '../Common/Section/Section'
 import ActivationCode from './ActivationCode'
 import AuthForm from './AuthForm'
 

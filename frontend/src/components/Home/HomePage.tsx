@@ -1,6 +1,6 @@
-import Present from '@/components/home/present/Present'
-import HowItWorks from './how-it-works/HowItWorks'
-import Suppliers from './suppliers/Suppliers'
+import Present from '@/components/Home/Present/Present'
+import HowItWorks from './HowItWorks/HowItWorks'
+import Suppliers from './Suppliers/Suppliers'
 
 const HomePage = () => {
 	return (

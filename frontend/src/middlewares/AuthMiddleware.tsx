@@ -2,17 +2,19 @@
 import { SuccessAuthDto } from '@/dtos/user/success-auth.dto'
 import { useActions } from '@/hooks/useActions'
 import { AuthService } from '@/services/auth.service'
+import { StateType } from '@/store/store'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
 import { useEffect } from 'react'
-import LocalStorageConstants from '../../constants/LocalStorageConstants'
+import { useSelector } from 'react-redux'
 
 interface AuthMiddlewareProps {
 	children: any
 }
 
 const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
-	const { login } = useActions()
+	const { accessToken } = useSelector((state: StateType) => state.auth)
+	const { login, logout } = useActions()
 
 	const { mutateAsync: refresh } = useMutation<AxiosResponse<SuccessAuthDto>>({
 		mutationKey: ['refresh'],
@@ -22,11 +24,12 @@ const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
 		},
 		onError: (err) => {
 			console.log(err)
+			logout()
 		}
 	})
 
 	useEffect(() => {
-		if (localStorage.getItem(LocalStorageConstants.AccessToken)) {
+		if (accessToken) {
 			refresh()
 		}
 	}, [])

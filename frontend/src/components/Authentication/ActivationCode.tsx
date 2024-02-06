@@ -7,10 +7,10 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import RouteConstants from '../../../constants/RouteConstants'
+import BlueButton from '../Common/Buttons/BlueButton'
 import H4 from '../Common/Headings/H4'
-import BlueButton from '../Common/buttons/BlueButton'
-import ErrorMessage from './error-message/ErrorMessage'
-import Input from './input/Input'
+import ErrorMessage from './ErrorMessage/ErrorMessage'
+import Input from './Input/Input'
 
 const ActivationCode = () => {
 	const { auth } = useSelector(getState)

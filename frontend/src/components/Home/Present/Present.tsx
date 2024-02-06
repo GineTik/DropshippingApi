@@ -1,6 +1,6 @@
-import H1 from '@/components/common/headings/H1'
-import BlueButton from '../../common/buttons/BlueButton'
-import Section from '../../common/section/Section'
+import H1 from '@/components/Common/Headings/H1'
+import BlueButton from '../../Common/Buttons/BlueButton'
+import Section from '../../Common/Section/Section'
 import PresentMenuItem from './PresentMenuItem'
 
 const Present = () => {

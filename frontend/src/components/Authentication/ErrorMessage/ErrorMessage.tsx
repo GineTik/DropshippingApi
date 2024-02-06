@@ -1,4 +1,4 @@
-import DynamicHeroIcon from '@/components/common/dynamic-hero-icon/DynamicHeroIcon'
+import DynamicHeroIcon from '@/components/Common/HeroIcon/DynamicHeroIcon'
 import { AxiosError } from 'axios'
 
 interface ErrorMessageProps {

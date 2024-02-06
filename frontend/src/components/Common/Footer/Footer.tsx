@@ -1,9 +1,8 @@
-import React from "react";
-import Section from "../Section/Section";
-import Logo from "../../../../public/logo.svg";
-import Image from "next/image";
-import Link from "next/link";
-import RouteConstants from "../../../../constants/RouteConstants";
+import Image from 'next/image'
+import Link from 'next/link'
+import RouteConstants from '../../../../constants/RouteConstants'
+import Logo from '../../../../public/logo.svg'
+import Section from '../Section/Section'
 
 const Footer = () => {
 	return (
@@ -15,7 +14,7 @@ const Footer = () => {
 				<span>DropshippingApi © 2024</span>
 			</Section>
 		</footer>
-	);
-};
+	)
+}
 
-export default Footer;
+export default Footer

@@ -1,11 +1,10 @@
-import H4 from "@/components/Common/Headings/H4";
-import React from "react";
-import Image from "next/image";
+import H4 from '@/components/Common/Headings/H4'
+import Image from 'next/image'
 
 interface SuppliersItemProps {
-	imgSrc: string;
-	title: string;
-	description: string;
+	imgSrc: string
+	title: string
+	description: string
 }
 
 const SuppliersItem = ({ imgSrc, title, description }: SuppliersItemProps) => {
@@ -23,7 +22,7 @@ const SuppliersItem = ({ imgSrc, title, description }: SuppliersItemProps) => {
 			<H4 className="text-white mb-3">{title}</H4>
 			<div className="leading-7">{description}</div>
 		</div>
-	);
-};
+	)
+}
 
-export default SuppliersItem;
+export default SuppliersItem

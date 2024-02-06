@@ -1,5 +1,5 @@
-import DynamicHeroIcon from '@/components/common/dynamic-hero-icon/DynamicHeroIcon'
-import H4 from '@/components/common/headings/H4'
+import H4 from '@/components/Common/Headings/H4'
+import DynamicHeroIcon from '@/components/Common/HeroIcon/DynamicHeroIcon'
 
 interface AccountItemProps {
 	icon: string

@@ -1,7 +1,6 @@
-import React from "react";
-import MenuItem from "./MenuItem";
-import Image from "next/image";
-import MenuHeader from "./MenuHeader";
+import Image from 'next/image'
+import MenuHeader from './MenuHeader'
+import MenuItem from './MenuItem'
 
 const Sidebar = () => {
 	return (
@@ -12,24 +11,16 @@ const Sidebar = () => {
 			<div className="flex flex-col">
 				<MenuHeader text="Головне меню" />
 				<MenuItem icon="HomeIcon" text="Головна" href="/" />
-				<MenuItem
-					icon="RectangleStackIcon"
-					text="Задачі"
-					href="/account"
-				/>
+				<MenuItem icon="RectangleStackIcon" text="Задачі" href="/Account" />
 				<MenuItem
 					icon="ChatBubbleBottomCenterIcon"
 					text="Повідомлення"
 					href="/messages"
 				/>
-				<MenuItem
-					icon="Cog6ToothIcon"
-					text="Налаштування"
-					href="/settings"
-				/>
+				<MenuItem icon="Cog6ToothIcon" text="Налаштування" href="/Settings" />
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default Sidebar;
+export default Sidebar

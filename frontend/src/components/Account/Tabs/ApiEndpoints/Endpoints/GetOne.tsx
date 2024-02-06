@@ -1,30 +1,28 @@
-import H4 from "@/components/Common/Headings/H4";
-import React from "react";
-import Curl from "../Code/Curl";
-import Code from "../Code/Code";
-import CodeString from "../Code/String";
-import Link from "next/link";
+import H4 from '@/components/Common/Headings/H4'
+import Link from 'next/link'
+import Code from '../Code/Code'
+import Curl from '../Code/Curl'
 
 const GetOne = () => {
 	const filterParameters = {
-		title: "query // about query above",
+		title: 'query // about query above',
 		page: 1,
 		pageCount: 12,
-		"something characteristic": "query // about query above",
-	};
+		'something characteristic': 'query // about query above'
+	}
 
 	const result = {
-		id: "int",
-		title: "string",
-		actualPrice: "decimal",
-		oldPrice: "decimal",
+		id: 'int',
+		title: 'string',
+		actualPrice: 'decimal',
+		oldPrice: 'decimal',
 		characteristics: {
-			characteristic1: "string",
-			characteristic2: "string",
-			characteristic3: "string",
+			characteristic1: 'string',
+			characteristic2: 'string',
+			characteristic3: 'string'
 		},
-		images: ["path", "path", "path"],
-	};
+		images: ['path', 'path', 'path']
+	}
 
 	return (
 		<>
@@ -37,12 +35,12 @@ const GetOne = () => {
 				method="GET"
 				url="https://dropshipping.api.ua/api/{supplier}/offers/one"
 				headers={{
-					"x-dropshipping-api-key": "{api-key}",
+					'x-dropshipping-api-key': '{api-key}'
 				}}
 			/>
 
 			<p>
-				Також можна фільтрувати за кожним полем.{" "}
+				Також можна фільтрувати за кожним полем.{' '}
 				<Link href="#about-query" className="text-blue-500">
 					Про "query".
 				</Link>
@@ -52,7 +50,7 @@ const GetOne = () => {
 			<p>Структура результату:</p>
 			<Code from={result} />
 		</>
-	);
-};
+	)
+}
 
-export default GetOne;
+export default GetOne

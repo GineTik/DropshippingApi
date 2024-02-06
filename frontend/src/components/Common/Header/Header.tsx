@@ -1,10 +1,9 @@
-import React from "react";
-import HeaderAuthentication from "./HeaderAuthentication";
-import Image from "next/image";
-import Section from "../Section/Section";
-import Logo from "../../../../public/logo.svg";
-import Link from "next/link";
-import RouteConstants from "../../../../constants/RouteConstants";
+import Image from 'next/image'
+import Link from 'next/link'
+import RouteConstants from '../../../../constants/RouteConstants'
+import Logo from '../../../../public/logo.svg'
+import Section from '../Section/Section'
+import HeaderAuthentication from './HeaderAuthentication'
 
 const Header = () => {
 	return (
@@ -13,10 +12,7 @@ const Header = () => {
 				<Image src={Logo.src} alt="Logo" width={40} height={40} />
 			</Link>
 			<div className="ml-10 flex items-center max-sm:hidden">
-				<Link
-					href={RouteConstants.Api}
-					className="hover:scale-110 transition"
-				>
+				<Link href={RouteConstants.Api} className="hover:scale-110 transition">
 					Документація
 				</Link>
 			</div>
@@ -24,7 +20,7 @@ const Header = () => {
 				<HeaderAuthentication />
 			</div>
 		</Section>
-	);
-};
+	)
+}
 
-export default Header;
+export default Header

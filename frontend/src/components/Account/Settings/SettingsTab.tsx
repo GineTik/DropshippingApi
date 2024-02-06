@@ -1,5 +1,5 @@
 'use client'
-import ScaledButton from '@/components/common/buttons/ScaledButton'
+import ScaledButton from '@/components/Common/Buttons/ScaledButton'
 import { Tab } from '@headlessui/react'
 import classNames from 'classnames'
 

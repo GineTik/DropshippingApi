@@ -1,4 +1,4 @@
-import DynamicHeroIcon from '../../common/dynamic-hero-icon/DynamicHeroIcon'
+import DynamicHeroIcon from '../../Common/HeroIcon/DynamicHeroIcon'
 
 interface PresentMenuItemProps {
 	text: string

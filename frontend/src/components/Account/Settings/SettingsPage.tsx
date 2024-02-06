@@ -1,8 +1,8 @@
 'use client'
-import StyledInput from '@/components/authentication/input/Input'
-import BlueButton from '@/components/common/buttons/BlueButton'
-import H5 from '@/components/common/headings/H5'
-import Section from '@/components/common/section/Section'
+import StyledInput from '@/components/Authentication/Input/Input'
+import BlueButton from '@/components/Common/Buttons/BlueButton'
+import H5 from '@/components/Common/Headings/H5'
+import Section from '@/components/Common/Section/Section'
 import { Tab } from '@headlessui/react'
 import SettingsTab from './SettingsTab'
 
