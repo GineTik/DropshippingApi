@@ -8,11 +8,13 @@ import { AxiosResponse } from 'axios'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-interface AuthMiddlewareProps {
+interface RefreshTokensMiddlewareProps {
 	children: any
 }
 
-const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
+const RefreshTokensMiddleware = ({
+	children
+}: RefreshTokensMiddlewareProps) => {
 	const { accessToken } = useSelector((state: StateType) => state.auth)
 	const { login, logout } = useActions()
 
@@ -37,4 +39,4 @@ const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
 	return children
 }
 
-export default AuthMiddleware
+export default RefreshTokensMiddleware

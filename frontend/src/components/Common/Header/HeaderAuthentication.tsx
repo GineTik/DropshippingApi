@@ -36,7 +36,7 @@ const HeaderAuthentication = () => {
 							<div className="mr-1">
 								<div className="w-28 truncate">{user?.email}</div>
 								<div className="text-gray-400 text-xs text-left">
-									Немає підписки
+									{user.isActivated ? 'Немає підписки' : 'Активуйте аккаунт'}
 								</div>
 							</div>
 							<ChevronDownIcon className="w-4" />

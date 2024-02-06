@@ -28,7 +28,6 @@ const ApiKeys = () => {
 						<div className="w-1/2 truncate pr-4">{key}</div>
 						<ScaledButton
 							className="p-2 outline-blue-500 rounded-lg"
-							contentEditable
 							withoutActiveStyle
 						>
 							https://localhost:3000

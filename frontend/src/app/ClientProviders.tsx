@@ -1,5 +1,5 @@
 'use client'
-import AuthMiddleware from '@/middlewares/AuthMiddleware'
+import RefreshTokensMiddleware from '@/middlewares/RefreshTokensMiddleware'
 import { persistor, store } from '@/store/store'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Provider } from 'react-redux'
@@ -16,7 +16,7 @@ const ClientProviders = ({ children }: ClientProvidersProps) => {
 		<Provider store={store}>
 			<QueryClientProvider client={queryClient}>
 				<PersistGate loading={null} persistor={persistor}>
-					<AuthMiddleware>{children}</AuthMiddleware>
+					<RefreshTokensMiddleware>{children}</RefreshTokensMiddleware>
 				</PersistGate>
 			</QueryClientProvider>
 		</Provider>

@@ -1,7 +1,12 @@
 import SettingsPage from '@/components/Account/Settings/SettingsPage'
+import RequireAuthMiddleware from '@/middlewares/RequireAuthMiddleware'
 
 const page = () => {
-	return <SettingsPage />
+	return (
+		<RequireAuthMiddleware>
+			<SettingsPage />
+		</RequireAuthMiddleware>
+	)
 }
 
 export default page
