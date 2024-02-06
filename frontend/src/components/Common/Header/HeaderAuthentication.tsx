@@ -4,7 +4,6 @@ import { StateType } from '@/store/store'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import classNames from 'classnames'
-import { Loader2 } from 'lucide-react'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
@@ -23,9 +22,7 @@ const HeaderAuthentication = () => {
 
 	return (
 		<div className="text-sm font-medium flex">
-			{auth.isLoadingProfile ? (
-				<Loader2 className="animate-spin" size={24} />
-			) : auth.user ? (
+			{auth.user ? (
 				<Menu as="div" className="relative">
 					<Menu.Button>
 						<ScaledButton className="flex items-center p-1 pr-2">

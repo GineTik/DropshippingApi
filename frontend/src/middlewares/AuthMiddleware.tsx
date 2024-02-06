@@ -7,29 +7,26 @@ import { AxiosResponse } from 'axios'
 import { useEffect } from 'react'
 import LocalStorageConstants from '../../constants/LocalStorageConstants'
 
-interface AuthProviderProps {
+interface AuthMiddlewareProps {
 	children: any
 }
 
-const AuthProvider = ({ children }: AuthProviderProps) => {
-	const { login, startLoadingProfile, endLoadingProfile } = useActions()
+const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
+	const { login } = useActions()
 
 	const { mutateAsync: refresh } = useMutation<AxiosResponse<SuccessAuthDto>>({
 		mutationKey: ['refresh'],
 		mutationFn: () => AuthService.refresh(),
 		onSuccess: (result) => {
 			login(result.data)
-			endLoadingProfile()
 		},
 		onError: (err) => {
 			console.log(err)
-			endLoadingProfile()
 		}
 	})
 
 	useEffect(() => {
 		if (localStorage.getItem(LocalStorageConstants.AccessToken)) {
-			startLoadingProfile()
 			refresh()
 		}
 	}, [])
@@ -37,4 +34,4 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	return children
 }
 
-export default AuthProvider
+export default AuthMiddleware
