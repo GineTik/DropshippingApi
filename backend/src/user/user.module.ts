@@ -4,6 +4,7 @@ import { TokenModule } from 'src/auth/token/token.module';
 import { UserModel } from './models/user.model';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
+import { ApiKeysModule } from './api-keys/api-keys.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { UserService } from './user.service';
         collection: "User"
       }
     }]),
+    ApiKeysModule,
   ],
   controllers: [UserController],
   providers: [UserService],
