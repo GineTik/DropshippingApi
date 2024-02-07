@@ -4,7 +4,7 @@ import { ConfigModule } from '@nestjs/config/dist/config.module';
 import { ConfigService } from '@nestjs/config/dist/config.service';
 import { TypegooseModule } from 'nestjs-typegoose/dist/typegoose.module';
 import { getMailConfig } from 'src/config/mail.config';
-import { UserModel } from 'src/user/user.model';
+import { UserModel } from 'src/user/models/user.model';
 import { MailService } from '../mail/mail.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';

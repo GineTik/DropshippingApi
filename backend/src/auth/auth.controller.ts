@@ -72,11 +72,12 @@ export class AuthController {
   }
 
   private saveRefreshTokenToCookie(response: Response, refreshToken: string) {
-    const maxAge = Number(this.configService.get('SAVE_REFRESH_TOKEN_IN_COOKIE_IN_MINUTES')) * 60
+    const maxAge = Number(this.configService.get('SAVE_REFRESH_TOKEN_IN_COOKIE_IN_MINUTES')) * 60 * 1000
+    
     response.cookie(
       this.configService.get('COOKIE_REFRESH_TOKEN_KEY'), 
       refreshToken, 
-      { maxAge, httpOnly: true }
-      );
+      { maxAge: maxAge, httpOnly: true }
+    );
   }
 }

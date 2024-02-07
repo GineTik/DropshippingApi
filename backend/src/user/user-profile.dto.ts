@@ -1,5 +1,5 @@
 import { Types } from "mongoose"
-import { UserModel } from "./user.model"
+import { UserModel } from "./models/user.model"
 
 export class UserProfileDto {
     id: Types.ObjectId
@@ -9,6 +9,6 @@ export class UserProfileDto {
     constructor(userModel: UserModel) {
         this.id = userModel._id
         this.email = userModel.email
-        this.isActivated = userModel.isActivated
+        this.isActivated = userModel.emailConfirmed
     }
 }

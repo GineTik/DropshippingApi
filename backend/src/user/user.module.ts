@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { TokenModule } from 'src/auth/token/token.module';
+import { UserModel } from './models/user.model';
 import { UserController } from './user.controller';
-import { UserModel } from './user.model';
 import { UserService } from './user.service';
 
 @Module({

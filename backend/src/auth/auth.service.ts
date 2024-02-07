@@ -3,8 +3,8 @@ import { ModelType } from '@typegoose/typegoose/lib/types';
 import { compare, genSalt, hash } from 'bcryptjs';
 import { Types } from 'mongoose';
 import { InjectModel } from 'nestjs-typegoose';
-import HttpExceptionMessages from 'src/constants/HttpExeptionMessages';
-import { UserModel } from 'src/user/user.model';
+import HttpExceptionMessages from 'src/constants/HttpExceptionMessages';
+import { UserModel } from 'src/user/models/user.model';
 import { MailService } from '../mail/mail.service';
 import { AuthDto } from './dto/auth.dto';
 import { ConfirmChangePasswordDto } from './dto/confirm-change-password.dto';
@@ -26,7 +26,7 @@ export class AuthService {
         const isValidPassword = await compare(dto.password, user.password)
         if (!isValidPassword) throw new HttpException(HttpExceptionMessages.InvalidEmailOrPassword, 400)
 
-        if (!user.isActivated)
+        if (!user.emailConfirmed)
             await this.mailService.sendActivationMail(user.email, user.activationCode)
 
         const tokens = await this.tokenService.generateAndSaveToken(user._id)
@@ -35,7 +35,7 @@ export class AuthService {
             user: {
                 id: user._id,
                 email: user.email,
-                isActivated: user.isActivated
+                isActivated: user.emailConfirmed
             }
         }
     }
@@ -59,7 +59,7 @@ export class AuthService {
             user: {
                 id: user._id,
                 email: user.email,
-                isActivated: user.isActivated
+                isActivated: user.emailConfirmed
             }
         }
     }
@@ -68,7 +68,7 @@ export class AuthService {
         const user = await this.userModel.findOne({ _id, activationCode })
         if (!user) throw new HttpException(HttpExceptionMessages.ActivationCodeFailed, 400)
 
-        user.isActivated = true
+        user.emailConfirmed = true
         await user.save()
     }
 
@@ -86,7 +86,7 @@ export class AuthService {
             user: {
                 id: user._id,
                 email: user.email,
-                isActivated: user.isActivated
+                isActivated: user.emailConfirmed
             }
         }
     }
