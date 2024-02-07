@@ -1,6 +1,6 @@
 'use client'
-import AccountPage from '@/components/Account/Main/AccountPage'
 import RequireAuthMiddleware from '@/middlewares/RequireAuthMiddleware'
+import AccountPage from '@/pages/Account/AccountPage'
 
 const page = () => {
 	return (

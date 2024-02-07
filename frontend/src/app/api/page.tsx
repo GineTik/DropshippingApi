@@ -1,5 +1,5 @@
-import ApiEndpoints from '@/components/Account/Tabs/ApiEndpoints/ApiEndpoints'
-import Section from '@/components/Common/Section/Section'
+import Section from '@/components/Section/Section'
+import ApiEndpoints from '@/pages/Account/Tabs/ApiEndpoints/ApiEndpoints'
 
 const page = () => {
 	return (

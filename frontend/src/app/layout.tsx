@@ -1,5 +1,5 @@
-import Footer from '@/components/Common/Footer/Footer'
-import Header from '@/components/Common/Header/Header'
+import Footer from '@/components/Footer/Footer'
+import Header from '@/components/Header/Header'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import ClientProviders from './ClientProviders'
