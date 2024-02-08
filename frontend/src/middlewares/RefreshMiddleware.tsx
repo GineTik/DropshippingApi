@@ -25,7 +25,6 @@ const RefreshTokensMiddleware = ({
 			login(result.data)
 		},
 		onError: (err) => {
-			console.log(err)
 			logout()
 		}
 	})

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/token/access-token.guard';
-import { ApiKeyDto } from '../dtos/api-key.dto';
 import { ApiKeysService } from './api-keys.service';
+import { ApiKeyDto } from './dto/api-key.dto';
 
 @Controller('user/api-keys')
 export class ApiKeysController {
@@ -29,11 +29,5 @@ export class ApiKeysController {
   @Post('delete')
   async deleteApiKey(@Body('apiKey') apiKey: string, @Req() request: Express.Request) {
     return await this.apiKeysService.deleteApiKey(request.user['_id'], apiKey)
-  }
-
-  @UseGuards(JwtAuthGuard)
-  @Get('max-count')
-  async getMaxCountOfApiKeys(@Req() request: Express.Request) {
-    return await this.apiKeysService.getMaxCountOfApiKeys(request.user['_id'])
   }
 }

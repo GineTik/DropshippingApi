@@ -5,7 +5,8 @@ export default {
     RefreshTokenIsUndefined: 'Refresh token is undefined',
     UserAlreadyExists: 'User already exists',
     InvalidEmailOrPassword: 'Пошта або пароль невірний',
-    CountOfApiKeysIsFulled: 'Досягнута максимальна кількість АПІ ключів',
+    LimitOfApiKeysAndHosts: 'Досягнута максимальна кількість АПІ ключів та хостів',
     InvalidApiKey: 'Ключ невірного формату',
-    InvalidDeleteOfApiKey: 'При видалені апі ключа сталась помилка'
+    InvalidDeleteOfApiKey: 'При видалені апі ключа сталась помилка',
+    InvalidHost: 'Даного хоста не існує'
 }

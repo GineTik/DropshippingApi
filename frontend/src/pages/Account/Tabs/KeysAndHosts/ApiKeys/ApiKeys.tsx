@@ -1,12 +1,14 @@
-import BlueButton from '@/components/Buttons/BlueButton'
 import H4 from '@/components/Headings/H4'
 import { ApiKeyDto } from '@/dtos/user/api-key/api-key.dto'
 import { CreateApiKeyDto } from '@/dtos/user/api-key/create-api-key.dto'
+import { useTypedMutation } from '@/hooks/useTypedMutation'
 import StyledInput from '@/pages/Authentication/Input/Input'
 import { ApiKeysService } from '@/services/user/api-keys.service'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { UserService } from '@/services/user/user.service'
+import { useQuery } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
 import { useCallback, useState } from 'react'
+import KeysAndHostsForm from '../Common/KeysAndHostsForm'
 import ApiKeyItem from './ApiKeyItem'
 
 const ApiKeys = () => {
@@ -16,8 +18,8 @@ const ApiKeys = () => {
 	})
 
 	const { data: maxCountOfApiKeys } = useQuery<AxiosResponse<number>>({
-		queryKey: ['get-max-count-of-api-keys'],
-		queryFn: () => ApiKeysService.getMaxCountOfApiKeys()
+		queryKey: ['get-max-count'],
+		queryFn: () => UserService.getMaxCountOfApiKeysAndHosts()
 	})
 
 	const [showCreationForm, setShowCreationForm] = useState(false)
@@ -27,7 +29,11 @@ const ApiKeys = () => {
 		description: ''
 	})
 
-	const { mutateAsync: createApiKeyAsync, isPending } = useMutation({
+	const {
+		mutateAsync: createApiKeyAsync,
+		isPending,
+		error
+	} = useTypedMutation({
 		mutationKey: ['create-api-key'],
 		mutationFn: () => ApiKeysService.createApiKey(data),
 		onSettled: () => {
@@ -45,41 +51,35 @@ const ApiKeys = () => {
 			<H4 className="mb-3">АПІ ключі</H4>
 
 			<div className="flex flex-col gap-2">
-				{apiKeys?.data?.map((key, i) => (
-					<ApiKeyItem
-						{...key}
-						apiKey={key.key}
-						key={i}
-						refetchApiKeys={refetch}
-					/>
+				{apiKeys?.data?.map((apiKey, i) => (
+					<ApiKeyItem apiKey={apiKey} key={i} refetch={refetch} />
 				))}
 			</div>
 
-			{showCreationForm && (
-				<div className="flex gap-3 mt-8">
+			<KeysAndHostsForm
+				buttonText={'Створити АПІ ключ'}
+				onSubmit={() => createApiKeyAsync()}
+				error={error}
+				isPending={isPending}
+				countOfItems={apiKeys?.data?.length}
+			>
+				<div className="flex gap-3">
 					<StyledInput
+						className="w-1/2"
 						placeholder="Назва"
 						type="text"
 						value={data.name}
 						onChange={(e) => setData({ ...data, name: e.target.value })}
 					></StyledInput>
 					<StyledInput
+						className="w-1/2"
 						placeholder="Опис"
 						type="text"
 						value={data.description}
 						onChange={(e) => setData({ ...data, description: e.target.value })}
 					></StyledInput>
 				</div>
-			)}
-
-			<div className="flex gap-4 items-center mt-5">
-				<BlueButton onClick={handleCreateApiKey} isPending={isPending}>
-					Створити АПІ ключ
-				</BlueButton>
-				<span>
-					Кількість ключів: {apiKeys?.data.length}/{maxCountOfApiKeys?.data}
-				</span>
-			</div>
+			</KeysAndHostsForm>
 		</div>
 	)
 }

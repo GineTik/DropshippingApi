@@ -1,5 +1,5 @@
 'use client'
-import AuthPage from '@/components/Authentication/AuthPage'
+import AuthPage from '@/pages/Authentication/AuthPage'
 import { StateType } from '@/store/store'
 import { useParams, useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'

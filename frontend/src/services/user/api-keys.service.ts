@@ -6,10 +6,6 @@ export const ApiKeysService = {
         return await $api.get('user/api-keys')
     },
 
-    async getMaxCountOfApiKeys() {
-        return await $api.get('user/api-keys/max-count')
-    },
-
     async createApiKey(dto: CreateApiKeyDto) {
         return await $api.post('user/api-keys/create', dto)
     },

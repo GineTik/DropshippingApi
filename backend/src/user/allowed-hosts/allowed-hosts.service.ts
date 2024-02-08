@@ -4,56 +4,53 @@ import { Types } from 'mongoose';
 import { InjectModel } from 'nestjs-typegoose';
 import HttpExceptionMessages from 'src/constants/HttpExceptionMessages';
 import { UserModel } from '../models/user.model';
-import { ApiKeyDto } from './dto/api-key.dto';
-import { ApiKeyModel } from './models/api-key.model';
+import { AddAllowedHostDto } from './dto/add-allowed-host.dto';
+import { UpdateAllowedHostDto } from './dto/update-allowed-host.dto';
+import { AllowedHostModel } from './models/allowed-host.model';
 
 @Injectable()
-export class ApiKeysService {
+export class AllowedHostsService {
     constructor(@InjectModel(UserModel) private readonly userModel: ModelType<UserModel>) {}
 
-    async getApiKeys(_id: Types.ObjectId): Promise<ApiKeyModel[]> {
+    async getAllowedHosts(_id: Types.ObjectId): Promise<AddAllowedHostDto[]> {
         const user = await this.getUser(_id)
-        return user.apiKeys
+        return user.allowedHosts
     }
 
-    async createApiKey(_id: Types.ObjectId, dto: ApiKeyDto): Promise<ApiKeyModel> {
+    async addAllowedHost(_id: Types.ObjectId, dto: AddAllowedHostDto) {
         const user = await this.getUser(_id)
 
-        if (user.apiKeys.length >= user.limitOfApiKeysAndHosts)
+        if (user.allowedHosts.length >= user.limitOfApiKeysAndHosts)
             throw new HttpException(HttpExceptionMessages.LimitOfApiKeysAndHosts, 400)
 
-        const apiKey = ApiKeyModel.fromDto(dto)
+        const allowedHost = AllowedHostModel.fromAddDto(dto)
         await this.userModel.updateOne(
-            {_id},
-            {$push: {"apiKeys": apiKey}}
+            { _id },
+            {$push: {"allowedHosts": allowedHost}}
         )
-        
-        return apiKey
     }
 
-    async refreshApiKey(_id: Types.ObjectId, apiKey: string) {
-        const newApiKey = crypto.randomUUID()
+    async updateAllowedHost(_id: Types.ObjectId, updateDto: UpdateAllowedHostDto) {
+        const newAllowedHost = AllowedHostModel.fromUpdateDto(updateDto)
         const {modifiedCount} = await this.userModel.updateOne(
-            { _id, "apiKeys.key": apiKey },
-            {"$set": {"apiKeys.$.key": newApiKey}}
+            {_id, "allowedHosts.host": updateDto.oldHost},
+            {"$set": {"allowedHosts.$": newAllowedHost}}
         )
 
         if (modifiedCount === 0) 
-            throw new HttpException(HttpExceptionMessages.InvalidApiKey, 400)
-        
-        return newApiKey
+            throw new HttpException(HttpExceptionMessages.InvalidHost, 400)
     }
 
-    async deleteApiKey(_id: Types.ObjectId, apiKey: string) {
+    async deleteAllowedHost(_id: Types.ObjectId, host: string) {
         const {modifiedCount} = await this.userModel.updateOne(
             { _id },
-            {"$pull": {"apiKeys": {key: apiKey}}}
+            {"$pull": {"allowedHosts": {host}}}
         )
 
-        if (modifiedCount === 0) 
+        if (modifiedCount === 0)
             throw new HttpException(HttpExceptionMessages.InvalidDeleteOfApiKey, 400)
     }
-
+    
     private async getUser(_id: Types.ObjectId) {
         const user = await this.userModel.findOne({ _id })
         if (!user) throw new UnauthorizedException(HttpExceptionMessages.InvalidUserId)

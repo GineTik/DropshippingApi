@@ -1,33 +1,49 @@
 import DynamicHeroIcon from '@/components/HeroIcon/DynamicHeroIcon'
 import { AxiosError } from 'axios'
+import classNames from 'classnames'
 
 interface ErrorMessageProps {
 	children: AxiosError<{ message: string | string[] }> | string
+	className?: string
 }
 
-const ErrorMessage = ({ children: error }: ErrorMessageProps) => {
-	var message = ''
+const ErrorMessage = ({ children: error, className }: ErrorMessageProps) => {
+	var message: string | string[] = ''
 	if (typeof error === 'string') {
 		message = error
 	} else {
 		const errorMessage = error.response?.data?.message
-		if (errorMessage && errorMessage.length > 0) {
-			if (typeof errorMessage === 'string') message = errorMessage
-			else message = errorMessage[0]
-		} else if (error.status === 400) {
-			message = 'Невідома помилка, ми знаєм про неї та вирішуємо її'
-		} else {
-			message = 'Невідома помилка на сервері, ми знаєм про неї та вирішуємо її'
-		}
+		message =
+			errorMessage && errorMessage.length > 0
+				? errorMessage
+				: error.status === 400
+				? 'Невідома помилка, ми знаєм про неї та вирішуємо її'
+				: 'Невідома помилка на сервері, ми знаєм про неї та вирішуємо її'
 	}
 
 	return (
-		<div className="flex bg-rose-100 p-3 rounded-xl border border-rose-500">
+		<div
+			className={classNames(
+				'flex bg-rose-100 p-3 rounded-xl border border-rose-500 animate-showWithScale',
+				className
+			)}
+		>
 			<DynamicHeroIcon
 				icon="ExclamationCircleIcon"
 				className="min-w-5 w-5 text-rose-900"
 			/>
-			<span className="ml-2">{message}</span>
+			{Array.isArray(message) ? (
+				<div className="flex flex-wrap">
+					{message.map((m, i) => (
+						<div key={i}>
+							<span className="ml-2">{m}</span>
+							{message.length - 1 === i ? '' : ','}
+						</div>
+					))}
+				</div>
+			) : (
+				<span className="ml-2">{message}</span>
+			)}
 		</div>
 	)
 }

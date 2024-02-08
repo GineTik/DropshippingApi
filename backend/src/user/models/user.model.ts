@@ -1,6 +1,7 @@
 import { prop } from "@typegoose/typegoose"
 import { Base, TimeStamps } from "@typegoose/typegoose/lib/defaultClasses"
-import { ApiKeyModel } from "./api-key.model"
+import { AllowedHostModel } from "../allowed-hosts/models/allowed-host.model"
+import { ApiKeyModel } from "../api-keys/models/api-key.model"
 
 export interface UserModel extends Base {}
 
@@ -17,9 +18,12 @@ export class UserModel extends TimeStamps {
     @prop()
     activationCode: number
 
-    @prop({default: { maxCount: 10, keys: [] }})
-    apiKeys: {
-        maxCount: number,
-        keys: ApiKeyModel[]
-    }
+    @prop({default: []})
+    apiKeys: ApiKeyModel[]
+
+    @prop({default: []})
+    allowedHosts: AllowedHostModel[]
+
+    @prop({default: 10})
+    limitOfApiKeysAndHosts: number
 }

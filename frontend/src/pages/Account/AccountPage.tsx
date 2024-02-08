@@ -10,17 +10,14 @@ import AccountItem from './Main/AccountItem'
 import AccountTab from './Main/AccountTab'
 import AccountTabPanel from './Main/AccountTabPanel'
 import ApiEndpoints from './Tabs/ApiEndpoints/ApiEndpoints'
-import ApiKeys from './Tabs/ApiKeys/ApiKeys'
 import GetAsFile from './Tabs/GetAsFile/GetAsFile'
+import AllowedHosts from './Tabs/KeysAndHosts/AllowedHosts/AllowedHosts'
+import ApiKeys from './Tabs/KeysAndHosts/ApiKeys/ApiKeys'
 
 const AccountPage = () => {
 	const { mutateAsync: testAsync } = useMutation({
 		mutationKey: ['test'],
-		mutationFn: () => AuthService.test(),
-		onSuccess: (res) => {
-			console.log(res)
-		},
-		onError: (err) => [console.log(err)]
+		mutationFn: () => AuthService.test()
 	})
 
 	return (
@@ -70,6 +67,7 @@ const AccountPage = () => {
 				<Tab.Group>
 					<Tab.List className="flex flex-wrap">
 						<AccountTab>АПІ ключі</AccountTab>
+						<AccountTab>Дозволені хости</AccountTab>
 						<AccountTab>Документація</AccountTab>
 						<AccountTab>Скачати у файлі</AccountTab>
 						<AccountTab className="flex gap-2 items-center">
@@ -80,6 +78,9 @@ const AccountPage = () => {
 					<Tab.Panels>
 						<AccountTabPanel>
 							<ApiKeys />
+						</AccountTabPanel>
+						<AccountTabPanel>
+							<AllowedHosts />
 						</AccountTabPanel>
 						<AccountTabPanel>
 							<ApiEndpoints />

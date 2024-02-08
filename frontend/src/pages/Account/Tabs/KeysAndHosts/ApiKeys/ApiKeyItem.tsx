@@ -7,39 +7,37 @@ import { useMutation } from '@tanstack/react-query'
 import { CheckCheck, ChevronDown, File, RefreshCcw, Trash } from 'lucide-react'
 import { useState } from 'react'
 
-interface ApiKeyItemProps extends Omit<ApiKeyDto, 'key'> {
-	apiKey: string
-	refetchApiKeys: () => void
+interface ApiKeyItemProps {
+	apiKey: ApiKeyDto
+	refetch: () => void
 }
 
 const iconSize = 20
 
 const ApiKeyItem = ({
-	name,
-	description,
-	apiKey,
-	refetchApiKeys
+	apiKey: { key, name, description },
+	refetch
 }: ApiKeyItemProps) => {
 	const [copied, setCopied] = useState(false)
 
 	const { mutateAsync: refreshAsync } = useMutation({
 		mutationKey: ['refresh-api-key'],
-		mutationFn: () => ApiKeysService.refreshApiKey(apiKey),
+		mutationFn: () => ApiKeysService.refreshApiKey(key),
 		onSuccess: () => {
-			refetchApiKeys()
+			refetch()
 		}
 	})
 
 	const { mutateAsync: deleteAsync } = useMutation({
 		mutationKey: ['delete-api-key'],
-		mutationFn: () => ApiKeysService.deleteApiKey(apiKey),
+		mutationFn: () => ApiKeysService.deleteApiKey(key),
 		onSuccess: () => {
-			refetchApiKeys()
+			refetch()
 		}
 	})
 
 	const copyApiKey = () => {
-		navigator.clipboard.writeText(apiKey)
+		navigator.clipboard.writeText(key)
 		setCopied(true)
 		setTimeout(() => setCopied(false), 1000)
 	}
@@ -66,7 +64,7 @@ const ApiKeyItem = ({
 						<Disclosure.Panel className="flex gap-7 px-5 pt-4 pb-8 rounded-2xl">
 							<div>
 								<H5>АПІ ключ</H5>
-								<span>{apiKey}</span>
+								<span>{key}</span>
 
 								<H5 className="mt-4">Опис</H5>
 								<span>{description === '' ? 'Немає' : description}</span>

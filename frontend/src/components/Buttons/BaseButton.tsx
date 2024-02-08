@@ -6,7 +6,7 @@ import React from 'react'
 
 export interface BaseButtonProps {
 	className?: string
-	children: string | React.ReactElement | (string | React.ReactElement)[]
+	children: any
 	href?: string
 	onClick?: React.MouseEventHandler<HTMLAnchorElement>
 	disabled?: boolean

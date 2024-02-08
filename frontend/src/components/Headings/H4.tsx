@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import React, { memo } from 'react'
 
 interface H4Props extends React.HTMLAttributes<HTMLHeadingElement> {
-	children: string | string[]
+	children: any
 }
 
 const H4 = memo(({ children, ...otherProps }: H4Props) => {

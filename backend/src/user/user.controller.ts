@@ -11,4 +11,10 @@ export class UserController {
   async getProfile(@Req() request: Express.Request) {
     return await this.userService.getProfile(request.user['_id'])
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('max-count')
+  async getMaxCountOfApiKeysAndHosts(@Req() request: Express.Request) {
+    return await this.userService.getMaxCountOfApiKeysAndHosts(request.user['_id'])
+  }
 }
