@@ -15,7 +15,8 @@ const AllowedHosts = () => {
 		AxiosResponse<AllowedHostDto[]>
 	>({
 		queryKey: ['get-allowed-hosts'],
-		queryFn: () => AllowedHostsService.getAllowedHosts()
+		queryFn: () => AllowedHostsService.getAll(),
+		staleTime: 1 * 60 * 1000
 	})
 
 	const [fields, setFields] = useState<AddAllowedHostDto>({
@@ -30,7 +31,7 @@ const AllowedHosts = () => {
 		error
 	} = useTypedMutation({
 		mutationKey: ['add-allowed-host'],
-		mutationFn: () => AllowedHostsService.addAllowedHost(fields),
+		mutationFn: () => AllowedHostsService.add(fields),
 		onSettled: () => {
 			refetch()
 		}
@@ -42,7 +43,7 @@ const AllowedHosts = () => {
 
 			<div className="flex flex-col gap-2">
 				{allowedHosts?.data?.map((host, i) => (
-					<AllowedHostItem key={i} refetch={refetch} host={host} />
+					<AllowedHostItem key={i} refetch={refetch} allowedHost={host} />
 				))}
 			</div>
 

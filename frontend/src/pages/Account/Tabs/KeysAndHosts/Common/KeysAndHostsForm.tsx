@@ -31,7 +31,8 @@ const KeysAndHostsForm = ({
 
 	const { data: limitOfItems } = useQuery<AxiosResponse<number>>({
 		queryKey: ['get-limit'],
-		queryFn: () => UserService.getMaxCountOfApiKeysAndHosts()
+		queryFn: () => UserService.getMaxCountOfApiKeysAndHosts(),
+		staleTime: 1 * 60 * 1000
 	})
 
 	const handleCreateApiKey = useCallback(() => {
@@ -72,7 +73,7 @@ const KeysAndHostsForm = ({
 					</BorderedButton>
 				)}
 				<span>
-					Кількість хостів: {countOfItems}/{limitOfItems?.data}
+					Кількість: {countOfItems}/{limitOfItems?.data}
 				</span>
 			</div>
 

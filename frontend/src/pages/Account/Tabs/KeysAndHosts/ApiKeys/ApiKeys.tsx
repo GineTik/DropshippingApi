@@ -4,25 +4,18 @@ import { CreateApiKeyDto } from '@/dtos/user/api-key/create-api-key.dto'
 import { useTypedMutation } from '@/hooks/useTypedMutation'
 import StyledInput from '@/pages/Authentication/Input/Input'
 import { ApiKeysService } from '@/services/user/api-keys.service'
-import { UserService } from '@/services/user/user.service'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import KeysAndHostsForm from '../Common/KeysAndHostsForm'
 import ApiKeyItem from './ApiKeyItem'
 
 const ApiKeys = () => {
 	const { data: apiKeys, refetch } = useQuery<AxiosResponse<ApiKeyDto[]>>({
 		queryKey: ['get-api-keys'],
-		queryFn: () => ApiKeysService.getApiKeys()
+		queryFn: () => ApiKeysService.getAll(),
+		staleTime: 1 * 60 * 1000
 	})
-
-	const { data: maxCountOfApiKeys } = useQuery<AxiosResponse<number>>({
-		queryKey: ['get-max-count'],
-		queryFn: () => UserService.getMaxCountOfApiKeysAndHosts()
-	})
-
-	const [showCreationForm, setShowCreationForm] = useState(false)
 
 	const [data, setData] = useState<CreateApiKeyDto>({
 		name: '',
@@ -35,16 +28,11 @@ const ApiKeys = () => {
 		error
 	} = useTypedMutation({
 		mutationKey: ['create-api-key'],
-		mutationFn: () => ApiKeysService.createApiKey(data),
+		mutationFn: () => ApiKeysService.create(data),
 		onSettled: () => {
-			setShowCreationForm(false)
 			refetch()
 		}
 	})
-
-	const handleCreateApiKey = useCallback(() => {
-		showCreationForm ? createApiKeyAsync() : setShowCreationForm(true)
-	}, [showCreationForm])
 
 	return (
 		<div>

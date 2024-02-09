@@ -45,11 +45,12 @@ const ScaledButton = ({
 			{tooltip && (
 				<div
 					className={classNames(
-						'opacity-0 bottom-100 left-1/2 -translate-x-1/2 group-hover:opacity-100',
-						'absolute bottom-full',
+						'opacity-0 -translate-x-1/2 group-hover:opacity-100',
+						'absolute bottom-full left-1/2',
 						'bg-gray-950 p-2 text-xs text-white rounded-xl',
 						'scale-0 group-hover:scale-100 transition',
-						'select-none pointer-events-none'
+						'select-none pointer-events-none',
+						'whitespace-nowrap'
 					)}
 				>
 					{tooltip}
