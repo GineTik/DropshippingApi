@@ -2,19 +2,11 @@ import H3 from '@/components/Headings/H3'
 import H4 from '@/components/Headings/H4'
 import { AlertCircle } from 'lucide-react'
 import Link from 'next/link'
-import RouteConstants from '../../../../constants/RouteConstants'
-import ApiPageWrapper from '../ApiPageWraper'
-import CodeObject from '../Code/CodeObject'
-import Curl from '../Code/Curl'
-import CodeString from '../Code/String'
+import ApiEndpointsConstants from '../../../../../../constants/ApiEndpointsConstants'
+import RouteConstants from '../../../../../../constants/RouteConstants'
+import { Code } from '../../../components/code/Code'
 
 const GetFilteredOffersPage = () => {
-	const method = 'GET'
-	const url = 'https://dropshipping.api.ua/api/offers/{supplier}/filtered'
-	const headers = {
-		'x-dropshipping-api-key': '{api-key}'
-	}
-
 	const availableParameters = {
 		'{field}':
 			'Приймає вираз для фільтрації, замість {field} може бути любе поле',
@@ -53,7 +45,7 @@ const GetFilteredOffersPage = () => {
 	}
 
 	return (
-		<ApiPageWrapper>
+		<div>
 			<div className="space-y-3">
 				<div className="flex gap-3 p-4 bg-orange-100 border border-orange-400 rounded-xl">
 					<AlertCircle size={24} className="text-orange-500" />
@@ -67,18 +59,21 @@ const GetFilteredOffersPage = () => {
 					Для отримання усіх товарів від якогось поставщика ви можете
 					використовувати наступну кінцеву точку.
 				</p>
-				<Curl method={method} url={url} headers={headers} />
+				<Code.Curl
+					{...ApiEndpointsConstants.GetFilteredOffers}
+					headers={ApiEndpointsConstants.AuthHeaders}
+				/>
 
 				<H4 className="pt-3">Відповіді</H4>
 				<p>
 					Успішний результат, який повернеться буде наступного вигляду (поля
-					об'єкта <CodeString>fields</CodeString> довільні і можуть бути іншими,
-					в залежності від поставщика, детальніше про достовірні поля можна
-					взнати зліва в розділі "Особливості роботи з")
+					об'єкта <Code.String>fields</Code.String> довільні і можуть бути
+					іншими, в залежності від поставщика, детальніше про достовірні поля
+					можна взнати зліва в розділі "Особливості роботи з")
 				</p>
-				<CodeObject from={typeOfResult} />
+				<Code.Object from={typeOfResult} />
 				<p>При помилці, результат буде вигляду</p>
-				<CodeObject from={errorFields} />
+				<Code.Object from={errorFields} />
 
 				<H4 className="pt-3">Приклади #1</H4>
 				<p>
@@ -90,21 +85,21 @@ const GetFilteredOffersPage = () => {
 						(детальніше про фільтрацію)
 					</Link>
 				</p>
-				<Curl
-					method={method}
-					url={url}
-					headers={headers}
+				<Code.Curl
+					{...ApiEndpointsConstants.GetFilteredOffers}
+					headers={ApiEndpointsConstants.AuthHeaders}
 					parameters={{
 						'title[$contains]': 'аксесуар'
 					}}
 				/>
 				<p>
-					У цьому прикладі ми фільтруємо за полем <CodeString>title</CodeString>{' '}
-					з режимом <CodeString>[$contains]</CodeString>, як вже було сказано,
-					ми отримаємо усі пропозиції, які містять слово "аксесуар" в назві.
+					У цьому прикладі ми фільтруємо за полем{' '}
+					<Code.String>title</Code.String> з режимом{' '}
+					<Code.String>[$contains]</Code.String>, як вже було сказано, ми
+					отримаємо усі пропозиції, які містять слово "аксесуар" в назві.
 				</p>
 			</div>
-		</ApiPageWrapper>
+		</div>
 	)
 }
 

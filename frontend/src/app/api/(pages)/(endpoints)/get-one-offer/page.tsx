@@ -1,8 +1,6 @@
 import H4 from '@/components/Headings/H4'
 import Link from 'next/link'
-import ApiPageWrapper from '../ApiPageWraper'
-import CodeObject from '../Code/CodeObject'
-import Curl from '../Code/Curl'
+import { Code } from '../../../components/code/Code'
 
 const GetOneOfferPage = () => {
 	const filterParameters = {
@@ -26,14 +24,14 @@ const GetOneOfferPage = () => {
 	}
 
 	return (
-		<ApiPageWrapper>
+		<>
 			<div className="space-y-3">
 				<H4>Отримати один товар</H4>
 				<p>
 					Для отримання усіх товарів від якогось поставщика ви можете
 					використовувати наступну кінцеву точку.
 				</p>
-				<Curl
+				<Code.Curl
 					method="GET"
 					url="https://dropshipping.api.ua/api/offers/{supplier}/one"
 					headers={{
@@ -47,12 +45,12 @@ const GetOneOfferPage = () => {
 						Про "query".
 					</Link>
 				</p>
-				<CodeObject from={filterParameters} />
+				<Code.Object from={filterParameters} />
 
 				<p>Структура результату:</p>
-				<CodeObject from={result} />
+				<Code.Object from={result} />
 			</div>
-		</ApiPageWrapper>
+		</>
 	)
 }
 
