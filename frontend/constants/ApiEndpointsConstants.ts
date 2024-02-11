@@ -4,10 +4,10 @@ export default {
 	},
     GetFilteredOffers: {
         method: 'GET',
-        url: '',
+        url: 'https://www.dropshipping.api/api/offers/{supplier}/filter',
     },
     GetOneOffer: {
         method: 'GET',
-        url: ''
+        url: 'https://www.dropshipping.api/api/offers/{supplier}/one'
     }
 };

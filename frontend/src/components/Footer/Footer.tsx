@@ -2,7 +2,7 @@ import RouteConstants from '@/../constants/RouteConstants'
 import Logo from '@/../public/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import Section from '../Section/Section'
+import Section from '../section/Section'
 
 const Footer = () => {
 	return (

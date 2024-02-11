@@ -1,11 +1,13 @@
 'use client'
-import AuthPage from '@/pages/Authentication/AuthPage'
+import Section from '@/components/section/Section'
 import { StateType } from '@/store/store'
 import { useParams, useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import RouteConstants from '../../../../constants/RouteConstants'
+import ActivationCode from '../components/ActivationCodeForm'
+import AuthForm from '../components/AuthForm'
 
-const page = () => {
+const AuthPage = () => {
 	const { type } = useParams<{ type: 'login' | 'registration' }>()
 	const { user } = useSelector((state: StateType) => state.auth)
 	const router = useRouter()
@@ -20,7 +22,15 @@ const page = () => {
 		return
 	}
 
-	return <AuthPage type={type} />
+	return (
+		<Section className="flex justify-center items-center h-full">
+			{user && !user?.isActivated ? (
+				<ActivationCode />
+			) : (
+				<AuthForm type={type} />
+			)}
+		</Section>
+	)
 }
 
-export default page
+export default AuthPage

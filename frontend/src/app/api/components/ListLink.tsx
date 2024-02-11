@@ -1,5 +1,4 @@
 'use client'
-import ScaledButton from '@/components/Buttons/ScaledButton'
 import classNames from 'classnames'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -12,17 +11,19 @@ interface ListLinkProps {
 const ListLink = ({ href, children }: ListLinkProps) => {
 	const pathname = usePathname()
 	return (
-		<ScaledButton disabled={href === pathname}>
-			<Link
-				href={href}
-				className={classNames('px-3 py-2 pl-10 w-full', {
-					'bg-blue-100 rounded-lg font-medium text-nowrap truncate':
-						href === pathname
-				})}
-			>
-				{children}
-			</Link>
-		</ScaledButton>
+		<Link
+			href={href}
+			className={classNames(
+				'block pl-8 py-2 rounded-xl',
+				'transition-colors duration-75 ease-out',
+				'hover:bg-gray-100',
+				{
+					'bg-blue-50 font-medium': pathname == href
+				}
+			)}
+		>
+			{children}
+		</Link>
 	)
 }
 

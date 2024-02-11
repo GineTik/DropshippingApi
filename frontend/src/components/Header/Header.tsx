@@ -1,6 +1,6 @@
 import RouteConstants from '@/../constants/RouteConstants'
 import Logo from '@/../public/logo.svg'
-import Section from '@/components/Section/Section'
+import Section from '@/components/section/Section'
 import Image from 'next/image'
 import Link from 'next/link'
 import HeaderAuthentication from './HeaderAuthentication'
@@ -13,7 +13,7 @@ const Header = () => {
 			</Link>
 			<div className="ml-10 flex items-center max-sm:hidden">
 				<Link
-					href={RouteConstants.Api.GetFilteredOffers}
+					href={RouteConstants.Api.Introduction}
 					className="hover:scale-110 transition"
 				>
 					Документація

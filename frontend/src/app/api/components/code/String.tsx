@@ -12,7 +12,7 @@ const CodeString = ({
 	withoutPadding
 }: CodeStringProps) => {
 	return (
-		<span
+		<code
 			className={classNames(
 				'text-green-500 bg-gray-800 rounded-lg',
 				{ 'px-2 py-1': !withoutPadding },
@@ -20,7 +20,7 @@ const CodeString = ({
 			)}
 		>
 			"{children}"
-		</span>
+		</code>
 	)
 }
 

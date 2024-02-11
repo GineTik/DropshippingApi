@@ -1,4 +1,4 @@
-import H4 from '@/components/Headings/H4'
+import H4 from '@/components/headings/H4'
 import Link from 'next/link'
 import { Code } from '../../../components/code/Code'
 
@@ -45,10 +45,10 @@ const GetOneOfferPage = () => {
 						Про "query".
 					</Link>
 				</p>
-				<Code.Object from={filterParameters} />
+				<Code.Object object={filterParameters} />
 
 				<p>Структура результату:</p>
-				<Code.Object from={result} />
+				<Code.Object object={result} />
 			</div>
 		</>
 	)

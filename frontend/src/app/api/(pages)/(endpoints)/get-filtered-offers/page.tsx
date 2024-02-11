@@ -1,5 +1,5 @@
-import H3 from '@/components/Headings/H3'
-import H4 from '@/components/Headings/H4'
+import H3 from '@/components/headings/H3'
+import H4 from '@/components/headings/H4'
 import { AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import ApiEndpointsConstants from '../../../../../../constants/ApiEndpointsConstants'
@@ -71,9 +71,12 @@ const GetFilteredOffersPage = () => {
 					іншими, в залежності від поставщика, детальніше про достовірні поля
 					можна взнати зліва в розділі "Особливості роботи з")
 				</p>
-				<Code.Object from={typeOfResult} />
+
+				<Code.Object object={typeOfResult} />
+
 				<p>При помилці, результат буде вигляду</p>
-				<Code.Object from={errorFields} />
+
+				<Code.Object object={errorFields} />
 
 				<H4 className="pt-3">Приклади #1</H4>
 				<p>

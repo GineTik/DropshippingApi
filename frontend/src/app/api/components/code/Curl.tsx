@@ -5,8 +5,8 @@ import CodeString from './String'
 interface CurlProps {
 	method: string
 	url: string
-	headers?: object
-	parameters?: object
+	headers?: Record<string, any>
+	parameters?: Record<string, any>
 	className?: string
 }
 

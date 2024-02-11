@@ -1,5 +1,5 @@
 import RequireAuthMiddleware from '@/middlewares/RequireAuthMiddleware'
-import SettingsPage from '@/pages/Account/Settings/SettingsPage'
+import SettingsPage from '../account/components/settings/SettingsPage'
 
 const page = () => {
 	return (

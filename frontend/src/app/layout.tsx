@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer/Footer'
-import Header from '@/components/Header/Header'
+import Footer from '@/components/footer/Footer'
+import Header from '@/components/header/Header'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import ClientProviders from './ClientProviders'
@@ -27,7 +27,7 @@ export default function RootLayout({
 			>
 				<ClientProviders>
 					<Header />
-					<main className="w-full flex-1">{children}</main>
+					<main className="w-full flex-1 text-base/relaxed">{children}</main>
 					<Footer />
 				</ClientProviders>
 			</body>

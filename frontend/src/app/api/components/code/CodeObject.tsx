@@ -6,7 +6,7 @@ import StringValue from './StringValue'
 
 interface CodeObjectProps {
 	className?: string
-	from: object | string | object[] | string[]
+	object: object | string | object[] | string[]
 }
 
 const CodeObject = (props: CodeObjectProps) => {
@@ -25,32 +25,32 @@ const CodeObject = (props: CodeObjectProps) => {
 }
 
 const CodeInner = (props: CodeObjectProps) => {
-	if (typeof props.from === 'number') {
+	if (typeof props.object === 'number') {
 		return (
 			<>
-				<span className="text-orange-500">{props.from}</span>
+				<span className="text-orange-500">{props.object}</span>
 				<Comment>,</Comment>
 			</>
 		)
 	}
-	if (typeof props.from === 'string') {
-		return <StringValue>{props.from}</StringValue>
-	} else if (Array.isArray(props.from)) {
-		return <CodeOfArrayInner {...props} />
-	} else if (typeof props.from === 'object') {
-		return <CodeOfObjectInner {...props} />
+	if (typeof props.object === 'string') {
+		return <StringValue>{props.object}</StringValue>
+	} else if (Array.isArray(props.object)) {
+		return <CodeOfArrayInner object={props.object} />
+	} else if (typeof props.object === 'object') {
+		return <CodeOfObjectInner object={props.object} />
 	}
 }
 
-const CodeOfObjectInner = ({ from }: CodeObjectProps) => {
+const CodeOfObjectInner = ({ object }: { object: Record<string, any> }) => {
 	return (
 		<>
 			{'{'}
-			{Object.keys(from).map((parameterKey) => (
+			{Object.keys(object).map((parameterKey) => (
 				<Line key={crypto.randomUUID()}>
 					<CodeString withoutPadding>{parameterKey}</CodeString>
 					{': '}
-					<CodeInner from={from[parameterKey]} />
+					<CodeInner object={object[parameterKey]} />
 				</Line>
 			))}
 			{'}'}
@@ -58,13 +58,13 @@ const CodeOfObjectInner = ({ from }: CodeObjectProps) => {
 	)
 }
 
-const CodeOfArrayInner = ({ from }: CodeObjectProps) => {
+const CodeOfArrayInner = ({ object }: CodeObjectProps) => {
 	return (
 		<>
 			[
-			{(from as any[]).map((element) => (
+			{(object as any[]).map((element) => (
 				<Line key={crypto.randomUUID()}>
-					<CodeInner from={element} />
+					<CodeInner object={element} />
 				</Line>
 			))}
 			]

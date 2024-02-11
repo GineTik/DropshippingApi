@@ -8,6 +8,7 @@ export default {
         HowItWorks: "/api/how-it-works",
         GetFilteredOffers: "/api/get-filtered-offers",
         GetOneOffer: "/api/get-one-offer",
+        SendOrder: '/api/send-order',
         Filtration: "/api/filtration"
     },
     Settings: "/settings",
