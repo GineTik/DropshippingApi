@@ -9,7 +9,6 @@ import { useMutation } from '@tanstack/react-query'
 import AccountItem from './Main/AccountItem'
 import AccountTab from './Main/AccountTab'
 import AccountTabPanel from './Main/AccountTabPanel'
-import ApiEndpoints from './Tabs/ApiEndpoints/ApiEndpoints'
 import GetAsFile from './Tabs/GetAsFile/GetAsFile'
 import AllowedHosts from './Tabs/KeysAndHosts/AllowedHosts/AllowedHosts'
 import ApiKeys from './Tabs/KeysAndHosts/ApiKeys/ApiKeys'
@@ -68,7 +67,6 @@ const AccountPage = () => {
 					<Tab.List className="flex flex-wrap">
 						<AccountTab>АПІ ключі</AccountTab>
 						<AccountTab>Дозволені хости</AccountTab>
-						<AccountTab>Документація</AccountTab>
 						<AccountTab>Скачати у файлі</AccountTab>
 						<AccountTab className="flex gap-2 items-center">
 							Усі замовлення{' '}
@@ -81,9 +79,6 @@ const AccountPage = () => {
 						</AccountTabPanel>
 						<AccountTabPanel>
 							<AllowedHosts />
-						</AccountTabPanel>
-						<AccountTabPanel>
-							<ApiEndpoints />
 						</AccountTabPanel>
 						<AccountTabPanel>
 							<GetAsFile />
