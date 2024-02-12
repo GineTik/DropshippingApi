@@ -24,19 +24,21 @@ const Curl = ({ method, url, headers, parameters, className }: CurlProps) => {
 					{` ${method} `}
 				</Line>
 				<Line>
-					--url <CodeString>{url}</CodeString>
+					--url <CodeString isDark>{url}</CodeString>
 				</Line>
 				{headers &&
 					Object.keys(headers).map((key) => (
 						<Line key={crypto.randomUUID()}>
-							--header <CodeString>{`${key}: ${headers[key]}`}</CodeString>
+							--header{' '}
+							<CodeString isDark>{`${key}: ${headers[key]}`}</CodeString>
 						</Line>
 					))}
 
 				{parameters &&
 					Object.keys(parameters).map((key) => (
 						<Line key={crypto.randomUUID()}>
-							--param <CodeString>{`${key}=${parameters[key]}`}</CodeString>
+							--param{' '}
+							<CodeString isDark>{`${key}=${parameters[key]}`}</CodeString>
 						</Line>
 					))}
 			</code>

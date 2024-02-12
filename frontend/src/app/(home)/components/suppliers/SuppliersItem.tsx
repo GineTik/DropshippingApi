@@ -1,4 +1,3 @@
-import H4 from '@/components/headings/H4'
 import Image from 'next/image'
 
 interface SuppliersItemProps {
@@ -19,7 +18,7 @@ const SuppliersItem = ({ imgSrc, title, description }: SuppliersItemProps) => {
 					className="m-auto"
 				/>
 			</div>
-			<H4 className="text-white mb-3">{title}</H4>
+			<h4 className="text-white mb-3">{title}</h4>
 			<div className="leading-7">{description}</div>
 		</div>
 	)

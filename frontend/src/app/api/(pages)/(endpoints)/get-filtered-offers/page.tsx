@@ -1,5 +1,4 @@
-import H3 from '@/components/headings/H3'
-import H4 from '@/components/headings/H4'
+import ApiSection from '@/app/api/components/section/ApiSection'
 import { AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import ApiEndpointsConstants from '../../../../../../constants/ApiEndpointsConstants'
@@ -7,14 +6,6 @@ import RouteConstants from '../../../../../../constants/RouteConstants'
 import { Code } from '../../../components/code/Code'
 
 const GetFilteredOffersPage = () => {
-	const availableParameters = {
-		'{field}':
-			'Приймає вираз для фільтрації, замість {field} може бути любе поле',
-		page: 1,
-		pageCount: 12,
-		'[some characteristic]': 'query // about query below'
-	}
-
 	const typeOfResult = {
 		metadata: {
 			page: 1,
@@ -26,15 +17,11 @@ const GetFilteredOffersPage = () => {
 			{
 				id: 1,
 				title: 'Найкращий сайт від нас',
+				updatedAt: new Date(Date.now()).toLocaleDateString('ua-UK'),
 				fields: {
-					description: 'Опис цього продукту',
-					categories: [],
-					tags: [],
-					price: 10000,
-					currency: 'ua',
-					currencySymbol: '₴'
+					'залежить від постачальника': '...'
 				},
-				images: ['url', 'url', 'url']
+				images: ['силки...']
 			}
 		]
 	}
@@ -42,6 +29,16 @@ const GetFilteredOffersPage = () => {
 	const errorFields = {
 		status: 400,
 		message: 'Якась помилка'
+	}
+
+	const example2Offer = {
+		id: 1,
+		title: 'Якийсь товар',
+		fields: {
+			categories: [],
+			orders: 999
+		},
+		images: []
 	}
 
 	return (
@@ -54,53 +51,98 @@ const GetFilteredOffersPage = () => {
 						рекомендуємо це зробити, щоб повністю розуміти те, що нижче.
 					</div>
 				</div>
-				<H3>Отримати список товарів товари</H3>
-				<p>
-					Для отримання усіх товарів від якогось поставщика ви можете
-					використовувати наступну кінцеву точку.
-				</p>
-				<Code.Curl
-					{...ApiEndpointsConstants.GetFilteredOffers}
-					headers={ApiEndpointsConstants.AuthHeaders}
-				/>
+				<ApiSection>
+					<h2>Отримати список товарів</h2>
+					<p>
+						Для отримання усіх товарів від якогось поставщика ви можете
+						використовувати наступну кінцеву точку.
+					</p>
+					<Code.Curl
+						{...ApiEndpointsConstants.GetFilteredOffers}
+						headers={ApiEndpointsConstants.AuthHeaders}
+					/>
+				</ApiSection>
 
-				<H4 className="pt-3">Відповіді</H4>
-				<p>
-					Успішний результат, який повернеться буде наступного вигляду (поля
-					об'єкта <Code.String>fields</Code.String> довільні і можуть бути
-					іншими, в залежності від поставщика, детальніше про достовірні поля
-					можна взнати зліва в розділі "Особливості роботи з")
-				</p>
+				<ApiSection>
+					<h4 className="pt-3">Відповіді</h4>
+					<p>
+						Успішний результат, який повернеться буде наступного вигляду (поля
+						об'єкта <Code.String>fields</Code.String> довільні, в залежності від
+						постачальника, детальніше про достовірні поля можна взнати зліва в
+						розділі "Особливості роботи з")
+					</p>
 
-				<Code.Object object={typeOfResult} />
+					<Code.Object object={typeOfResult} />
 
-				<p>При помилці, результат буде вигляду</p>
+					<p>При помилці, результат буде вигляду</p>
 
-				<Code.Object object={errorFields} />
+					<Code.Object object={errorFields} />
+				</ApiSection>
 
-				<H4 className="pt-3">Приклади #1</H4>
-				<p>
-					Отримати усі товари, які в імені мають слово "аксесуар"{' '}
-					<Link
-						href={RouteConstants.Api.Filtration}
-						className="font-medium text-blue-600"
-					>
-						(детальніше про фільтрацію)
-					</Link>
-				</p>
-				<Code.Curl
-					{...ApiEndpointsConstants.GetFilteredOffers}
-					headers={ApiEndpointsConstants.AuthHeaders}
-					parameters={{
-						'title[$contains]': 'аксесуар'
-					}}
-				/>
-				<p>
-					У цьому прикладі ми фільтруємо за полем{' '}
-					<Code.String>title</Code.String> з режимом{' '}
-					<Code.String>[$contains]</Code.String>, як вже було сказано, ми
-					отримаємо усі пропозиції, які містять слово "аксесуар" в назві.
-				</p>
+				<ApiSection>
+					<h4 className="pt-3">Приклади #1</h4>
+					<p>
+						Отримати усі товари, які в імені мають слово "аксесуар"{' '}
+						<Link
+							href={RouteConstants.Api.Filtration}
+							className="font-medium text-blue-600"
+						>
+							(детальніше про фільтрацію)
+						</Link>
+					</p>
+					<Code.Curl
+						{...ApiEndpointsConstants.GetFilteredOffers}
+						headers={ApiEndpointsConstants.AuthHeaders}
+						parameters={{
+							'title[$contains]': 'аксесуар'
+						}}
+					/>
+					<p>
+						У цьому прикладі ми фільтруємо за полем{' '}
+						<Code.String>title</Code.String> з типом порівняння{' '}
+						<Code.String>[$contains]</Code.String>, як вже було сказано, ми
+						отримаємо усі пропозиції, які містять слово "аксесуар" в назві. При
+						цьому регістр значення не має.
+					</p>
+				</ApiSection>
+
+				<ApiSection>
+					<h4 className="pt-3">Приклади #2</h4>
+					<p>
+						Отримати 5 товарів з категорії ялинок, для секції "популярні
+						товари".
+					</p>
+					<p>Уявимо, що маємо наступну структуру товара.</p>
+					<Code.Object object={example2Offer} />
+
+					<p>
+						Для такого запиту потрібно додати до запиту декілька параметрів для
+						фільтрації, а саме: для фільтрації по категоріям, сортування за
+						кількістю замовлень та кількістю товарів в результаті.
+					</p>
+					<p>Давайте виконаємо такий запит:</p>
+					<Code.Curl
+						{...ApiEndpointsConstants.GetFilteredOffers}
+						headers={ApiEndpointsConstants.AuthHeaders}
+						parameters={{
+							'fields.categories.$any[$equal]': 'christmas-tree',
+							'fields.orders[$order]': -1,
+							pageCount: '5'
+						}}
+					/>
+					<p>
+						У результаті ми отримаємо першу сторінку величиною в 5 товарів набір
+						товарів з категорією "Christmas-tree", відсортованою за полем
+						"orders" та{' '}
+					</p>
+					<p>
+						У цьому прикладі ми фільтруємо за полем{' '}
+						<Code.String>title</Code.String> з типом порівняння{' '}
+						<Code.String>[$contains]</Code.String>, як вже було сказано, ми
+						отримаємо усі пропозиції, які містять слово "аксесуар" в назві. При
+						цьому регістр значення не має.
+					</p>
+				</ApiSection>
 			</div>
 		</div>
 	)

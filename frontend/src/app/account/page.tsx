@@ -1,7 +1,5 @@
 'use client'
 import BlueButton from '@/components/buttons/BlueButton'
-import H2 from '@/components/headings/H2'
-import H4 from '@/components/headings/H4'
 import Section from '@/components/section/Section'
 import { AuthService } from '@/services/auth.service'
 import { Tab } from '@headlessui/react'
@@ -21,7 +19,7 @@ const AccountPage = () => {
 
 	return (
 		<Section className="max-w-[800px]">
-			<H2 className="mb-10 mt-16">Доступні дії</H2>
+			<h1 className="mb-10 mt-16">Доступні дії</h1>
 			<div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 z-10">
 				<AccountItem
 					icon="KeyIcon"
@@ -42,9 +40,9 @@ const AccountPage = () => {
 			<div className="hidden lg:block -mt-48 -ml-10 px-10 box-content w-full h-60 bg-blue-100 rounded-3xl z-0"></div>
 
 			<div className="mt-12">
-				<H4 className="sm:hidden ml-3 mb-3">
+				<h4 className="sm:hidden ml-3 mb-3">
 					Почни пробний період та оціни сервіс
-				</H4>
+				</h4>
 				<div className="flex gap-5 lg:mt-6 mb-10 items-center">
 					<div className="bg-blue-50 p-5 rounded-full">
 						<span className="font-bold mr-2">Free</span>

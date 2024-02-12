@@ -1,6 +1,5 @@
 import BlueButton from '@/components/buttons/BlueButton'
 import ErrorMessage from '@/components/error-message/ErrorMessage'
-import H4 from '@/components/headings/H4'
 import { Dialog, Transition } from '@headlessui/react'
 import { AxiosError } from 'axios'
 import { Fragment } from 'react'
@@ -58,7 +57,7 @@ const EditingDialog = ({
 						>
 							<Dialog.Panel className="w-full max-w-[500px] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
 								<Dialog.Title as={Fragment}>
-									<H4>{title}</H4>
+									<h4>{title}</h4>
 								</Dialog.Title>
 
 								<div className="my-5 flex flex-col gap-3">{children}</div>

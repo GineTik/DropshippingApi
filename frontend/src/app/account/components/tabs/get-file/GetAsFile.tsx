@@ -1,9 +1,7 @@
-import H4 from '@/components/headings/H4'
-
 const GetAsFile = () => {
 	return (
 		<div>
-			<H4>Скачати файли</H4>
+			<h4>Скачати файли</h4>
 		</div>
 	)
 }

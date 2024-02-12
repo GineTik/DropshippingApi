@@ -11,7 +11,9 @@ const StringValue = ({ children }: StringValueProps) => {
 	if (indexOfStartComment == -1) {
 		return (
 			<>
-				<CodeString withoutPadding>{children}</CodeString>
+				<CodeString withoutPadding isDark>
+					{children}
+				</CodeString>
 				<Comment>,</Comment>
 			</>
 		)
@@ -21,7 +23,9 @@ const StringValue = ({ children }: StringValueProps) => {
 	const comment = children.substring(indexOfStartComment, children.length)
 	return (
 		<>
-			<CodeString withoutPadding>{string}</CodeString>
+			<CodeString withoutPadding isDark>
+				{string}
+			</CodeString>
 			<Comment>, </Comment>
 			<Comment>{comment}</Comment>
 		</>

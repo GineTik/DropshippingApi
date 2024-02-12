@@ -1,4 +1,3 @@
-import H4 from '@/components/headings/H4'
 import StyledInput from '@/components/inputs/Input'
 import { ApiKeyDto } from '@/dtos/user/api-key/api-key.dto'
 import { CreateApiKeyDto } from '@/dtos/user/api-key/create-api-key.dto'
@@ -36,7 +35,7 @@ const ApiKeys = () => {
 
 	return (
 		<div>
-			<H4 className="mb-3">АПІ ключі</H4>
+			<h4 className="mb-3">АПІ ключі</h4>
 
 			<div className="flex flex-col gap-2">
 				{apiKeys?.data?.map((apiKey, i) => (

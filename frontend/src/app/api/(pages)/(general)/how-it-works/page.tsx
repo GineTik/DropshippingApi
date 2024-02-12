@@ -1,10 +1,9 @@
-import H3 from '@/components/headings/H3'
 import styles from './Page.module.scss'
 
 const page = () => {
 	return (
 		<div className="space-y-6 max-w-[650px]">
-			<H3>Як працює АПІ?</H3>
+			<h3>Як працює АПІ?</h3>
 			<p>
 				Наше API працює на основі простої та ефективної концепції, що дозволяє
 				користувачам легко і швидко отримувати доступ до необхідних функцій для

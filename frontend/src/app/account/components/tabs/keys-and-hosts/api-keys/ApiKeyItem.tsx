@@ -1,5 +1,4 @@
 import ScaledButton from '@/components/buttons/ScaledButton'
-import H5 from '@/components/headings/H5'
 import { ApiKeyDto } from '@/dtos/user/api-key/api-key.dto'
 import { ApiKeysService } from '@/services/user/api-keys.service'
 import { Disclosure, Transition } from '@headlessui/react'
@@ -77,10 +76,10 @@ const ApiKeyItem = ({ apiKey, refetch }: ApiKeyItemProps) => {
 						>
 							<Disclosure.Panel className="flex gap-7 px-5 pt-4 pb-8 rounded-2xl">
 								<div>
-									<H5>АПІ ключ</H5>
+									<h5>АПІ ключ</h5>
 									<span>{key}</span>
 
-									<H5 className="mt-4">Опис</H5>
+									<h5 className="mt-4">Опис</h5>
 									<span>{description === '' ? 'Немає' : description}</span>
 								</div>
 								<div className="flex items-start ml-auto -mr-6 text-gray-800">

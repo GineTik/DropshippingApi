@@ -3,7 +3,8 @@ import Header from '@/components/header/Header'
 import type { Metadata } from 'next'
 import { Montserrat } from 'next/font/google'
 import ClientProviders from './ClientProviders'
-import './globals.css'
+import styles from './globals.module.scss'
+import './import-tailwind.css'
 
 const montserrat = Montserrat({
 	weight: ['400', '500', '600', '700'],
@@ -22,9 +23,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className="h-full">
-			<body
-				className={`${montserrat.className} h-full bg-white dark:bg-zinc-900 flex flex-col`}
-			>
+			<body className={`${styles.body} ${montserrat.className}`}>
 				<ClientProviders>
 					<Header />
 					<main className="w-full flex-1 text-base/relaxed">{children}</main>

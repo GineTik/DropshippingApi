@@ -14,6 +14,7 @@ const CodeObject = (props: CodeObjectProps) => {
 		<div
 			className={classNames(
 				'bg-gray-800 rounded-xl text-white w-full px-5 py-4',
+				'overflow-x-auto',
 				props.className
 			)}
 		>
@@ -48,7 +49,9 @@ const CodeOfObjectInner = ({ object }: { object: Record<string, any> }) => {
 			{'{'}
 			{Object.keys(object).map((parameterKey) => (
 				<Line key={crypto.randomUUID()}>
-					<CodeString withoutPadding>{parameterKey}</CodeString>
+					<CodeString withoutPadding isDark>
+						{parameterKey}
+					</CodeString>
 					{': '}
 					<CodeInner object={object[parameterKey]} />
 				</Line>

@@ -1,6 +1,4 @@
-import ApiSection from '@/app/api/components/Section/Section'
-import H3 from '@/components/headings/H3'
-import H4 from '@/components/headings/H4'
+import ApiSection from '@/app/api/components/section/ApiSection'
 import { Code } from '../../../components/code/Code'
 import styles from './Page.module.scss'
 
@@ -12,7 +10,7 @@ const FiltrationPage = () => {
 		images: ['силки на зображення']
 	}
 
-	const offerForExamples = {
+	const offerForexamples_list = {
 		id: 1,
 		title: 'Найкраще АПІ для дропшиппінгу',
 		fields: {
@@ -28,12 +26,12 @@ const FiltrationPage = () => {
 
 	return (
 		<>
-			<H3>Фільтрування</H3>
+			<h3>Фільтрування</h3>
 			<ApiSection>
 				<p>
 					Для отримання товарів для любих ситуацій, ви можете відфільтрувати
 					товари за любим полем, як для отримання усіх товарів так і для
-					отримання одного товара
+					отримання одного товара.
 				</p>
 				<p>
 					Додати фільтрування до вашого запиту можна за допомогою параметрів у
@@ -47,7 +45,7 @@ const FiltrationPage = () => {
 				</p>
 			</ApiSection>
 			<ApiSection>
-				<H4>Поля для фільтрації</H4>
+				<h4>Поля для фільтрації</h4>
 				<p>
 					Як було сказано раніше, можна фільтрувати за любим полем товара, але
 					як зрозуміти які поля містить товар? Більшість полів буде
@@ -60,90 +58,162 @@ const FiltrationPage = () => {
 					будуть присутні незалежно до постачальника:
 				</p>
 				<Code.Object object={generalFieldsOfOffer} />
+				<p>
+					Важливо зауважити, що в запит можна додати декілька фільтрів
+					(параметрів для фільтрації) та навіть для одного і того же поля.
+				</p>
 			</ApiSection>
 			<ApiSection>
-				<H4>Ключові слова</H4>
-				<p>Доступні типи порівняння та їх значення (регістр значення не має)</p>
-				<div>
-					<b className="block">Якщо значенням поля є строка:</b>
-					<ul className={styles.examples}>
+				<h4>Фільтрація в залежності від типу значення</h4>
+				<p>
+					Особливості в типах порівняннях та інших деталях в залежності від типу
+					даних за фільтрованим полем (регістр значення не має)
+				</p>
+				<p>
+					Важливо зазначити, що в значення ви також можете додати ключове слово{' '}
+					<Code.String>[$or]</Code.String>. Як для рядка так і для числа.
+					<br />
+					Наприклад,{' '}
+					<Code.String>
+						fieldName[comparisonType] = value1[$or]value2
+					</Code.String>
+				</p>
+				<div className={styles.examples_block}>
+					<b className="block">Якщо значенням поля є строка</b>
+					<p>
+						Поля з типом значення як строка легко фільтруються за допомогою
+						виразу <Code.String>fieldName[comparisonType] = value</Code.String>.
+						Але <Code.String>comparisonType</Code.String> має свої значення.
+						Типи порівняння:
+					</p>
+					<ul className={styles.examples_list}>
 						<li>
-							<Code.String>[$equal]</Code.String> - отримаємо усі товари, які
-							містять в імені слово "ялинка"
+							<Code.String>[$equal]</Code.String> - перевіряє, чи значення
+							еквівалентне наданому рядку (значення параметру).
 						</li>
 						<li>
-							<Code.String>[$notEqual]</Code.String> - отримаємо усі товари з
-							тегами discount та new, при цьому важливо зауважити що tags це
-							масив а fields - це набір усіх полів товара.
+							<Code.String>[$notEqual]</Code.String> - перевіряє, чи значення не
+							еквівалентне наданому рядку (значення параметру).
 						</li>
 						<li>
-							<Code.String>[$contains]</Code.String> - отримаємо усі товари з
-							тегами discount та new, при цьому важливо зауважити що tags це
-							масив а fields - це набір усіх полів товара.
+							<Code.String>[$contains]</Code.String> - перевіряє, чи містить
+							поле наданий рядок.
 						</li>
 						<li>
-							<Code.String>[$startWith]</Code.String> - отримаємо усі товари з
-							тегами discount та new, при цьому важливо зауважити що tags це
-							масив а fields - це набір усіх полів товара.
+							<Code.String>[$startWith]</Code.String> - перевіряє, чи поле
+							починається з вказаного рядка.
 						</li>
 						<li>
-							<Code.String>[$endWith]</Code.String> - отримаємо усі товари з
-							тегами discount та new, при цьому важливо зауважити що tags це
-							масив а fields - це набір усіх полів товара.
+							<Code.String>[$endWith]</Code.String> - перевіряє, чи поле
+							закінчується з вказаного рядка.
+						</li>
+					</ul>
+					<p>
+						Для строки також можна взнати її довжину -{' '}
+						<Code.String>title.length[$min] = 10</Code.String>. При цьому
+						фільтрувати довжину потрібно як число.
+					</p>
+				</div>
+
+				<div className={styles.examples_block}>
+					<b className="block">Якщо значенням поля є число або дата:</b>
+					<p>Типи порівняння:</p>
+					<ul className={styles.examples_list}>
+						<li>
+							<Code.String>[$equal]</Code.String> - перевіряє, чи значення поля
+							дорівнює наданому числу.
+						</li>
+						<li>
+							<Code.String>[$notEqual]</Code.String> - перевіряє, чи значення
+							поля не дорівнює наданому числу.
+						</li>
+						<li>
+							<Code.String>[$min]</Code.String> - перевіряє, чи значення поля є
+							<b className="font-medium"> більше або дорівнює</b> наданому
+							числу.
+						</li>
+						<li>
+							<Code.String>[$max]</Code.String> - перевіряє, чи значення поля є
+							<b className="font-medium"> менше або дорівнює</b> наданому числу.
+						</li>
+						<li>
+							<Code.String>[$range]</Code.String> - наприклад{' '}
+							<Code.String>
+								fields.price[$range] = 100,5000 // min,max
+							</Code.String>
+							, перевіряє, чи значення поля входить в рамки наданого діапазона
+							чисел, включно з наданими числами.
+						</li>
+						<li>
+							<Code.String>[$order]</Code.String> - приймає тільки{' '}
+							<Code.String>1</Code.String> (за зростанням) або{' '}
+							<Code.String>-1</Code.String> (за спаданням) та сортує за цим
+							полем результат
 						</li>
 					</ul>
 				</div>
 
-				<div>
-					<b className="block">Якщо значенням поля є число:</b>
-					<ul className={styles.examples}>
+				<div className={styles.examples_block}>
+					<b className="block">Якщо значенням поля є массив:</b>
+					<p>
+						Якщо вам потрібно відфільтрувати масив, то це можна зробити за
+						допомогою ключових слів:
+					</p>
+					<ul className={styles.examples_list}>
 						<li>
-							<Code.String>[$equal]</Code.String> - отримаємо усі товари, які
-							містять в імені слово "ялинка"
+							<Code.String>$</Code.String> або <Code.String>$all</Code.String> -
+							наприклад, <Code.String>fields.array.$[...]</Code.String>,
+							використовуються, коли потрібно, щоб усі значення у масиві
+							відповідали зазначеному виразу/значенню.
 						</li>
 						<li>
-							<Code.String>[$notEqual]</Code.String> - отримаємо усі товари з
-							тегами discount та new, при цьому важливо зауважити що tags це
-							масив а fields - це набір усіх полів товара.
-						</li>
-						<li>
-							<Code.String>[$min]</Code.String> - отримаємо усі товари з тегами
-							discount та new, при цьому важливо зауважити що tags це масив а
-							fields - це набір усіх полів товара.
-						</li>
-						<li>
-							<Code.String>[$max]</Code.String> - отримаємо усі товари з тегами
-							discount та new, при цьому важливо зауважити що tags це масив а
-							fields - це набір усіх полів товара.
-						</li>
-						<li>
-							<Code.String>[$range]</Code.String> - отримаємо усі товари з
-							тегами discount та new, при цьому важливо зауважити що tags це
-							масив а fields - це набір усіх полів товара.
+							<Code.String>$any</Code.String> - наприклад,{' '}
+							<Code.String>fields.array.$any[...]</Code.String>, якщо любий зі
+							значень підходить під вираз фільтрації, то і масив буде придатним.
 						</li>
 					</ul>
+					<p>
+						При цьому <b>важливо зауважити</b>, що тип порівняння буде залежати
+						від типу значень цього масива.
+					</p>
+					<p>
+						Для масива також можна взнати довжину -{' '}
+						<Code.String>fields.tags.length[$min] = 3</Code.String>. При цьому
+						фільтрувати довжину потрібно як число.
+					</p>
+				</div>
+
+				<div className={styles.important_message}>
+					<div>
+						Важливо зазначити, що в значення ви також можете додати ключове
+						слово <span className="text-nowrap">"[$or]"</span>. Як для рядка так
+						і для числа. Детальніше дивіться в прикладах.
+					</div>
 				</div>
 			</ApiSection>
 			<ApiSection>
-				<H4>Приклади</H4>
+				<h4>Приклади</h4>
 				<p>
 					Для прикладу нам потрібно розуміти структуру товара, який ми хочемо
 					отримати. Тож давайте створимо довільні поля:
 				</p>
-				<Code.Object object={offerForExamples} />
+				<Code.Object object={offerForexamples_list} />
 				<p>
 					Щож, тепер давайте подивимось на декілька прикладів:
-					<ul className={styles.examples}>
+					<ul className={styles.examples_list}>
 						<li>
 							<Code.String>title[$contains] = ялинка</Code.String> - отримаємо
 							усі товари, які містять в імені слово "ялинка"
 						</li>
 						<li>
 							<Code.String>
-								fields.tags[$contains] = discount[$and]new
+								fields.tags.$any[$equal] = discount[$or]new
 							</Code.String>{' '}
-							- отримаємо усі товари з тегами discount та new, при цьому важливо
-							зауважити що tags це масив а fields - це набір усіх полів товара.
+							- (пробіли не обов'язкові), отримаємо усі товари де є теги
+							discount або new. Якщо нам потрібні товари, де є і discount, і new
+							теги одночасно, нам потрібно додати 2 параметра для фільтрації.{' '}
+							<Code.String>fields.tags.$any[$equal] = discount</Code.String> та{' '}
+							<Code.String>fields.tags.$any[$equal] = new</Code.String>
 						</li>
 					</ul>
 				</p>

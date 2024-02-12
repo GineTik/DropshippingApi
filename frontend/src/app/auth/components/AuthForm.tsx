@@ -2,7 +2,6 @@
 import GoogleLogo from '@/../public/GoogleLogo.webp'
 import BlueButton from '@/components/buttons/BlueButton'
 import BorderedButton from '@/components/buttons/BorderedButton'
-import H4 from '@/components/headings/H4'
 import Input from '@/components/inputs/Input'
 import { SuccessAuthDto } from '@/dtos/user/success-auth.dto'
 import { useActions } from '@/hooks/useActions'
@@ -65,7 +64,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
 	return (
 		<form action="" className="flex flex-col gap-3 w-72 text-sm">
-			<H4 className="ml-4">{isLogin ? 'Вхід' : 'Реєстрація'}</H4>
+			<h4 className="ml-4">{isLogin ? 'Вхід' : 'Реєстрація'}</h4>
 			<Input
 				placeholder="Почта"
 				type="email"

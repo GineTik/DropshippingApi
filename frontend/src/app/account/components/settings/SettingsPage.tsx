@@ -1,7 +1,6 @@
 'use client'
 import BlueButton from '@/components/buttons/BlueButton'
 import ErrorMessage from '@/components/error-message/ErrorMessage'
-import H5 from '@/components/headings/H5'
 import StyledInput from '@/components/inputs/Input'
 import Section from '@/components/section/Section'
 import { AuthService } from '@/services/auth.service'
@@ -65,7 +64,7 @@ const SettingsPage = () => {
 					</Tab.List>
 					<Tab.Panels className="px-3 sm:px-6 py-3">
 						<Tab.Panel className="">
-							<H5 className="w-full">Зміна паролю</H5>
+							<h5 className="w-full">Зміна паролю</h5>
 							<div className="flex gap-4 mt-4">
 								<div className="flex flex-col gap-3 text-sm max-sm:w-full">
 									<StyledInput

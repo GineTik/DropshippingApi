@@ -1,4 +1,3 @@
-import H4 from '@/components/headings/H4'
 import StyledInput from '@/components/inputs/Input'
 import { AddAllowedHostDto } from '@/dtos/user/allowed-hosts/add-allowed-host.dto'
 import { AllowedHostDto } from '@/dtos/user/allowed-hosts/allowed-host.dto'
@@ -39,7 +38,7 @@ const AllowedHosts = () => {
 
 	return (
 		<div>
-			<H4 className="mb-3">Дозволені хости</H4>
+			<h4 className="mb-3">Дозволені хости</h4>
 
 			<div className="flex flex-col gap-2">
 				{allowedHosts?.data?.map((host, i) => (

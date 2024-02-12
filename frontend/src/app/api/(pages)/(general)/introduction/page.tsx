@@ -1,13 +1,11 @@
-import LinkBlock from '@/app/api/components/LinkBlock'
-import ApiSection from '@/app/api/components/Section/Section'
-import H3 from '@/components/headings/H3'
-import H4 from '@/components/headings/H4'
+import LinkBlock from '@/app/api/components/link-block/LinkBlock'
+import ApiSection from '@/app/api/components/section/ApiSection'
 import RouteConstants from '../../../../../../constants/RouteConstants'
 
 const page = () => {
 	return (
 		<>
-			<H3>Вступ</H3>
+			<h2>Вступ</h2>
 			<ApiSection>
 				<p>Ласкаво просимо до документації API для dropshipping платформи!</p>
 				<p>
@@ -19,7 +17,7 @@ const page = () => {
 				</p>
 			</ApiSection>
 			<ApiSection>
-				<H4 className="pt-3">Наше API надає такі ключові можливості:</H4>
+				<h4 className="pt-3">Наше API надає такі ключові можливості:</h4>
 				<div className="grid grid-cols-2 gap-5 pb-10 max-w-[750px]">
 					<LinkBlock
 						href={RouteConstants.Api.GetFilteredOffers}
@@ -39,7 +37,7 @@ const page = () => {
 				</div>
 			</ApiSection>
 			<ApiSection>
-				<H4>Наше API надає безліч переваг, включаючи:</H4>
+				<h4>Наше API надає безліч переваг, включаючи:</h4>
 				<ul className="space-y-3 list-disc pl-7">
 					<li>
 						<b>Постійну актуальність даних</b>: Завдяки нашому API ви отримуєте

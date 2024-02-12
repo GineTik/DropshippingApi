@@ -1,4 +1,3 @@
-import H4 from '@/components/headings/H4'
 import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -35,7 +34,7 @@ const HowItWorksItem = ({
 					height={imageSize ?? 50}
 				/>
 			</div>
-			<H4 className="mt-8 mb-3">{title}</H4>
+			<h4 className="mt-8 mb-3">{title}</h4>
 			<div className="leading-7">{description}</div>
 		</Link>
 	)

@@ -1,5 +1,4 @@
 import ScaledButton from '@/components/buttons/ScaledButton'
-import H5 from '@/components/headings/H5'
 import { AllowedHostDto } from '@/dtos/user/allowed-hosts/allowed-host.dto'
 import { useTypedMutation } from '@/hooks/useTypedMutation'
 import { AllowedHostsService } from '@/services/user/allowed-hosts.service'
@@ -62,10 +61,10 @@ const AllowedHostItem = ({ allowedHost, refetch }: AllowedHostItemProps) => {
 						>
 							<Disclosure.Panel className="flex gap-7 px-5 pt-4 pb-8 rounded-2xl">
 								<div>
-									<H5>Хост</H5>
+									<h5>Хост</h5>
 									<span>{host}</span>
 
-									<H5 className="mt-4">Опис</H5>
+									<h5 className="mt-4">Опис</h5>
 									<span>{description === '' ? 'Немає' : description}</span>
 								</div>
 								<div className="flex items-start ml-auto -mr-6 text-gray-800">
