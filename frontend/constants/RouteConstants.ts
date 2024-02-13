@@ -11,6 +11,7 @@ export default {
         SendOrder: '/api/send-order',
         Filtration: '/api/filtration',
         Errors: '/api/errors',
+        DataExtract: '/api/data-extract'
     },
     Settings: '/settings',
 };

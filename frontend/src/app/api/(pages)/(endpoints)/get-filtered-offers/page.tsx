@@ -51,8 +51,10 @@ const GetFilteredOffersPage = () => {
 						рекомендуємо це зробити, щоб повністю розуміти те, що нижче.
 					</div>
 				</div>
+
+				<h2 className="pt-4">Отримати список товарів</h2>
+
 				<ApiSection>
-					<h2>Отримати список товарів</h2>
 					<p>
 						Для отримання усіх товарів від якогось поставщика ви можете
 						використовувати наступну кінцеву точку.
@@ -142,6 +144,41 @@ const GetFilteredOffersPage = () => {
 						отримаємо усі пропозиції, які містять слово "аксесуар" в назві. При
 						цьому регістр значення не має.
 					</p>
+				</ApiSection>
+
+				<ApiSection>
+					<h4 className="pt-3">Приклади #3</h4>
+					<p>Отримати діапазон цін</p>
+					<Code.Curl
+						{...ApiEndpointsConstants.GetFilteredOffers}
+						headers={ApiEndpointsConstants.AuthHeaders}
+						parameters={{
+							'fields.price[$extract]': 'range'
+						}}
+					/>
+					<p>
+						У цьому прикладі ми дістаємо максимальне та мінімальне значення ціни
+						для усіх товарів (так як ніяк не фільтрували товари). При цьому
+						результат буде наступним:
+					</p>
+					<Code.Object object={{ 'field.price': { min: 100, max: 15000 } }} />
+				</ApiSection>
+
+				<ApiSection>
+					<h4 className="pt-3">Приклади #4</h4>
+					<p>Отримати можливі розміри для дитячого одягу</p>
+					<Code.Curl
+						{...ApiEndpointsConstants.GetFilteredOffers}
+						headers={ApiEndpointsConstants.AuthHeaders}
+						parameters={{
+							'fields.categories.$any': 'дитяча одежа',
+							'fields.sizes.$[$extract]': 'list'
+						}}
+					/>
+					<p>Тут розміри зберігаються в вигляді рядків. А ось і результат:</p>
+					<Code.Object
+						object={{ 'field.sizes': ['розмір 1', 'розмір 2', 'розмір 3'] }}
+					/>
 				</ApiSection>
 			</div>
 		</div>

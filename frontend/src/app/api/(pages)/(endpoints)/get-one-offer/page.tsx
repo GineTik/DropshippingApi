@@ -23,8 +23,8 @@ const GetOneOfferPage = () => {
 
 	return (
 		<>
+			<h2>Отримати один товар</h2>
 			<ApiSection>
-				<h2>Отримати один товар</h2>
 				<p>Щоб отримати один товар, ви можете</p>
 				<Code.Curl
 					{...ApiEndpointsConstants.GetOneOffer}

@@ -14,7 +14,7 @@ const Curl = ({ method, url, headers, parameters, className }: CurlProps) => {
 	return (
 		<div
 			className={classNames(
-				'bg-gray-800 px-5 py-4 rounded-xl text-white w-full',
+				'bg-gray-800 px-5 py-4 rounded-xl text-white w-full overflow-x-auto',
 				className
 			)}
 		>

@@ -1,3 +1,4 @@
+import ListOfFields from '@/app/api/components/code/list-of-fields/ListOfFields'
 import ApiSection from '@/app/api/components/section/ApiSection'
 import { Code } from '../../../components/code/Code'
 import styles from './Page.module.scss'
@@ -22,6 +23,33 @@ const FiltrationPage = () => {
 			currencySymbol: '₴'
 		},
 		images: ['url', 'url', 'url']
+	}
+
+	const operationTypeForString = {
+		'[$equal]':
+			'перевіряє, чи значення еквівалентне наданому рядку (значення параметру).',
+		'[$notEqual]':
+			'перевіряє, чи значення не еквівалентне наданому рядку (значення параметру).',
+		'[$contains]': 'перевіряє, чи містить поле наданий рядок.',
+		'[$startWith]': 'перевіряє, чи поле починається з вказаного рядка.',
+		'[$endWith]': 'перевіряє, чи поле закінчується з вказаного рядка.',
+		'[$extract]':
+			'працює тільки для кінцевої точки відфільтровані пропозиції, повертає набір усіх значень вказаного поля та значення може мати тільки "list".'
+	}
+
+	const operationTypeForNumberAndDate = {
+		'[$equal]': 'перевіряє, чи значення поля дорівнює наданому числу.',
+		'[$notEqual]': 'перевіряє, чи значення поля не дорівнює наданому числу.',
+		'[$min]':
+			'перевіряє, чи значення поля є більше або дорівнює наданому числу.',
+		'[$max]':
+			'перевіряє, чи значення поля є менше або дорівнює наданому числу.',
+		'[$range]':
+			'наприклад "fields.price[$range] = 100,5000 // min,max", перевіряє, чи значення поля входить в рамки наданого діапазона чисел, включно з наданими числами.',
+		'[$order]':
+			'приймає тільки "1" (за зростанням) або "-1" (за спаданням) та сортує за цим полем результат.',
+		'[$extract]':
+			'працює тільки для кінцевої точки відфільтровані пропозиції, повертає набір усіх, мінімальне, максимальне або діапазон значень, та приймає значення "list", "min", "max" та "range" відповідно.'
 	}
 
 	return (
@@ -71,7 +99,8 @@ const FiltrationPage = () => {
 				</p>
 				<p>
 					Важливо зазначити, що в значення ви також можете додати ключове слово{' '}
-					<Code.String>[$or]</Code.String>. Як для рядка так і для числа.
+					<Code.String>[$or]</Code.String> (окрім декількох виключень, читайте
+					нижче). Як для рядка так і для числа.
 					<br />
 					Наприклад,{' '}
 					<Code.String>
@@ -86,28 +115,7 @@ const FiltrationPage = () => {
 						Але <Code.String>comparisonType</Code.String> має свої значення.
 						Типи порівняння:
 					</p>
-					<ul className={styles.examples_list}>
-						<li>
-							<Code.String>[$equal]</Code.String> - перевіряє, чи значення
-							еквівалентне наданому рядку (значення параметру).
-						</li>
-						<li>
-							<Code.String>[$notEqual]</Code.String> - перевіряє, чи значення не
-							еквівалентне наданому рядку (значення параметру).
-						</li>
-						<li>
-							<Code.String>[$contains]</Code.String> - перевіряє, чи містить
-							поле наданий рядок.
-						</li>
-						<li>
-							<Code.String>[$startWith]</Code.String> - перевіряє, чи поле
-							починається з вказаного рядка.
-						</li>
-						<li>
-							<Code.String>[$endWith]</Code.String> - перевіряє, чи поле
-							закінчується з вказаного рядка.
-						</li>
-					</ul>
+					<ListOfFields fields={operationTypeForString} />
 					<p>
 						Для строки також можна взнати її довжину -{' '}
 						<Code.String>title.length[$min] = 10</Code.String>. При цьому
@@ -118,39 +126,7 @@ const FiltrationPage = () => {
 				<div className={styles.examples_block}>
 					<b className="block">Якщо значенням поля є число або дата:</b>
 					<p>Типи порівняння:</p>
-					<ul className={styles.examples_list}>
-						<li>
-							<Code.String>[$equal]</Code.String> - перевіряє, чи значення поля
-							дорівнює наданому числу.
-						</li>
-						<li>
-							<Code.String>[$notEqual]</Code.String> - перевіряє, чи значення
-							поля не дорівнює наданому числу.
-						</li>
-						<li>
-							<Code.String>[$min]</Code.String> - перевіряє, чи значення поля є
-							<b className="font-medium"> більше або дорівнює</b> наданому
-							числу.
-						</li>
-						<li>
-							<Code.String>[$max]</Code.String> - перевіряє, чи значення поля є
-							<b className="font-medium"> менше або дорівнює</b> наданому числу.
-						</li>
-						<li>
-							<Code.String>[$range]</Code.String> - наприклад{' '}
-							<Code.String>
-								fields.price[$range] = 100,5000 // min,max
-							</Code.String>
-							, перевіряє, чи значення поля входить в рамки наданого діапазона
-							чисел, включно з наданими числами.
-						</li>
-						<li>
-							<Code.String>[$order]</Code.String> - приймає тільки{' '}
-							<Code.String>1</Code.String> (за зростанням) або{' '}
-							<Code.String>-1</Code.String> (за спаданням) та сортує за цим
-							полем результат
-						</li>
-					</ul>
+					<ListOfFields fields={operationTypeForNumberAndDate} />
 				</div>
 
 				<div className={styles.examples_block}>
@@ -169,7 +145,7 @@ const FiltrationPage = () => {
 						<li>
 							<Code.String>$any</Code.String> - наприклад,{' '}
 							<Code.String>fields.array.$any[...]</Code.String>, якщо любий зі
-							значень підходить під вираз фільтрації, то і масив буде придатним.
+							значень фільтрується успішно, то масив придатним.
 						</li>
 					</ul>
 					<p>
@@ -183,13 +159,13 @@ const FiltrationPage = () => {
 					</p>
 				</div>
 
-				<div className={styles.important_message}>
+				{/* <div className={styles.important_message}>
 					<div>
 						Важливо зазначити, що в значення ви також можете додати ключове
 						слово <span className="text-nowrap">"[$or]"</span>. Як для рядка так
 						і для числа. Детальніше дивіться в прикладах.
 					</div>
-				</div>
+				</div> */}
 			</ApiSection>
 			<ApiSection>
 				<h4>Приклади</h4>

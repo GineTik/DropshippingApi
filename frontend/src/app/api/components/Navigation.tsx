@@ -20,7 +20,7 @@ const ApiNavigation = () => {
 			<ListLink href={RouteConstants.Api.SendOrder}>
 				Надіслати замовлення
 			</ListLink>
-			<ListLink href={RouteConstants.Api.SendOrder}>
+			<ListLink href={RouteConstants.Api.DataExtract}>
 				Отримати вижимку даних
 			</ListLink>
 
