@@ -1,5 +1,5 @@
-import { Code } from '../Code'
-import CodeString from '../String'
+import { Code } from './Code'
+import CodeString from './String'
 
 interface ListOfFieldsProps {
 	fields: Record<string, any>

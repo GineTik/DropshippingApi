@@ -14,8 +14,12 @@ export default {
         method: 'POST',
         url: 'https://www.dropshipping.api/api/orders/add'
     },
-    DataExtract: {
+    GetExtract: {
         method: 'GET',
-        url: 'https://www.dropshipping.api/api/offers/{supplier}/data-extract'
-    }
+        url: `https://www.dropshipping.api/api/offers/{supplier}/extract/{field-name}/{operation}`
+    },
+    GetExtractWithParams: (fieldName?: string, operation?: string) => ({
+        method: 'GET',
+        url: `https://www.dropshipping.api/api/offers/{supplier}/extract/${fieldName ?? '{field-name}'}/${operation ?? '{operation}'}`
+    })
 };

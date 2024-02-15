@@ -1,5 +1,5 @@
 import Section from '@/components/section/Section'
-import ApiNavigation from '../components/Navigation'
+import ApiNavigation from '../components/ApiNavigation'
 
 interface ApiPagesLayoutProps {
 	children: any
