@@ -76,6 +76,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/dto/tsconfig.lib.json"
       }
+    },
+    "goods-unloader": {
+      "type": "application",
+      "root": "apps/goods-unloader",
+      "entryFile": "main",
+      "sourceRoot": "apps/goods-unloader/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/goods-unloader/tsconfig.app.json"
+      }
     }
   }
 }

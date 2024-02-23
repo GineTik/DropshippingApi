@@ -1,0 +1,12 @@
+{
+  "name": "start-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "npm run docker --prefix backend && npm run dev --prefix frontend",
+    "backend": "npm run docker --prefix backend",
+    "frontend": "npm run dev --prefix frontend"
+  },
+  "author": "Denis Shevchuk",
+  "license": "ISC"
+}
