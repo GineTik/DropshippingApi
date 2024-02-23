@@ -8,7 +8,6 @@ services:
       context: ./
       dockerfile: ./apps/backend/Dockerfile
       target: development
-    # command: npm run dev backend
     ports:
       - '3001:3001'
     env_file:
@@ -16,15 +15,27 @@ services:
     volumes:
       - .:/usr/src/app
 
-  goods: 
-    container_name: goods
+  offers: 
+    container_name: offers
     build: 
       context: ./
       dockerfile: ./apps/goods/Dockerfile
       target: development
-    # command: npm run dev goods
     ports:
       - '3002:3002'
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+
+  offers-unloader: 
+    container_name: offers-unloader
+    build: 
+      context: ./
+      dockerfile: ./apps/offers-unloader/Dockerfile
+      target: development
+    ports:
+      - '3003:3003'
     env_file:
       - .env
     volumes:

@@ -85,6 +85,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/goods-unloader/tsconfig.app.json"
       }
+    },
+    "offers-unloader": {
+      "type": "application",
+      "root": "apps/offers-unloader",
+      "entryFile": "main",
+      "sourceRoot": "apps/offers-unloader/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/offers-unloader/tsconfig.app.json"
+      }
     }
   }
 }

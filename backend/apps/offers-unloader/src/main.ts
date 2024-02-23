@@ -3,12 +3,12 @@ import {
 	defaultStartMicroservice
 } from '@app/microservices'
 import { NestFactory } from '@nestjs/core'
-import { GoodsUnloaderModule } from './goods-unloader.module'
+import { OffersUnloaderModule } from './offers-unloader.module'
 
 async function bootstrap() {
-	const app = await NestFactory.create(GoodsUnloaderModule)
+	const app = await NestFactory.create(OffersUnloaderModule)
 
-	connectToRabbitMqMicroservice(app, 'goods')
+	connectToRabbitMqMicroservice(app, 'goods-unloader')
 	defaultStartMicroservice(app)
 }
 bootstrap()
