@@ -16,6 +16,38 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@app/microservices-endpoints": [
+        "libs/microservices-endpoints/src"
+      ],
+      "@app/microservices-endpoints/*": [
+        "libs/microservices-endpoints/src/*"
+      ],
+      "@app/microservices": [
+        "libs/microservices/src"
+      ],
+      "@app/microservices/*": [
+        "libs/microservices/src/*"
+      ],
+      "@app/exceptions": [
+        "libs/exceptions/src"
+      ],
+      "@app/exceptions/*": [
+        "libs/exceptions/src/*"
+      ],
+      "@app/models": [
+        "libs/models/src"
+      ],
+      "@app/models/*": [
+        "libs/models/src/*"
+      ],
+      "@app/dto": [
+        "libs/dto/src"
+      ],
+      "@app/dto/*": [
+        "libs/dto/src/*"
+      ]
+    }
   }
 }

@@ -1,0 +1,44 @@
+version: '3.8'
+
+services: 
+ 
+  account:
+    container_name: account
+    build: 
+      context: ./
+      dockerfile: ./apps/backend/Dockerfile
+      target: development
+    # command: npm run dev backend
+    ports:
+      - '3001:3001'
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+
+  goods: 
+    container_name: goods
+    build: 
+      context: ./
+      dockerfile: ./apps/goods/Dockerfile
+      target: development
+    # command: npm run dev goods
+    ports:
+      - '3002:3002'
+    env_file:
+      - .env
+    volumes:
+      - .:/usr/src/app
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    restart: always
+    volumes: 
+      - ./rabbitmq:/var/lib/rabbitmq
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    env_file:
+      - .env
