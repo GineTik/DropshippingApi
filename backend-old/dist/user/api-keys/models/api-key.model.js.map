@@ -1,0 +1,1 @@
+{"version":3,"file":"api-key.model.js","sourceRoot":"","sources":["../../../../src/user/api-keys/models/api-key.model.ts"],"names":[],"mappings":";;;AAGA,MAAa,WAAW;;AAAxB,kCAaC;AARU,mBAAO,GAAG,CAAC,GAAc,EAAE,EAAE,CAAC,CAAC;IAClC,GAAG,GAAG;IACN,GAAG,EAAE,MAAM,CAAC,UAAU,EAAE;CAC3B,CAAC,CAAA;AAEK,yBAAa,GAAG,CAAC,GAAoB,EAAE,EAAE,CAAC,CAAC;IAC9C,GAAG,GAAG;CACT,CAAC,CAAA"}
