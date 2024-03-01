@@ -16,6 +16,12 @@
     "@app/config/(.*)": "<rootDir>/../libs/config/src/$1",
     "@app/config": "<rootDir>/../libs/config/src",
     "@app/models/(.*)": "<rootDir>/../libs/models/src/$1",
-    "@app/models": "<rootDir>/../libs/models/src"
+    "@app/models": "<rootDir>/../libs/models/src",
+    "@app/auth/(.*)": "<rootDir>/../libs/auth/src/$1",
+    "@app/auth": "<rootDir>/../libs/auth/src",
+    "@app/mail/(.*)": "<rootDir>/../libs/mail/src/$1",
+    "@app/mail": "<rootDir>/../libs/mail/src",
+    "@app/exceptions/(.*)": "<rootDir>/../libs/exceptions/src/$1",
+    "@app/exceptions": "<rootDir>/../libs/exceptions/src"
   }
 }
