@@ -6,20 +6,19 @@ FROM node:alpine As development
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
+COPY package*.json ./
 
 RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# RUN npm run start:dev
-CMD ["npm", "run", "dev", "backend"]
+RUN npm run build
+# CMD ["npm", "run", "dev"]
 
 
 ###########################
 # BUILD FOR PRODUCTION
 ###########################
-
 
 FROM node:alpine As production
 
@@ -28,9 +27,11 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
+COPY package*.json ./
 
 RUN npm install --production
+
+COPY . .
 
 COPY --from=development /usr/src/app/dist ./dist
 

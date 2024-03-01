@@ -10,7 +10,7 @@
     "dev": "nest start --watch",
     "prod:backend": "node dist/apps/backend/main",
     "prod:goods": "node dist/apps/goods/main",
-    "docker": "docker-compose build && docker-compose up -d",
+    "docker": "docker-compose up --build -V",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
     "start:debug": "nest start --debug --watch",
@@ -100,7 +100,8 @@
       "^@app/microservices(|/.*)$": "<rootDir>/libs/microservices/src/$1",
       "^@app/exceptions(|/.*)$": "<rootDir>/libs/exceptions/src/$1",
       "^@app/models(|/.*)$": "<rootDir>/libs/models/src/$1",
-      "^@app/dto(|/.*)$": "<rootDir>/libs/dto/src/$1"
+      "^@app/dto(|/.*)$": "<rootDir>/libs/dto/src/$1",
+      "^y/mail(|/.*)$": "<rootDir>/libs/mail/src/$1"
     }
   }
 }

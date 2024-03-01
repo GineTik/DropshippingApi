@@ -1,3 +1,3 @@
 export const MicroservicesEndpoints = {
-    updateGoods: 'update-goods'
+	updateOffers: 'update-offers'
 }

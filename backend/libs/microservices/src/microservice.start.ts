@@ -1,7 +1,8 @@
 import { ConfigService } from '@nestjs/config'
 
-export const defaultStartMicroservice = (app) => {
+export const defaultStartMicroservice = async (app) => {
 	const configService = app.get(ConfigService)
-	app.startAllMicroservices()
-	app.listen(configService.get('PORT'), '0.0.0.0')
+	await app.startAllMicroservices()
+	console.log('microservices started')
+	await app.listen(configService.get('PORT'), '0.0.0.0')
 }
