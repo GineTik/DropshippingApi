@@ -1,6 +1,10 @@
 import { UserMessages } from '@app/exceptions'
 import { UserModel } from '@app/models'
-import { Injectable, UnauthorizedException } from '@nestjs/common'
+import {
+	HttpException,
+	Injectable,
+	UnauthorizedException
+} from '@nestjs/common'
 import { ModelType } from '@typegoose/typegoose/lib/types'
 import { Types } from 'mongoose'
 import { InjectModel } from 'nestjs-typegoose'
@@ -19,7 +23,9 @@ export class UserService {
 
 	async getMaxCountOfApiKeysAndHosts(_id: Types.ObjectId) {
 		const user = await this.getUser(_id)
-		return user.limitOfApiKeysAndHosts
+		if (user.type != 'dropshipper')
+			throw new HttpException(UserMessages.UserNotDropshipper, 400)
+		return user.dropshipperSettings?.limitOfApiKeysAndHosts
 	}
 
 	private async getUser(_id: Types.ObjectId) {

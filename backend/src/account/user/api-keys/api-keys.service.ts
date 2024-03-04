@@ -6,6 +6,7 @@ import {
 import { ApiKeyModel, UserModel } from '@app/models'
 import {
 	BadRequestException,
+	HttpException,
 	Injectable,
 	UnauthorizedException
 } from '@nestjs/common'
@@ -22,17 +23,22 @@ export class ApiKeysService {
 
 	async getAll(_id: Types.ObjectId): Promise<ApiKeyModel[]> {
 		const user = await this.getUser(_id)
-		return user.apiKeys
+		return user.dropshipperSettings.apiKeys
 	}
 
 	async create(_id: Types.ObjectId, dto: ApiKeyDto): Promise<ApiKeyModel> {
 		const user = await this.getUser(_id)
-
-		if (user.apiKeys.length >= user.limitOfApiKeysAndHosts)
+		if (
+			user.dropshipperSettings.apiKeys.length >=
+			user.dropshipperSettings.limitOfApiKeysAndHosts
+		)
 			throw new BadRequestException(HostAndKeysMessages.Limit)
 
 		const apiKey = ApiKeyDto.castToModel(dto)
-		await this.userModel.updateOne({ _id }, { $push: { apiKeys: apiKey } })
+		await this.userModel.updateOne(
+			{ _id },
+			{ $push: { 'dropshipperSettings.apiKeys': apiKey } }
+		)
 
 		return apiKey
 	}
@@ -40,8 +46,8 @@ export class ApiKeysService {
 	async update(_id: Types.ObjectId, dto: UpdateApiKeyDto) {
 		const newModel = UpdateApiKeyDto.castToModel(dto)
 		const { modifiedCount } = await this.userModel.updateOne(
-			{ _id, 'apiKeys.key': dto.key },
-			{ $set: { 'apiKeys.$': newModel } }
+			{ _id, 'dropshipperSettings.apiKeys.key': dto.key },
+			{ $set: { 'dropshipperSettings.apiKeys.$': newModel } }
 		)
 
 		if (modifiedCount === 0)
@@ -51,8 +57,8 @@ export class ApiKeysService {
 	async refresh(_id: Types.ObjectId, apiKey: string) {
 		const newApiKey = crypto.randomUUID()
 		const { modifiedCount } = await this.userModel.updateOne(
-			{ _id, 'apiKeys.key': apiKey },
-			{ $set: { 'apiKeys.$.key': newApiKey } }
+			{ _id, 'dropshipperSettings.apiKeys.key': apiKey },
+			{ $set: { 'dropshipperSettings.apiKeys.$.key': newApiKey } }
 		)
 
 		if (modifiedCount === 0)
@@ -74,6 +80,8 @@ export class ApiKeysService {
 	private async getUser(_id: Types.ObjectId) {
 		const user = await this.userModel.findOne({ _id })
 		if (!user) throw new UnauthorizedException(UserMessages.InvalidId)
+		if (user.type != 'dropshipper')
+			throw new HttpException(UserMessages.UserNotDropshipper, 400)
 		return user
 	}
 }

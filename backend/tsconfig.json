@@ -53,6 +53,12 @@
       ],
       "@app/exceptions/*": [
         "libs/exceptions/src/*"
+      ],
+      "@app/types": [
+        "libs/types/src"
+      ],
+      "@app/types/*": [
+        "libs/types/src/*"
       ]
     }
   }

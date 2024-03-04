@@ -12,10 +12,11 @@ import classNames from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import RouteConstants from '../../../../constants/RouteConstants'
-import ErrorMessage from '../../../components/error-message/ErrorMessage'
-import { AuthDto } from '../../../dtos/user/auth.dto'
-import HrWithText from './OrHr'
+import RouteConstants from '../../../../../constants/RouteConstants'
+import ErrorMessage from '../../../../components/error-message/ErrorMessage'
+import { AuthDto } from '../../../../dtos/user/auth.dto'
+import HrWithText from '../OrHr'
+import styles from './AuthForm.module.scss'
 
 interface AuthFormProps {
 	type: 'login' | 'registration'
@@ -33,7 +34,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
 	>({
 		email: '',
 		password: '',
-		confirmPassword: ''
+		confirmPassword: '',
+		type: 'dropshipper'
 	})
 	const [error, setError] = useState<AxiosError<any> | string>()
 
@@ -77,15 +79,28 @@ const AuthForm = ({ type }: AuthFormProps) => {
 				value={data.password}
 				onChange={(e) => setData({ ...data, password: e.target.value })}
 			/>
+			
 			{!isLogin && (
-				<Input
-					placeholder="Підтвердіть пароль"
-					type="text"
-					value={data.confirmPassword}
-					onChange={(e) =>
-						setData({ ...data, confirmPassword: e.target.value })
-					}
-				/>
+				<>
+					<Input
+						placeholder="Підтвердіть пароль"
+						type="text"
+						value={data.confirmPassword}
+						onChange={(e) =>
+							setData({ ...data, confirmPassword: e.target.value })
+						}
+					/>
+					<div className={styles.user_types}>
+						<div className={styles.user_type_item}>
+							<input id='user-type-dropshipper' name='user-type' type="radio" onClick={(e) => setData({ ...data, type: 'dropshipper'})} />
+							<label htmlFor="user-type-dropshipper">дропшипер</label>
+						</div>
+						<div className={styles.user_type_item}>
+							<input id='user-type-supplier' name='user-type' type="radio" onClick={(e) => setData({ ...data, type: 'supplier'})} />
+							<label htmlFor="user-type-supplier">поставщик</label>
+						</div>
+					</div>
+				</>
 			)}
 			<BlueButton
 				className={classNames('flex relative', {

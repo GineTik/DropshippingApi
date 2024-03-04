@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import RouteConstants from '../../../../constants/RouteConstants'
 import ActivationCode from '../components/ActivationCodeForm'
-import AuthForm from '../components/AuthForm'
+import AuthForm from '../components/auth-form/AuthForm'
 
 const AuthPage = () => {
 	const { type } = useParams<{ type: 'login' | 'registration' }>()

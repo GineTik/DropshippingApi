@@ -7,6 +7,7 @@ import { ModelType } from '@typegoose/typegoose/lib/types'
 import { compare, genSalt, hash } from 'bcryptjs'
 import { Types } from 'mongoose'
 import { InjectModel } from 'nestjs-typegoose'
+import { UserProfileDto } from '../user/dto/user-profile.dto'
 import { AuthDto } from './dto/auth.dto'
 import { ConfirmChangePasswordDto } from './dto/confirm-change-password.dto'
 import { SuccessAuthDto } from './dto/success-auth.dto'
@@ -33,11 +34,7 @@ export class AuthService {
 		const tokens = await this.tokenService.generateTokens(user._id)
 		return {
 			...tokens,
-			user: {
-				id: user._id,
-				email: user.email,
-				isActivated: user.emailConfirmed
-			}
+			user: new UserProfileDto(user)
 		}
 	}
 
@@ -50,18 +47,17 @@ export class AuthService {
 		const user = await this.userModel.create({
 			email: dto.email,
 			password: await this.hashPassword(dto.password),
-			activationCode: activationCode
+			activationCode: activationCode,
+			type: dto.type,
+			dropshipperSettings: dto.type === 'dropshipper' ? {} : undefined,
+			supplierSettings: dto.type === 'supplier' ? {} : undefined
 		})
 		await this.mailService.sendActivationMail(user.email, activationCode)
 
 		const tokens = await this.tokenService.generateTokens(user._id)
 		return {
 			...tokens,
-			user: {
-				id: user._id,
-				email: user.email,
-				isActivated: user.emailConfirmed
-			}
+			user: new UserProfileDto(user)
 		}
 	}
 
@@ -85,11 +81,7 @@ export class AuthService {
 
 		return {
 			...newTokens,
-			user: {
-				id: user._id,
-				email: user.email,
-				isActivated: user.emailConfirmed
-			}
+			user: new UserProfileDto(user)
 		}
 	}
 

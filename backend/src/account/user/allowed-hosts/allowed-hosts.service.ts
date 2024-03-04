@@ -23,27 +23,32 @@ export class AllowedHostsService {
 
 	async getAll(_id: Types.ObjectId): Promise<AddAllowedHostDto[]> {
 		const user = await this.getUser(_id)
-		return user.allowedHosts
+		return user.dropshipperSettings.allowedHosts
 	}
 
 	async add(_id: Types.ObjectId, dto: AddAllowedHostDto) {
 		const user = await this.getUser(_id)
 
-		if (user.allowedHosts.some((v) => v.host === dto.host))
+		if (user.dropshipperSettings.allowedHosts.some((v) => v.host === dto.host))
 			throw new BadRequestException(HostMessages.AlreadyAllowed)
 
-		if (user.allowedHosts.length >= user.limitOfApiKeysAndHosts)
+		if (
+			user.dropshipperSettings.allowedHosts.length >=
+			user.dropshipperSettings.limitOfApiKeysAndHosts
+		)
 			throw new BadRequestException(HostAndKeysMessages.Limit)
 
 		const allowedHost = AddAllowedHostDto.castToModel(dto)
-		await user.updateOne({ $push: { allowedHosts: allowedHost } })
+		await user.updateOne({
+			$push: { 'dropshipperSettings.allowedHosts': allowedHost }
+		})
 	}
 
 	async update(_id: Types.ObjectId, updateDto: UpdateAllowedHostDto) {
 		const newAllowedHost = UpdateAllowedHostDto.castToModel(updateDto)
 		const { modifiedCount } = await this.userModel.updateOne(
-			{ _id, 'allowedHosts.host': updateDto.oldHost },
-			{ $set: { 'allowedHosts.$': newAllowedHost } }
+			{ _id, 'dropshipperSettings.allowedHosts.host': updateDto.oldHost },
+			{ $set: { 'dropshipperSettings.allowedHosts.$': newAllowedHost } }
 		)
 
 		if (modifiedCount === 0)
@@ -63,6 +68,8 @@ export class AllowedHostsService {
 	private async getUser(_id: Types.ObjectId) {
 		const user = await this.userModel.findOne({ _id })
 		if (!user) throw new UnauthorizedException(UserMessages.InvalidId)
+		if (user.type != 'dropshipper')
+			throw new HttpException(UserMessages.UserNotDropshipper, 400)
 		return user
 	}
 }

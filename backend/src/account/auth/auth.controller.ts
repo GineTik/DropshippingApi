@@ -44,9 +44,13 @@ export class AuthController {
 		@Body() dto: AuthDto,
 		@Res({ passthrough: true }) response: Response
 	) {
-		const result = await this.authService.registration(dto)
-		this.saveRefreshTokenToCookie(response, result.refreshToken)
-		return result
+		try {
+			const result = await this.authService.registration(dto)
+			this.saveRefreshTokenToCookie(response, result.refreshToken)
+			return result
+		} catch (e) {
+			console.log(e)
+		}
 	}
 
 	@Post('logout')

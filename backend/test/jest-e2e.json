@@ -22,6 +22,8 @@
     "@app/mail/(.*)": "<rootDir>/../libs/mail/src/$1",
     "@app/mail": "<rootDir>/../libs/mail/src",
     "@app/exceptions/(.*)": "<rootDir>/../libs/exceptions/src/$1",
-    "@app/exceptions": "<rootDir>/../libs/exceptions/src"
+    "@app/exceptions": "<rootDir>/../libs/exceptions/src",
+    "@app/types/(.*)": "<rootDir>/../libs/types/src/$1",
+    "@app/types": "<rootDir>/../libs/types/src"
   }
 }

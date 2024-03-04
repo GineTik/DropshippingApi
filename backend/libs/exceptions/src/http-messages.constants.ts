@@ -4,7 +4,8 @@ export const UserMessages = {
 	InvalidPassword: 'Некоректний пароль',
 	RefreshTokenIsUndefined: 'Refresh token is undefined',
 	AlreadyExists: 'User already exists',
-	InvalidEmailOrPassword: 'Пошта або пароль невірний'
+	InvalidEmailOrPassword: 'Пошта або пароль невірний',
+	UserNotDropshipper: 'Користувач не дропшипер'
 }
 
 export const HostAndKeysMessages = {
