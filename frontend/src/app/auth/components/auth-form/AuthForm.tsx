@@ -27,15 +27,19 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
 	const isLogin = type === 'login'
 
+	const [userType, setUserType] = useState<'dropshipper' | 'supplier'>('dropshipper')
 	const [data, setData] = useState<
 		AuthDto & {
 			confirmPassword: string
+			publicName: string
+			apiName: string
 		}
 	>({
 		email: '',
 		password: '',
 		confirmPassword: '',
-		type: 'dropshipper'
+		publicName: '',
+		apiName: ''
 	})
 	const [error, setError] = useState<AxiosError<any> | string>()
 
@@ -44,8 +48,15 @@ const AuthForm = ({ type }: AuthFormProps) => {
 		AxiosError<{ message: string[] }>
 	>({
 		mutationKey: ['auth'],
-		mutationFn: () =>
-			isLogin ? AuthService.login(data) : AuthService.registration(data),
+		mutationFn: () => {
+			if (isLogin) {
+				return AuthService.login(data)
+			} else { 
+				return userType === 'dropshipper' 
+					? AuthService.registrationDropshipper(data) 
+					: AuthService.registrationSupplier(data)
+			}
+		},
 		onError: (err) => {
 			setError(err)
 		},
@@ -91,15 +102,35 @@ const AuthForm = ({ type }: AuthFormProps) => {
 						}
 					/>
 					<div className={styles.user_types}>
-						<div className={styles.user_type_item}>
-							<input id='user-type-dropshipper' name='user-type' type="radio" onClick={(e) => setData({ ...data, type: 'dropshipper'})} />
+						<div className={styles.user_type_item} onClick={(e) => setUserType('dropshipper')}>
+							<input id='user-type-dropshipper' name='user-type' type="radio" checked={userType === 'dropshipper'} />
 							<label htmlFor="user-type-dropshipper">дропшипер</label>
 						</div>
-						<div className={styles.user_type_item}>
-							<input id='user-type-supplier' name='user-type' type="radio" onClick={(e) => setData({ ...data, type: 'supplier'})} />
+						<div className={styles.user_type_item} onClick={(e) => setUserType('supplier')}>
+							<input id='user-type-supplier' name='user-type' type="radio" checked={userType === 'supplier'} />
 							<label htmlFor="user-type-supplier">поставщик</label>
 						</div>
 					</div>
+					{userType === 'supplier' && (
+						<>
+							<Input
+								placeholder="Публічне ім'я"
+								type="text"
+								value={data.publicName}
+								onChange={(e) =>
+									setData({ ...data, publicName: e.target.value })
+								}
+							/>
+							<Input
+								placeholder="Ім'я для апі"
+								type="text"
+								value={data.apiName}
+								onChange={(e) =>
+									setData({ ...data, apiName: e.target.value })
+								}
+							/>
+						</>
+					)}
 				</>
 			)}
 			<BlueButton

@@ -10,6 +10,8 @@ import { InjectModel } from 'nestjs-typegoose'
 import { UserProfileDto } from '../user/dto/user-profile.dto'
 import { AuthDto } from './dto/auth.dto'
 import { ConfirmChangePasswordDto } from './dto/confirm-change-password.dto'
+import { RegistrationDropshipperDto } from './dto/registration-dropshipper.dto'
+import { RegistrationSupplierDto } from './dto/registration-supplier.dto'
 import { SuccessAuthDto } from './dto/success-auth.dto'
 
 @Injectable()
@@ -38,27 +40,16 @@ export class AuthService {
 		}
 	}
 
-	async registration(dto: AuthDto): Promise<SuccessAuthDto> {
-		const candidate = await this.userModel.findOne({ email: dto.email })
-		if (candidate) throw new HttpException(UserMessages.AlreadyExists, 400)
+	async registrationDropshipper(dto: RegistrationDropshipperDto) {
+		return await this.registrationUser(dto.email, (code) =>
+			RegistrationDropshipperDto.toModel(dto, code)
+		)
+	}
 
-		const activationCode = this.generate6NumberCode()
-
-		const user = await this.userModel.create({
-			email: dto.email,
-			password: await this.hashPassword(dto.password),
-			activationCode: activationCode,
-			type: dto.type,
-			dropshipperSettings: dto.type === 'dropshipper' ? {} : undefined,
-			supplierSettings: dto.type === 'supplier' ? {} : undefined
-		})
-		await this.mailService.sendActivationMail(user.email, activationCode)
-
-		const tokens = await this.tokenService.generateTokens(user._id)
-		return {
-			...tokens,
-			user: new UserProfileDto(user)
-		}
+	async registrationSupplier(dto: RegistrationSupplierDto) {
+		return await this.registrationUser(dto.email, (code) =>
+			RegistrationSupplierDto.toModel(dto, code)
+		)
 	}
 
 	async activate(_id: Types.ObjectId, activationCode: number) {
@@ -112,5 +103,27 @@ export class AuthService {
 
 	private async hashPassword(password: string): Promise<string> {
 		return await hash(password, await genSalt(10))
+	}
+
+	private async registrationUser(
+		email: string,
+		newUser: (activationCode: number) => Promise<UserModel>
+	): Promise<SuccessAuthDto> {
+		const candidate = await this.userModel.findOne({ email })
+		if (candidate) throw new HttpException(UserMessages.AlreadyExists, 400)
+
+		const activationCode = this.generate6NumberCode()
+
+		console.log(email)
+		console.log(newUser)
+		console.log(newUser(activationCode))
+		const user = await this.userModel.create(await newUser(activationCode))
+		await this.mailService.sendActivationMail(user.email, activationCode)
+
+		const tokens = await this.tokenService.generateTokens(user._id)
+		return {
+			...tokens,
+			user: new UserProfileDto(user)
+		}
 	}
 }

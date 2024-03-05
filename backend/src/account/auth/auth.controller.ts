@@ -17,6 +17,8 @@ import { Request, Response } from 'express'
 import { AuthService } from './auth.service'
 import { AuthDto } from './dto/auth.dto'
 import { ConfirmChangePasswordDto } from './dto/confirm-change-password.dto'
+import { RegistrationDropshipperDto } from './dto/registration-dropshipper.dto'
+import { RegistrationSupplierDto } from './dto/registration-supplier.dto'
 
 @Controller('auth')
 export class AuthController {
@@ -25,7 +27,6 @@ export class AuthController {
 		private readonly configService: ConfigService
 	) {}
 
-	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Post('login')
 	async login(
@@ -37,15 +38,29 @@ export class AuthController {
 		return result
 	}
 
-	@UsePipes(new ValidationPipe())
-	@Post('registration')
+	@Post('registration-supplier')
 	@HttpCode(200)
-	async registration(
-		@Body() dto: AuthDto,
+	async registrationSupplier(
+		@Body() dto: RegistrationSupplierDto,
 		@Res({ passthrough: true }) response: Response
 	) {
 		try {
-			const result = await this.authService.registration(dto)
+			const result = await this.authService.registrationSupplier(dto)
+			this.saveRefreshTokenToCookie(response, result.refreshToken)
+			return result
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
+	@Post('registration-dropshipper')
+	@HttpCode(200)
+	async registrationDropshipper(
+		@Body() dto: RegistrationDropshipperDto,
+		@Res({ passthrough: true }) response: Response
+	) {
+		try {
+			const result = await this.authService.registrationDropshipper(dto)
 			this.saveRefreshTokenToCookie(response, result.refreshToken)
 			return result
 		} catch (e) {

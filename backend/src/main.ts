@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common'
+import { Logger, ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import * as cookieParser from 'cookie-parser'
@@ -15,6 +15,7 @@ async function bootstrap() {
 		credentials: true,
 		origin: configService.getOrThrow('FRONTEND_URL')
 	})
+	app.useGlobalPipes(new ValidationPipe())
 
 	await app.listen(configService.getOrThrow('PORT'))
 }
