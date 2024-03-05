@@ -1,8 +1,6 @@
-import {
-	DropshipperSettingsModel,
-	SupplierSettingsModel,
-	UserModel
-} from '@app/models'
+import { UserModel } from '@app/models'
+import { DropshipperSettingsModel } from '@app/models/user/model-inners/dropshipper-settings'
+import { SupplierSettingsModel } from '@app/models/user/model-inners/supplier-settings'
 import { AvailableUserType } from '@app/types'
 import { Types } from 'mongoose'
 
