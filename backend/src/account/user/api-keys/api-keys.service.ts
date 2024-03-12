@@ -81,7 +81,7 @@ export class ApiKeysService {
 		const user = await this.userModel.findOne({ _id })
 		if (!user) throw new UnauthorizedException(UserMessages.InvalidId)
 		if (user.type != 'dropshipper')
-			throw new HttpException(UserMessages.UserNotDropshipper, 400)
+			throw new HttpException(UserMessages.IsNotDropshipper, 400)
 		return user
 	}
 }

@@ -1,3 +1,4 @@
+import { USER } from '@app/constants'
 import { UserMessages } from '@app/exceptions'
 import { UserModel } from '@app/models'
 import {
@@ -13,7 +14,7 @@ import { UserProfileDto } from './dto/user-profile.dto'
 @Injectable()
 export class UserService {
 	constructor(
-		@InjectModel(UserModel) private readonly userModel: ModelType<UserModel>
+		@InjectModel(USER.MODEL) private readonly userModel: ModelType<UserModel>
 	) {}
 
 	async getProfile(_id: Types.ObjectId): Promise<UserProfileDto> {
@@ -24,7 +25,7 @@ export class UserService {
 	async getMaxCountOfApiKeysAndHosts(_id: Types.ObjectId) {
 		const user = await this.getUser(_id)
 		if (user.type != 'dropshipper')
-			throw new HttpException(UserMessages.UserNotDropshipper, 400)
+			throw new HttpException(UserMessages.IsNotDropshipper, 400)
 		return user.dropshipperSettings?.limitOfApiKeysAndHosts
 	}
 

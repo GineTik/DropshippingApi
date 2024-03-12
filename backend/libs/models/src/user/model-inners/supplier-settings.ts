@@ -1,4 +1,5 @@
 import { prop } from '@typegoose/typegoose'
+import { WebsiteLink } from './supplier-link'
 
 export class SupplierSettingsModel {
 	@prop({ default: false })
@@ -15,7 +16,7 @@ export class SupplierSettingsModel {
 
 	@prop()
 	ymlLinkSettings?: {
-		link: string
+		url: string
 		refreshTime: '5m' | '10m' | '30m' | '1h' | '3h' | '12h' | '1d'
 	}
 
@@ -23,8 +24,5 @@ export class SupplierSettingsModel {
 	description: string
 
 	@prop()
-	links: Array<{
-		url: string
-		name: string
-	}>
+	links: Array<WebsiteLink>
 }

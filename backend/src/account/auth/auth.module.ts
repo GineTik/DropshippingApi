@@ -1,7 +1,7 @@
 import { TokenModule } from '@app/auth'
 import { getMailConfig } from '@app/config'
+import { USER } from '@app/constants'
 import { MailService } from '@app/mail'
-import { UserModel } from '@app/models'
 import { MailerModule } from '@nestjs-modules/mailer'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config/dist/config.module'
@@ -19,9 +19,9 @@ import { AuthService } from './auth.service'
 		}),
 		TypegooseModule.forFeature([
 			{
-				typegooseClass: UserModel,
+				typegooseClass: USER.MODEL,
 				schemaOptions: {
-					collection: 'user'
+					collection: USER.NAME
 				}
 			}
 		]),

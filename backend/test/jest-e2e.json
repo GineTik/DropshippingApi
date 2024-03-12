@@ -24,6 +24,8 @@
     "@app/exceptions/(.*)": "<rootDir>/../libs/exceptions/src/$1",
     "@app/exceptions": "<rootDir>/../libs/exceptions/src",
     "@app/types/(.*)": "<rootDir>/../libs/types/src/$1",
-    "@app/types": "<rootDir>/../libs/types/src"
+    "@app/types": "<rootDir>/../libs/types/src",
+    "@app/user/(.*)": "<rootDir>/../libs/user/src/$1",
+    "@app/user": "<rootDir>/../libs/user/src"
   }
 }

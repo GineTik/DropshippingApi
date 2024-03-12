@@ -2,7 +2,7 @@ import {
 	AGER,
 	DROP_OFFICE,
 	MS_DROP
-} from '@app/constants/yml-catalogs.constants'
+} from '@app/constants/models-metadata.constants'
 import { AgerModel, DropOfficeModel, MsDropModel } from '@app/models'
 import { BaseOfferModel } from '@app/models/offers/base-offer.model'
 import { Injectable } from '@nestjs/common'

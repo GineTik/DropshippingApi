@@ -1,12 +1,21 @@
-import { authSlice } from "@/store/auth/auth.slice"
-import { bindActionCreators } from "@reduxjs/toolkit"
-import { useMemo } from "react"
-import { useDispatch } from "react-redux"
+import { authSlice } from '@/store/auth/auth.slice'
+import { supplierSlice } from '@/store/supplier/supplier.slice'
+import { bindActionCreators } from '@reduxjs/toolkit'
+import { useMemo } from 'react'
+import { useDispatch } from 'react-redux'
 
 export const useActions = () => {
-    const dispatch = useDispatch()
+	const dispatch = useDispatch()
 
-    return useMemo(() => bindActionCreators({
-        ...authSlice.actions
-    }, dispatch), [dispatch])
+	return useMemo(
+		() =>
+			bindActionCreators(
+				{
+					...authSlice.actions,
+					...supplierSlice.actions
+				},
+				dispatch
+			),
+		[dispatch]
+	)
 }

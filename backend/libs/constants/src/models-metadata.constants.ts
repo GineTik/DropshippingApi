@@ -1,4 +1,9 @@
-import { AgerModel, DropOfficeModel, MsDropModel } from '@app/models'
+import { AgerModel, DropOfficeModel, MsDropModel, UserModel } from '@app/models'
+
+export const USER = {
+	NAME: 'user',
+	MODEL: UserModel
+}
 
 export const AGER = {
 	NAME: 'ager',

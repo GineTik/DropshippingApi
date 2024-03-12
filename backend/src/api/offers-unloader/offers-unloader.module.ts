@@ -1,4 +1,4 @@
-import * as SUPPLIERS from '@app/constants/yml-catalogs.constants'
+import * as SUPPLIERS from '@app/constants/models-metadata.constants'
 import { Module } from '@nestjs/common'
 import { ScheduleModule } from '@nestjs/schedule'
 import { TypegooseModule } from 'nestjs-typegoose'

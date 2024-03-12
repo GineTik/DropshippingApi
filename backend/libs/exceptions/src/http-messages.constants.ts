@@ -5,7 +5,13 @@ export const UserMessages = {
 	RefreshTokenIsUndefined: 'Refresh token is undefined',
 	AlreadyExists: 'User already exists',
 	InvalidEmailOrPassword: 'Пошта або пароль невірний',
-	UserNotDropshipper: 'Користувач не дропшипер'
+	IsNotDropshipper: 'Користувач не дропшипер',
+	IsNotSupplier: 'Користувач не поставщиком'
+}
+
+export const SupplierMessages = {
+	PublicNameAlreadyExists: `Публічне ім'я вже зайнято`,
+	ApiNameAlreadyExists: `Ім'я апі вже зайнято`
 }
 
 export const HostAndKeysMessages = {

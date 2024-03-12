@@ -1,4 +1,5 @@
 import { TokenService } from '@app/auth'
+import { USER } from '@app/constants'
 import { UserMessages } from '@app/exceptions'
 import { MailService } from '@app/mail'
 import { UserModel } from '@app/models'
@@ -17,7 +18,7 @@ import { SuccessAuthDto } from './dto/success-auth.dto'
 @Injectable()
 export class AuthService {
 	constructor(
-		@InjectModel(UserModel) private readonly userModel: ModelType<UserModel>,
+		@InjectModel(USER.MODEL) private readonly userModel: ModelType<UserModel>,
 		private readonly tokenService: TokenService,
 		private readonly mailService: MailService
 	) {}

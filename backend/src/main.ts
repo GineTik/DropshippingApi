@@ -1,3 +1,4 @@
+import { AllExceptionFilter } from '@app/exceptions/filters/exception-filter'
 import { Logger, ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
@@ -16,6 +17,7 @@ async function bootstrap() {
 		origin: configService.getOrThrow('FRONTEND_URL')
 	})
 	app.useGlobalPipes(new ValidationPipe())
+	app.useGlobalFilters(new AllExceptionFilter())
 
 	await app.listen(configService.getOrThrow('PORT'))
 }

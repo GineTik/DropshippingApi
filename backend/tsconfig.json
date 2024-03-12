@@ -59,6 +59,12 @@
       ],
       "@app/types/*": [
         "libs/types/src/*"
+      ],
+      "@app/user": [
+        "libs/user/src"
+      ],
+      "@app/user/*": [
+        "libs/user/src/*"
       ]
     }
   }
