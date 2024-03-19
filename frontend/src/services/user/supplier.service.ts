@@ -33,5 +33,13 @@ export const SupplierService = {
 
 	async removeLink(link: string) {
 		return await $api.post('supplier/remove-link', { content: link })
+	},
+
+	async getAvailableRefreshTimes() {
+		return await $api.get('supplier/available-refresh-times')
+	},
+
+	async getAvailableYmlLoadTypes() {
+		return await $api.get('supplier/available-yml-load-types')
 	}
 }

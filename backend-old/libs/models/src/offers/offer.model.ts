@@ -1,24 +1,13 @@
-import { CategoryModel } from './category.model'
-import { ParameterModel } from './parameter.model'
+import { prop } from '@typegoose/typegoose'
+import { Base } from '@typegoose/typegoose/lib/defaultClasses'
+import { Types } from 'mongoose'
 
-export type OfferModel = Record<string, any> & {
-	id: number
-	url: string
+export interface OfferModel extends Base {}
 
-	name: string
-	description: string
-	available: boolean
-	category: CategoryModel
-	pictures: string[]
-	parameters: ParameterModel[]
+export class OfferModel {
+	@prop({ type: Types.ObjectId, required: true, ref: 'user' })
+	user: Types.ObjectId
 
-	price: number
-	oldPrice: string | undefined
-
-	currency: string
-	pickup: boolean
-	delivery: boolean
-
-	vendorCode: string
-	vendor: string
+	@prop()
+	data: Record<string, any>
 }

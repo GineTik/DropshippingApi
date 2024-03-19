@@ -12,7 +12,7 @@ const RequireAuthMiddleware = ({ children }: RequireAuthMiddlewareProps) => {
 	const { user } = useSelector((state: StateType) => state.auth)
 	const router = useRouter()
 
-	if (!user || (user && !user.isActivated)) {
+	if (!user || (user && !user.emailIsConfirmed)) {
 		router.push(RouteConstants.Login)
 		return
 	}

@@ -12,7 +12,7 @@ const AuthPage = () => {
 	const { user } = useSelector((state: StateType) => state.auth)
 	const router = useRouter()
 
-	if (user && user.isActivated) {
+	if (user && user.emailIsConfirmed) {
 		router.push(RouteConstants.Account)
 		return
 	}
@@ -24,7 +24,7 @@ const AuthPage = () => {
 
 	return (
 		<Section className="flex justify-center items-center h-full">
-			{user && !user?.isActivated ? (
+			{user && !user?.emailIsConfirmed ? (
 				<ActivationCode />
 			) : (
 				<AuthForm type={type} />

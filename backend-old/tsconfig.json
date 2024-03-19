@@ -18,23 +18,17 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@app/microservices-endpoints": [
-        "libs/microservices-endpoints/src"
+      "@app/constants": [
+        "libs/constants/src"
       ],
-      "@app/microservices-endpoints/*": [
-        "libs/microservices-endpoints/src/*"
+      "@app/constants/*": [
+        "libs/constants/src/*"
       ],
-      "@app/microservices": [
-        "libs/microservices/src"
+      "@app/config": [
+        "libs/config/src"
       ],
-      "@app/microservices/*": [
-        "libs/microservices/src/*"
-      ],
-      "@app/exceptions": [
-        "libs/exceptions/src"
-      ],
-      "@app/exceptions/*": [
-        "libs/exceptions/src/*"
+      "@app/config/*": [
+        "libs/config/src/*"
       ],
       "@app/models": [
         "libs/models/src"
@@ -42,17 +36,35 @@
       "@app/models/*": [
         "libs/models/src/*"
       ],
-      "@app/dto": [
-        "libs/dto/src"
+      "@app/auth": [
+        "libs/auth/src"
       ],
-      "@app/dto/*": [
-        "libs/dto/src/*"
+      "@app/auth/*": [
+        "libs/auth/src/*"
       ],
-      "y/mail": [
+      "@app/mail": [
         "libs/mail/src"
       ],
-      "y/mail/*": [
+      "@app/mail/*": [
         "libs/mail/src/*"
+      ],
+      "@app/exceptions": [
+        "libs/exceptions/src"
+      ],
+      "@app/exceptions/*": [
+        "libs/exceptions/src/*"
+      ],
+      "@app/types": [
+        "libs/types/src"
+      ],
+      "@app/types/*": [
+        "libs/types/src/*"
+      ],
+      "@app/user": [
+        "libs/user/src"
+      ],
+      "@app/user/*": [
+        "libs/user/src/*"
       ]
     }
   }

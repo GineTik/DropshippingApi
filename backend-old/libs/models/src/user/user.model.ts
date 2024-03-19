@@ -1,29 +1,30 @@
-import { prop } from "@typegoose/typegoose"
-import { Base, TimeStamps } from "@typegoose/typegoose/lib/defaultClasses"
-import { AllowedHostModel } from "./allowed-host.model"
-import { ApiKeyModel } from "./api-key.model"
+import { AvailableUserType } from '@app/types'
+import { prop } from '@typegoose/typegoose'
+import { Base, TimeStamps } from '@typegoose/typegoose/lib/defaultClasses'
+import { DropshipperSettingsModel } from './model-inners/dropshipper-settings'
+import { SupplierSettingsModel } from './model-inners/supplier-settings'
 
 export interface UserModel extends Base {}
 
 export class UserModel extends TimeStamps {
-    @prop({unique: true, required: true})
-    email: string
+	@prop({ unique: true, required: true })
+	email: string
 
-    @prop({required: true})
-    password: string
+	@prop({ required: true })
+	password: string
 
-    @prop({default: false})
-    emailConfirmed: boolean
+	@prop({ default: false })
+	emailConfirmed: boolean
 
-    @prop()
-    activationCode: number
+	@prop()
+	activationCode: number
 
-    @prop({default: []})
-    apiKeys: ApiKeyModel[]
+	@prop({ required: true })
+	type: AvailableUserType
 
-    @prop({default: []})
-    allowedHosts: AllowedHostModel[]
+	@prop()
+	dropshipperSettings?: DropshipperSettingsModel
 
-    @prop({default: 10})
-    limitOfApiKeysAndHosts: number
+	@prop()
+	supplierSettings?: SupplierSettingsModel
 }

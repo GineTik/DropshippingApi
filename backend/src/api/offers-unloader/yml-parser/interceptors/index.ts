@@ -1,5 +1,0 @@
-export * from './category.interceptor'
-export * from './interface.interceptor'
-export * from './keywords.interceptor'
-export * from './parameters.interceptor'
-export * from './type.interceptor'

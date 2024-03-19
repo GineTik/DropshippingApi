@@ -1,4 +1,4 @@
-export * from './allowed-host.model';
-export * from './api-key.model';
-export * from './user.model';
-
+export * from './allowed-host.model'
+export * from './api-key.model'
+export * from './model-inners/supplier-link'
+export * from './user.model'

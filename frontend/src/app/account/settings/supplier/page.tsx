@@ -3,6 +3,8 @@ import styles from '@/components/inputs/Input.module.scss'
 import { useActions } from '@/hooks/useActions'
 import { SupplierService } from '@/services/user/supplier.service'
 import { StateType } from '@/store/store'
+import { useQuery } from '@tanstack/react-query'
+import { AxiosResponse } from 'axios'
 import { useSelector } from 'react-redux'
 import Setting from "../../components/settings/Setting"
 
@@ -10,6 +12,16 @@ const SupplierSettings = () => {
 
   const { changePublicName, changeApiNameName, changeDescription, changeYmlType, changeYmlCatalogUrl, changeYmlCatalogRefreshTime } = useActions()
   const settings = useSelector((state: StateType) => state.supplier)
+
+  const { data: availableRefreshTimes } = useQuery<AxiosResponse<string[]>>({
+    queryKey: ['available-refresh-times'],
+    queryFn: () => SupplierService.getAvailableRefreshTimes()
+  })
+
+  const { data: availableYmlLoadTypes } = useQuery<AxiosResponse<string[]>>({
+    queryKey: ['available-yml-load-types'],
+    queryFn: () => SupplierService.getAvailableYmlLoadTypes()
+  })
 
   return (
     <div>
@@ -23,17 +35,18 @@ const SupplierSettings = () => {
         <input className={styles.input} value={settings.description} onChange={(e) => changeDescription(e.target.value)} />
       </Setting>
       <Setting title="Змінити тип загрузки yml файла" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlType(settings.ymlType)}>
-        <select onChange={(e) => changeYmlType(e.target.value as 'file' | 'link')}>
-          <option value={'file'}>Файл</option>
-          <option value={'link'}>Силка</option>
+        <select onChange={(e) => changeYmlType(e.target.value)}>
+          {availableYmlLoadTypes?.data.map(type => <>
+            <option selected={type === settings.ymlType} value={type}>{type}</option>
+          </>)}
         </select>
       </Setting>
       {settings.ymlType === 'link' && <>
         <Setting title="Змінити силку та частоту оновлення yml каталогу" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlCatalogLink(settings.ymlCatalogLink)}>
           <input className={styles.input} value={settings.ymlCatalogLink?.url} onChange={(e) => changeYmlCatalogUrl(e.target.value)} />
           <select onChange={(e) => changeYmlCatalogRefreshTime(e.target.value)}>
-            {['5m', '10m', '30m', '1h', '3h', '12h', '1d'].map(time => <>
-              <option value={time}>{time}</option>
+            {availableRefreshTimes?.data.map(time => <>
+              <option selected={time === settings.ymlCatalogLink?.refreshTime} value={time}>{time}</option>
             </>)}
           </select>
         </Setting>

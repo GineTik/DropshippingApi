@@ -14,7 +14,7 @@ export const supplierSlice = createSlice({
 		changeDescription: (state, { payload }: { payload: string }) => {
 			state.description = payload
 		},
-		changeYmlType: (state, { payload }: { payload: 'file' | 'link' }) => {
+		changeYmlType: (state, { payload }: { payload: string }) => {
 			state.ymlType = payload
 		},
 		changeYmlCatalogUrl: (state, { payload }: { payload: string }) => {
