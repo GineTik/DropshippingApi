@@ -6,6 +6,7 @@ using Backend.Core.Exceptions.ServiceExceptions;
 using Backend.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,6 +33,7 @@ builder.Services.AddAuthentication(options =>
         });
 builder.Services.AddControllers();
 
+builder.Services.AddTransient<ConfigurationManager>(_ => builder.Configuration);
 builder.Services.AddCore();
 builder.Services.AddInfrastructure();
 

@@ -8,8 +8,15 @@ public class SupplierSettingsConverter : ITypeConverter<SupplierSettings, Suppli
 {
     public SupplierSettingsDto Convert(SupplierSettings source, SupplierSettingsDto destination, ResolutionContext context)
     {
-        destination.YmlLoadType = source.YmlLoadType.ToString();
-        destination.RefreshTime = source.RefreshTime.Name;
-        return destination;
+        return new SupplierSettingsDto
+        {
+            YmlLink = source.YmlLink,
+            YmlLoadType = ((YmlLoadTypes)source.YmlLoadTypeId).ToString(),
+            RefreshTimeId = source.RefreshTimeId,
+            PublicName = source.PublicName,
+            ApiName = source.ApiName,
+            Description = source.Description,
+            Searchable = source.Searchable,
+        };
     }
 }

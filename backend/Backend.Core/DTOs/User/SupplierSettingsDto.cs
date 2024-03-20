@@ -2,10 +2,11 @@
 
 public class SupplierSettingsDto
 {
-    public required string PublicName { get; set; }
-    public required string ApiName { get; set; }
-    public required bool Searchable { get; set; }
-    public required string YmlLoadType { get; set; }
-    public required string YmlLink { get; set; }
-    public required string RefreshTime { get; set; }
+    public string PublicName { get; set; } = null!;
+    public string ApiName { get; set; } = null!;
+    public string? Description { get; set; } = null!;
+    public bool Searchable { get; set; }
+    public string YmlLoadType { get; set; } = null!;
+    public string? YmlLink { get; set; } = null!;
+    public int? RefreshTimeId { get; set; }
 }

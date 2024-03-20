@@ -11,9 +11,9 @@ import Setting from "../../components/settings/Setting"
 const SupplierSettings = () => {
 
   const { changePublicName, changeApiNameName, changeDescription, changeYmlType, changeYmlCatalogUrl, changeYmlCatalogRefreshTime } = useActions()
-  const settings = useSelector((state: StateType) => state.supplier)
+  const settings = useSelector((state: StateType) => state.auth.user.supplierSettings)
 
-  const { data: availableRefreshTimes } = useQuery<AxiosResponse<string[]>>({
+  const { data: availableRefreshTimes } = useQuery<AxiosResponse<{id: number, name: string}[]>>({
     queryKey: ['available-refresh-times'],
     queryFn: () => SupplierService.getAvailableRefreshTimes()
   })
@@ -34,19 +34,19 @@ const SupplierSettings = () => {
       <Setting title="Змінити опис" buttonText="Змінити" sendRequest={() => SupplierService.changeDescription(settings.description)}>
         <input className={styles.input} value={settings.description} onChange={(e) => changeDescription(e.target.value)} />
       </Setting>
-      <Setting title="Змінити тип загрузки yml файла" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlType(settings.ymlType)}>
+      <Setting title="Змінити тип загрузки yml файла" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlType(settings.ymlLoadType)}>
         <select onChange={(e) => changeYmlType(e.target.value)}>
           {availableYmlLoadTypes?.data.map(type => <>
-            <option selected={type === settings.ymlType} value={type}>{type}</option>
+            <option selected={type === settings.ymlLoadType} value={type}>{type}</option>
           </>)}
         </select>
       </Setting>
-      {settings.ymlType === 'link' && <>
-        <Setting title="Змінити силку та частоту оновлення yml каталогу" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlCatalogLink(settings.ymlCatalogLink)}>
-          <input className={styles.input} value={settings.ymlCatalogLink?.url} onChange={(e) => changeYmlCatalogUrl(e.target.value)} />
-          <select onChange={(e) => changeYmlCatalogRefreshTime(e.target.value)}>
+      {settings.ymlLoadType.toLowerCase() === 'link' && <>
+        <Setting title="Змінити силку та частоту оновлення yml каталогу" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlCatalogLink({ link: settings.ymlLink, refreshTimeId: settings.refreshTimeId })}>
+          <input className={styles.input} value={settings.ymlLink} onChange={(e) => changeYmlCatalogUrl(e.target.value)} />
+          <select onChange={(e) => changeYmlCatalogRefreshTime(Number(e.target.value))}>
             {availableRefreshTimes?.data.map(time => <>
-              <option selected={time === settings.ymlCatalogLink?.refreshTime} value={time}>{time}</option>
+              <option selected={time.id === settings.refreshTimeId} value={time.id}>{time.name}</option>
             </>)}
           </select>
         </Setting>

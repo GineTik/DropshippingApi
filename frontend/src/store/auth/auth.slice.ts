@@ -19,6 +19,24 @@ export const authSlice = createSlice({
 		logout: (state) => {
 			state.user = undefined as unknown as User
 			state.accessToken = undefined as unknown as string
+		},
+		changePublicName: (state, { payload }: { payload: string }) => {
+			state.user.supplierSettings.publicName = payload
+		},
+		changeApiNameName: (state, { payload }: { payload: string }) => {
+			state.user.supplierSettings.apiName = payload
+		},
+		changeDescription: (state, { payload }: { payload: string }) => {
+			state.user.supplierSettings.description = payload
+		},
+		changeYmlType: (state, { payload }: { payload: string }) => {
+			state.user.supplierSettings.ymlLoadType = payload
+		},
+		changeYmlCatalogUrl: (state, { payload }: { payload: string }) => {
+			state.user.supplierSettings.ymlLink = payload
+		},
+		changeYmlCatalogRefreshTime: (state, { payload }: { payload: number }) => {
+			state.user.supplierSettings.refreshTimeId = payload
 		}
 	}
 })

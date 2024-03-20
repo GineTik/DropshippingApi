@@ -18,9 +18,66 @@ namespace Backend.Core.EF.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.17")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Backend.Core.Entities.AllowHost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Host")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AllowHosts");
+                });
+
+            modelBuilder.Entity("Backend.Core.Entities.ApiKey", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ApiKeys");
+                });
 
             modelBuilder.Entity("Backend.Core.Entities.DropshipperSettings", b =>
                 {
@@ -30,9 +87,62 @@ namespace Backend.Core.EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("MaxLengthOfAllows")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(10);
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("DropshipperSettings");
+                });
+
+            modelBuilder.Entity("Backend.Core.Entities.RefreshTime", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Time")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AvailableYmlRefreshTimes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Time = 5,
+                            TimeType = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Time = 10,
+                            TimeType = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Time = 30,
+                            TimeType = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Time = 1,
+                            TimeType = 1
+                        });
                 });
 
             modelBuilder.Entity("Backend.Core.Entities.Role", b =>
@@ -86,22 +196,31 @@ namespace Backend.Core.EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PublicName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RefreshTimeId")
-                        .HasColumnType("int");
+                    b.Property<int?>("RefreshTimeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.Property<bool>("Searchable")
                         .HasColumnType("bit");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("YmlLink")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("YmlLoadType")
-                        .HasColumnType("int");
+                    b.Property<int>("YmlLoadTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
                     b.HasKey("Id");
 
@@ -160,33 +279,11 @@ namespace Backend.Core.EF.Migrations
                     b.ToTable("UserRoles");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.YmlLinkRefreshTime", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AvailableYmlRefreshTimes");
-                });
-
             modelBuilder.Entity("Backend.Core.Entities.SupplierSettings", b =>
                 {
-                    b.HasOne("Backend.Core.Entities.YmlLinkRefreshTime", "RefreshTime")
-                        .WithMany()
-                        .HasForeignKey("RefreshTimeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Backend.Core.Entities.RefreshTime", "RefreshTime")
+                        .WithMany("Settings")
+                        .HasForeignKey("RefreshTimeId");
 
                     b.Navigation("RefreshTime");
                 });
@@ -194,13 +291,13 @@ namespace Backend.Core.EF.Migrations
             modelBuilder.Entity("Backend.Core.Entities.UserRole", b =>
                 {
                     b.HasOne("Backend.Core.Entities.Role", "Role")
-                        .WithMany("Users")
+                        .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Backend.Core.Entities.User", "User")
-                        .WithMany("Roles")
+                        .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -210,14 +307,19 @@ namespace Backend.Core.EF.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Backend.Core.Entities.RefreshTime", b =>
+                {
+                    b.Navigation("Settings");
+                });
+
             modelBuilder.Entity("Backend.Core.Entities.Role", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("UserRoles");
                 });
 
             modelBuilder.Entity("Backend.Core.Entities.User", b =>
                 {
-                    b.Navigation("Roles");
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

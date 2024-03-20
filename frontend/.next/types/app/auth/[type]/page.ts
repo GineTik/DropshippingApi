@@ -1,4 +1,4 @@
-// File: D:\Програмування\Projects\TodolistByDay\frontend\src\app\auth\[type]\page.tsx
+// File: C:\Projects\TodolistByDay\frontend\src\app\auth\[type]\page.tsx
 import * as entry from '../../../../../src/app/auth/[type]/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

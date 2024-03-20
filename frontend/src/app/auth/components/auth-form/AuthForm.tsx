@@ -23,7 +23,7 @@ interface AuthFormProps {
 }
 
 const AuthForm = ({ type }: AuthFormProps) => {
-	const { login } = useActions()
+	const { login, changeApiNameName } = useActions()
 
 	const isLogin = type === 'login'
 

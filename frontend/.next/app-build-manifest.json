@@ -6,11 +6,6 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/(home)/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(home)/page.js"
-    ],
     "/auth/[type]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -44,11 +39,6 @@
       "static/chunks/main-app.js",
       "static/css/app/account/settings/supplier/page.css",
       "static/chunks/app/account/settings/supplier/page.js"
-    ],
-    "/account/settings/payment/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/account/settings/payment/page.js"
     ]
   }
 }

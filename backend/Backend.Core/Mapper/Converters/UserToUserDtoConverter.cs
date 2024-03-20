@@ -29,13 +29,15 @@ public class UserToUserDtoConverter : ITypeConverter<User, Task<UserDto>>
         
         if (source.UserRoles.Any(r => r.RoleId == (int)Roles.Dropshipper))
         {
-            result.DropshipperSettings = _mapper.Map<DropshipperSettingsDto>(await _dataContext.DropshipperSettings
-                .FirstOrDefaultAsync(s => s.Id == source.SettingsId));
+            var settings = await _dataContext.DropshipperSettings
+                .FirstOrDefaultAsync(s => s.Id == source.SettingsId);
+            result.DropshipperSettings = _mapper.Map<DropshipperSettingsDto>(settings);
         }
         else if (source.UserRoles.Any(r => r.RoleId == (int)Roles.Supplier))
         {
-            result.SupplierSettings = _mapper.Map<SupplierSettingsDto>(await _dataContext.SupplierSettings
-                .FirstOrDefaultAsync(s => s.Id == source.SettingsId));
+            var settings = await _dataContext.SupplierSettings
+                .FirstOrDefaultAsync(s => s.Id == source.SettingsId);
+            result.SupplierSettings = _mapper.Map<SupplierSettingsDto>(settings);
         }
 
         return result;
