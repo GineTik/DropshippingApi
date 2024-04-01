@@ -1,0 +1,11 @@
+.supplier_header {
+ @apply mt-10 my-2 p-5 bg-gradient-to-r from-blue-600 to-blue-500 rounded-2xl text-white;
+}
+
+.supplier_description {
+    @apply mt-4 mx-4;
+}
+
+.supplier_name_title {
+    @apply text-gray-400;
+}

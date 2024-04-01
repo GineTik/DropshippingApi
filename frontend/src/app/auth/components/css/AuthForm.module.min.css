@@ -1,0 +1,1 @@
+.user_types{@apply flex gap-3}.user_type_item{@apply p-3 w-1/2 flex justify-center gap-3 border border-gray-200 rounded-full transition ease-in-out text-sm text-gray-700}.user_type_item:hover,.user_type_item *:hover{@apply cursor-pointer bg-gray-100}.user_type_item input[type=radio]::after{@apply w-32 h-32 bg-blue-500}/*# sourceMappingURL=AuthForm.module.min.css.map */
