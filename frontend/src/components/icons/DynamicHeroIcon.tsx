@@ -1,24 +1,18 @@
-"use client";
-import * as HIcons from "@heroicons/react/24/outline";
+import { LucideIcon } from "lucide-react";
 
 interface IProps {
-	icon: string;
+	icon: LucideIcon;
 	className?: string;
 	ariaHidden?: string;
 }
 
 const DynamicHeroIcon = ({ icon, className, ariaHidden }: IProps) => {
-	// @ts-ignore
-	const TheIcon: Jsx.Element = HIcons[icon];
+	const LucideIcon = icon;
 
 	return (
 		<>
-			{/* @ts-ignore */}
-			{TheIcon && (
-				<TheIcon
-					className={className}
-					aria-hidden={ariaHidden ?? "true"}
-				/>
+			{LucideIcon && (
+				<LucideIcon size={24} />
 			)}
 		</>
 	);

@@ -3,6 +3,8 @@ export default {
 	Login: '/auth/login',
 	Registration: '/auth/registration',
 	Account: '/account',
+	Suppliers: '/suppliers',
+	Supplier: '/suppliers/',
 	Api: {
 		Introduction: '/api/introduction',
 		HowItWorks: '/api/how-it-works',

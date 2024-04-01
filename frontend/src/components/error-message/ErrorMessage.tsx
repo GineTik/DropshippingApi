@@ -1,6 +1,7 @@
 import DynamicHeroIcon from '@/components/icons/DynamicHeroIcon'
 import { AxiosError } from 'axios'
 import classNames from 'classnames'
+import { CircleAlert } from 'lucide-react'
 
 interface ErrorMessageProps {
 	children: AxiosError<{ message: string | string[] }> | string
@@ -29,7 +30,7 @@ const ErrorMessage = ({ children: error, className }: ErrorMessageProps) => {
 			)}
 		>
 			<DynamicHeroIcon
-				icon="ExclamationCircleIcon"
+				icon={CircleAlert}
 				className="min-w-5 w-5 text-rose-900"
 			/>
 			{Array.isArray(message) ? (

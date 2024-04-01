@@ -1,3 +1,4 @@
+import { Blocks, Home, MessageCircleMore } from 'lucide-react'
 import Image from 'next/image'
 import MenuHeader from './MenuHeader'
 import MenuItem from './MenuItem'
@@ -10,14 +11,14 @@ const Sidebar = () => {
 			</div>
 			<div className="flex flex-col">
 				<MenuHeader text="Головне меню" />
-				<MenuItem icon="HomeIcon" text="Головна" href="/" />
-				<MenuItem icon="RectangleStackIcon" text="Задачі" href="/Account" />
+				<MenuItem icon={Home} text="Головна" href="/" />
+				<MenuItem icon={Blocks} text="Задачі" href="/Account" />
 				<MenuItem
-					icon="ChatBubbleBottomCenterIcon"
+					icon={MessageCircleMore}
 					text="Повідомлення"
 					href="/messages"
 				/>
-				<MenuItem icon="Cog6ToothIcon" text="Налаштування" href="/Settings" />
+				{/* <MenuItem icon="Cog6ToothIcon" text="Налаштування" href="/Settings" /> */}
 			</div>
 		</div>
 	)

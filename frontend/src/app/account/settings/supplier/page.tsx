@@ -36,16 +36,16 @@ const SupplierSettings = () => {
       </Setting>
       <Setting title="Змінити тип загрузки yml файла" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlType(settings.ymlLoadType)}>
         <select onChange={(e) => changeYmlType(e.target.value)}>
-          {availableYmlLoadTypes?.data.map(type => <>
+          {availableYmlLoadTypes?.data.map((type: any) => 
             <option selected={type === settings.ymlLoadType} value={type}>{type}</option>
-          </>)}
+          )}
         </select>
       </Setting>
       {settings.ymlLoadType.toLowerCase() === 'link' && <>
         <Setting title="Змінити силку та частоту оновлення yml каталогу" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlCatalogLink({ link: settings.ymlLink, refreshTimeId: settings.refreshTimeId })}>
           <input className={styles.input} value={settings.ymlLink} onChange={(e) => changeYmlCatalogUrl(e.target.value)} />
           <select onChange={(e) => changeYmlCatalogRefreshTime(Number(e.target.value))}>
-            {availableRefreshTimes?.data.map(time => <>
+            {availableRefreshTimes?.data.map((time: any) => <>
               <option selected={time.id === settings.refreshTimeId} value={time.id}>{time.name}</option>
             </>)}
           </select>

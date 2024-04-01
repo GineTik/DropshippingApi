@@ -1,4 +1,6 @@
-﻿using Backend.Core.Entities;
+﻿using System.Text.Json;
+using Backend.Core.Entities;
+using Backend.Core.Entities.Offer;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Core.EF;
@@ -17,6 +19,9 @@ public class DataContext : DbContext
     // Supplier
     public required DbSet<SupplierSettings> SupplierSettings { get; set; }
     public required DbSet<RefreshTime> AvailableYmlRefreshTimes { get; set; }
+    
+    // Offer
+    public required DbSet<Offer> Offers { get; set; }
     
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
@@ -65,6 +70,14 @@ public class DataContext : DbContext
                 Time = 1,
                 TimeType = TimeType.Hour
             });
+
+        modelBuilder.Entity<Offer>()
+            .Property(e => e.Fields)
+            .HasConversion(
+                v => JsonSerializer.Serialize(v, new JsonSerializerOptions()),
+                v => JsonSerializer.Deserialize<IDictionary<string, object>>(
+                    v, new JsonSerializerOptions()) ?? new Dictionary<string, object>()
+            );
         
         base.OnModelCreating(modelBuilder);
     }

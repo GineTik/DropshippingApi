@@ -4,6 +4,8 @@ using Backend.Core.Interfaces.JwtTokenFactory;
 using Backend.Core.Options;
 using Backend.Infrastructure.Factories;
 using Backend.Infrastructure.Hashers;
+using Backend.Infrastructure.Parsers;
+using Backend.Infrastructure.Parsers.YmlParser;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,6 +21,7 @@ public static class ServiceExtension
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
         services.AddSingleton<IMailSender, MailSender>();
         services.AddSingleton<IApiKeyFactory, ApiKeyFactory>();
+        services.AddSingleton<IYmlParser, YmlParser>();
         services.Configure<ApiKeyOptions>(configuration.GetSection(ApiKeyOptions.Name));
         return services;
     }

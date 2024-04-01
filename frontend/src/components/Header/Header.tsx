@@ -11,12 +11,18 @@ const Header = () => {
 			<Link href={RouteConstants.Home}>
 				<Image src={Logo.src} alt="Logo" width={40} height={40} />
 			</Link>
-			<div className="ml-10 flex items-center max-sm:hidden">
+			<div className="ml-10 flex items-center max-sm:hidden gap-5">
 				<Link
 					href={RouteConstants.Api.Introduction}
 					className="hover:scale-110 transition"
 				>
 					Документація
+				</Link>
+				<Link
+					href={RouteConstants.Suppliers}
+					className="hover:scale-110 transition"
+				>
+					Поставщики
 				</Link>
 			</div>
 			<div className="ml-auto">

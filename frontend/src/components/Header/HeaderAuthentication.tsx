@@ -8,9 +8,9 @@ import { useActions } from '@/hooks/useActions'
 import { AuthService } from '@/services/auth.service'
 import { StateType } from '@/store/store'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { useMutation } from '@tanstack/react-query'
 import classNames from 'classnames'
+import { ChevronDownIcon } from 'lucide-react'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
@@ -49,7 +49,7 @@ const HeaderAuthentication = () => {
 									{user.emailIsConfirmed ? 'Немає підписки' : 'Активуйте аккаунт'}
 								</div>
 							</div>
-							<ChevronDownIcon className="w-4" />
+							<ChevronDownIcon />
 						</ScaledButton>
 					</Menu.Button>
 					<Transition

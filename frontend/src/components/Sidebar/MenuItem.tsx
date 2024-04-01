@@ -1,12 +1,13 @@
 'use client'
 import classNames from 'classnames'
+import { LucideIcon } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import DynamicHeroIcon from '../icons/DynamicHeroIcon'
 
 interface IProps {
 	href: string
-	icon: string
+	icon: LucideIcon
 	text: string
 }
 

@@ -2,6 +2,7 @@
 
 public class SupplierSettingsDto
 {
+    public int Id { get; set; }
     public string PublicName { get; set; } = null!;
     public string ApiName { get; set; } = null!;
     public string? Description { get; set; } = null!;

@@ -100,6 +100,28 @@ namespace Backend.Core.EF.Migrations
                     b.ToTable("DropshipperSettings");
                 });
 
+            modelBuilder.Entity("Backend.Core.Entities.Offer.Offer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Fields")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("Offers");
+                });
+
             modelBuilder.Entity("Backend.Core.Entities.RefreshTime", b =>
                 {
                     b.Property<int>("Id")
@@ -199,6 +221,9 @@ namespace Backend.Core.EF.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("OffersUpdatedAtUtc")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("PublicName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -277,6 +302,17 @@ namespace Backend.Core.EF.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("Backend.Core.Entities.Offer.Offer", b =>
+                {
+                    b.HasOne("Backend.Core.Entities.SupplierSettings", "Supplier")
+                        .WithMany()
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Supplier");
                 });
 
             modelBuilder.Entity("Backend.Core.Entities.SupplierSettings", b =>

@@ -4,7 +4,7 @@ export type User = {
 	id: string
 	email: string
 	emailIsConfirmed: boolean
-	type: string
+	roles: string[]
 	supplierSettings: SupplierSettings
 	dropshipperSettings: {}
 }

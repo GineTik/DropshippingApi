@@ -20,8 +20,8 @@ export const supplierSlice = createSlice({
 		// changeYmlCatalogUrl: (state, { payload }: { payload: string }) => {
 		// 	state.ymlLink = payload
 		// },
-		// changeYmlCatalogRefreshTime: (state, { payload }: { payload: string }) => {
-		// 	state.refreshTime = payload
+		// changeYmlCatalogRefreshTime: (state, { payload }: { payload: number }) => {
+		// 	state.refreshTimeId = payload
 		// }
 	}
 })

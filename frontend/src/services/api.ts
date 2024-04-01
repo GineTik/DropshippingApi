@@ -24,15 +24,16 @@ $api.interceptors.response.use(
 		const originalRequest = error.config
 		const status = error.response?.status
 
+		console.log(refreshed)
 		if ((status === 401 || status === 403) && refreshed === false) {
+			refreshed = true
 			const { data } = await AuthService.refresh()
 			store.dispatch(authSlice.actions.login(data))
-			refreshed = true
 			return $api(originalRequest)
+		} else {
+			refreshed = false
+			return Promise.reject(error)
 		}
-
-		refreshed = false
-		return Promise.reject(error)
 	}
 )
 

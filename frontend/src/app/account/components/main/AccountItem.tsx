@@ -1,7 +1,8 @@
 import DynamicHeroIcon from '@/components/icons/DynamicHeroIcon'
+import { LucideIcon } from 'lucide-react'
 
 interface AccountItemProps {
-	icon: string
+	icon: LucideIcon
 	title: string
 	description: string
 }

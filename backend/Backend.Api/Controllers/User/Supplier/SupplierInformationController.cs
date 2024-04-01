@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace backend.Controllers.User.Supplier;
 
 [Authorize]
-[Route("api/supplier")]
+[Route("api/user/supplier")]
 public class SupplierInformationController : Controller
 {
     private readonly SupplierInformationService _supplierInformationService;

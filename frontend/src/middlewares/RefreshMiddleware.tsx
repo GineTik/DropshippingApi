@@ -21,10 +21,10 @@ const RefreshTokensMiddleware = ({
 	const { mutateAsync: refresh } = useMutation<AxiosResponse<SuccessAuthDto>>({
 		mutationKey: ['refresh'],
 		mutationFn: () => AuthService.refresh(),
-		onSuccess: (result) => {
+		onSuccess: (result: { data: any }) => {
 			login(result.data)
 		},
-		onError: (err) => {
+		onError: () => {
 			logout()
 		}
 	})

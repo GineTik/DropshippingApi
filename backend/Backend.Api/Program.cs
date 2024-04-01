@@ -3,7 +3,10 @@ using System.Reflection;
 using System.Text;
 using Backend.Core;
 using Backend.Core.Exceptions.ServiceExceptions;
+using Backend.Core.Sheduler;
 using Backend.Infrastructure;
+using Coravel;
+using Coravel.Scheduling.Schedule.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.IdentityModel.Protocols;
@@ -85,5 +88,10 @@ app.UseExceptionHandler(exceptionHandlerApp =>
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+app.Services.UseScheduler(scheduler =>
+{
+    scheduler.Schedule<UnloadOfferJob>().EveryMinute().PreventOverlapping(nameof(UnloadOfferJob)); 
+}).LogScheduledTaskProgress(app.Services.GetRequiredService<ILogger<IScheduler>>());
 
 app.Run();

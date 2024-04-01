@@ -10,6 +10,7 @@ public class SupplierSettingsConverter : ITypeConverter<SupplierSettings, Suppli
     {
         return new SupplierSettingsDto
         {
+            Id = source.Id,
             YmlLink = source.YmlLink,
             YmlLoadType = ((YmlLoadTypes)source.YmlLoadTypeId).ToString(),
             RefreshTimeId = source.RefreshTimeId,
