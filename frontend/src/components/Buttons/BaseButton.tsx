@@ -7,21 +7,18 @@ export interface BaseButtonProps {
     as?: React.ElementType
 }
 
-const BaseButton = (props: BaseButtonProps) => {
-    return (
-        <div onClick={props.onClick}>
-            {props.as && <props.as 
-                className={props.className}
-                href={props.href}
-            >
-                {props.children}
-            </props.as>}
-        </div>
-    )
-}
+const BaseButton = ({children, className, onClick, href, ...props}: BaseButtonProps) => {
+    if (props.as == null) props.as = "button"
 
-BaseButton.defaultProps  = {
-    as: "button"
+    return (
+        <props.as 
+            className={className}
+            href={href}
+            onClick={onClick}
+        >
+            {children}
+        </props.as>
+    )
 }
 
 export default BaseButton

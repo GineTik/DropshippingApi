@@ -9,7 +9,7 @@ const Section = ({ children, ...divAttributes }: SectionProps) => {
 		<div
 			{...divAttributes}
 			className={classNames(
-				'w-full max-w-[1136px] mx-auto px-3',
+				'w-full max-w-[1136px] mx-auto xl:px-5 px-[60px]',
 				divAttributes.className
 			)}
 		>

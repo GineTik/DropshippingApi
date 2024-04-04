@@ -16,8 +16,3 @@
         @apply text-white;
     }
 }
-
-.block_gray {
-    @apply border-2 rounded-[10px] ml-auto flex justify-center items-center font-medium;
-    @apply border-gray-600 bg-gradient-to-t from-gray-800/80 to-gray-900/50;
-}

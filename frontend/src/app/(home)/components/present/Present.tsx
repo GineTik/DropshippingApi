@@ -1,5 +1,6 @@
 import { Buttons } from '@/components/buttons'
 import Section from '@/components/section/Section'
+import blocks from '../../../../components/Blocks.module.scss'
 import styles from './Present.module.scss'
 
 const Present = () => {
@@ -17,14 +18,14 @@ const Present = () => {
 			</div>
 			<div className="flex gap-5 items-start pt-[60px]">
 				<div className='w-[180px] grid gap-5'>
-					<div className={`${styles.block_gray} w-[145px] h-[60px] mt-[150px]`}>
+					<div className={`${blocks.block_small_gray} w-[145px] h-[60px] mt-[150px]`}>
 						100k+ товарів
 					</div>
-					<div className={`${styles.block_gray} w-full h-[250px]`}></div>
+					<div className={`${blocks.block_gray} w-full h-[250px]`}></div>
 				</div>
 				<div className='w-[200px] grid gap-5'>
-					<div className='w-full h-[260px] rounded-[10px] bg-blue-600'></div>
-					<div className={`${styles.block_gray} w-full h-[100px]`}></div>
+					<div className={`${blocks.block_blue} w-full h-[260px]`}></div>
+					<div className={`${blocks.block_small_gray} w-full h-[100px]`}></div>
 				</div>
 			</div>
 		</Section>

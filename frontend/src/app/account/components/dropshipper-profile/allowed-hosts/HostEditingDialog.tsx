@@ -1,4 +1,4 @@
-import StyledInput from '@/components/inputs/Input'
+import BaseInput from '@/components/inputs/BaseInput'
 import { AllowedHostDto } from '@/dtos/user/allowed-hosts/allowed-host.dto'
 import { useTypedMutation } from '@/hooks/useTypedMutation'
 import { AllowedHostsService } from '@/services/user/allowed-hosts.service'
@@ -58,7 +58,7 @@ const HostEditingDialog = ({
 			<div className="flex gap-3">
 				<div className="w-1/2">
 					<div className="ml-5 text-sm mb-2">Ім'я</div>
-					<StyledInput
+					<BaseInput
 						className="w-full"
 						placeholder="Ім'я"
 						type="text"
@@ -67,7 +67,7 @@ const HostEditingDialog = ({
 				</div>
 				<div className="w-1/2">
 					<div className="ml-5 text-sm mb-2">Хост</div>
-					<StyledInput
+					<BaseInput
 						className="w-full"
 						placeholder="Хост"
 						type="text"
@@ -77,7 +77,7 @@ const HostEditingDialog = ({
 			</div>
 			<div>
 				<div className="ml-5 text-sm mb-2">Опис</div>
-				<StyledInput
+				<BaseInput
 					className="w-full"
 					placeholder="Опис"
 					type="text"

@@ -20,7 +20,7 @@ export default function RootLayout({
 			<body className={`${styles.body}`}>
 				<ClientProviders>
 					<Header />
-					<main className="w-full flex-1 text-base/relaxed">{children}</main>
+					<main className="flex flex-col w-full flex-1 text-base/relaxed">{children}</main>
 					<Footer />
 				</ClientProviders>
 			</body>

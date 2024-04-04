@@ -1,0 +1,13 @@
+.block_gray {
+    @apply border-2 rounded-[10px] ml-auto font-medium p-[25px];
+    @apply border-gray-600 bg-gradient-to-t from-gray-800/80 to-gray-900/50;
+}
+
+.block_small_gray {
+    @apply border-2 rounded-[10px] ml-auto font-medium flex justify-center items-center;
+    @apply border-gray-600 bg-gradient-to-t from-gray-800/80 to-gray-900/50;
+}
+
+.block_blue {
+    @apply rounded-[10px] bg-blue-600 p-[25px];
+}

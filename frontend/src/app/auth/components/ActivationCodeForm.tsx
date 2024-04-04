@@ -1,5 +1,5 @@
 import BlueButton from '@/components/buttons/old-buttons/BlueButton'
-import StyledInput from '@/components/inputs/Input'
+import BaseInput from '@/components/inputs/BaseInput'
 import { useActions } from '@/hooks/useActions'
 import { AuthService } from '@/services/auth.service'
 import { getState } from '@/store/store'
@@ -36,7 +36,7 @@ const ActivationCode = () => {
 	return (
 		<form className="flex flex-col gap-3 w-72">
 			<h4>Введіть код</h4>
-			<StyledInput
+			<BaseInput
 				placeholder="999999"
 				type="number"
 				value={code}

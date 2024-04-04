@@ -1,6 +1,6 @@
 import { Buttons } from '@/components/buttons'
 import ErrorMessage from '@/components/error-message/ErrorMessage'
-import StyledInput from '@/components/inputs/Input'
+import BaseInput from '@/components/inputs/BaseInput'
 import { AllowedHostDto } from '@/dtos/user/allowed-hosts/allowed-host.dto'
 import { useTypedMutation } from '@/hooks/useTypedMutation'
 import { AllowedHostsService } from '@/services/user/allowed-hosts.service'
@@ -49,7 +49,7 @@ const CreateAllowedHostsDialog = ({
 			<div className="flex flex-col gap-3 w-[300px]">
 				<h4>Додати хост або айпі</h4>
 				<div className="">
-					<StyledInput
+					<BaseInput
 						className="w-full"
 						placeholder="Ім'я"
 						type="text"
@@ -57,7 +57,7 @@ const CreateAllowedHostsDialog = ({
 					/>
 				</div>
 				<div className="">
-					<StyledInput
+					<BaseInput
 						className="w-full"
 						placeholder="хост або айпі"
 						type="text"
@@ -65,7 +65,7 @@ const CreateAllowedHostsDialog = ({
 					/>
 				</div>
 				<div className="">
-					<StyledInput
+					<BaseInput
 						className="w-full"
 						placeholder="Опис"
 						type="text"

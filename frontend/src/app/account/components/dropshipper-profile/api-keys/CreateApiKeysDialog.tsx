@@ -1,6 +1,6 @@
 import { Buttons } from '@/components/buttons'
 import ErrorMessage from '@/components/error-message/ErrorMessage'
-import StyledInput from '@/components/inputs/Input'
+import BaseInput from '@/components/inputs/BaseInput'
 import { ApiKeyDto } from '@/dtos/user/api-key/api-key.dto'
 import { useTypedMutation } from '@/hooks/useTypedMutation'
 import { ApiKeysService } from '@/services/user/api-keys.service'
@@ -48,7 +48,7 @@ const CreateApiKeysDialog = ({
 			<div className="flex flex-col gap-3 w-[300px]">
 				<h4>Створити АПІ ключ</h4>
 				<div className="">
-					<StyledInput
+					<BaseInput
 						className="w-full"
 						placeholder="Ім'я"
 						type="text"
@@ -56,7 +56,7 @@ const CreateApiKeysDialog = ({
 					/>
 				</div>
 				<div className="">
-					<StyledInput
+					<BaseInput
 						className="w-full"
 						placeholder="Опис"
 						type="text"

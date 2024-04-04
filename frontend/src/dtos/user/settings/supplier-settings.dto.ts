@@ -6,4 +6,5 @@ export type SupplierSettings = {
 	ymlLoadType: string
 	ymlLink: string
 	refreshTimeId: number
+	offersUpdatedAtUtc: Date
 }

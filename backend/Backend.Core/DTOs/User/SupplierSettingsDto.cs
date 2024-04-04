@@ -10,4 +10,5 @@ public class SupplierSettingsDto
     public string YmlLoadType { get; set; } = null!;
     public string? YmlLink { get; set; } = null!;
     public int? RefreshTimeId { get; set; }
+    public DateTime OffersUpdatedAtUtc { get; set; }
 }

@@ -18,6 +18,7 @@ public class SupplierSettingsConverter : ITypeConverter<SupplierSettings, Suppli
             ApiName = source.ApiName,
             Description = source.Description,
             Searchable = source.Searchable,
+            OffersUpdatedAtUtc = source.OffersUpdatedAtUtc
         };
     }
 }

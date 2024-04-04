@@ -1,3 +1,8 @@
 .input {
-    @apply border rounded-full py-3 px-6 outline-none text-sm;
+    @apply border rounded-[10px] py-3 px-6 outline-none text-sm w-[300px];
+    @apply border-gray-600 bg-transparent text-white;
+
+    &::placeholder {
+        @apply text-gray-500;
+    }
 }

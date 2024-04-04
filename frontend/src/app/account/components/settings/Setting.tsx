@@ -1,4 +1,4 @@
-import BlueButton from "@/components/buttons/old-buttons/BlueButton"
+import { Buttons } from "@/components/buttons"
 import ErrorMessage from "@/components/error-message/ErrorMessage"
 import { MutationFunction, useMutation } from "@tanstack/react-query"
 import { AxiosError, AxiosResponse } from "axios"
@@ -26,11 +26,19 @@ const Setting = ({title, children, buttonText, sendRequest: sentRequest, onChang
 	})
 
 	return <div>
-		<h5>{title}</h5>
-		<form className="flex flex-col gap-3 mt-3 mb-7">
-			{children}
-			<BlueButton className="text-sm" onClick={() => changeSetting()} isPending={isPending}>{buttonText}</BlueButton>
-			{error && <ErrorMessage>{error}</ErrorMessage>}
+		<form className="mb-7">
+			<h6 className="mb-2">{title}</h6>
+			<div className="flex gap-2">
+				{children}
+				
+				<Buttons.Secondary
+					onClick={() => changeSetting()}
+				>
+					{buttonText}
+				</Buttons.Secondary>
+				
+				{error && <ErrorMessage>{error}</ErrorMessage>}
+			</div>
 		</form>
 	</div>
 }
