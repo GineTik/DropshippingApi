@@ -2,6 +2,5 @@
 
 public class DeleteAllowHostDto
 {
-    public int UserId { get; set; }
     public string Host { get; set; } = null!;
 }

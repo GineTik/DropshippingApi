@@ -1,4 +1,4 @@
-import BlueButton from '@/components/buttons/BlueButton'
+import BlueButton from '@/components/buttons/old-buttons/BlueButton'
 import StyledInput from '@/components/inputs/Input'
 import { useActions } from '@/hooks/useActions'
 import { AuthService } from '@/services/auth.service'

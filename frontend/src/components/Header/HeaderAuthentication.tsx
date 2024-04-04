@@ -1,20 +1,18 @@
 'use client'
 import RouteConstants from '@/../constants/RouteConstants'
 import UserLogo from '@/../public/UserLogo.png'
-import BlueButton from '@/components/buttons/BlueButton'
-import BorderedButton from '@/components/buttons/BorderedButton'
-import ScaledButton from '@/components/buttons/ScaledButton'
 import { useActions } from '@/hooks/useActions'
 import { AuthService } from '@/services/auth.service'
 import { StateType } from '@/store/store'
 import { Menu, Transition } from '@headlessui/react'
 import { useMutation } from '@tanstack/react-query'
-import classNames from 'classnames'
-import { ChevronDownIcon } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
 import { useSelector } from 'react-redux'
+import { Buttons } from '../buttons'
+import styles from './Header.module.scss'
 import ProfileMenuItem from './ProfileMenuItem'
 
 const HeaderAuthentication = () => {
@@ -35,22 +33,23 @@ const HeaderAuthentication = () => {
 			{user ? (
 				<Menu as="div" className="relative">
 					<Menu.Button>
-						<ScaledButton className="flex items-center p-1 pr-2">
+						<Buttons.Emerging className={styles.header_profile}>
 							<Image
 								src={UserLogo.src}
 								alt="User"
-								width={50}
-								height={50}
+								width={40}
+								height={40}
 								className="mr-3"
 							/>
 							<div className="mr-1">
-								<div className="w-28 truncate">{user?.email}</div>
-								<div className="text-gray-400 text-xs text-left">
-									{user.emailIsConfirmed ? 'Немає підписки' : 'Активуйте аккаунт'}
+								<div className={styles.header_profile_email}>
+									{user?.email}
+								</div>
+								<div className={styles.header_profile_subscribe}>
+									Немає підписки
 								</div>
 							</div>
-							<ChevronDownIcon />
-						</ScaledButton>
+						</Buttons.Emerging>
 					</Menu.Button>
 					<Transition
 						as={Fragment}
@@ -61,8 +60,8 @@ const HeaderAuthentication = () => {
 						leaveFrom="transform opacity-100 scale-100"
 						leaveTo="transform opacity-0 scale-95"
 					>
-						<Menu.Items className="rounded-2xl absolute right-0 origin-top-right divide-y divide-gray-100 bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
-							<div className="p-2">
+						<Menu.Items className={styles.header_profile_menu}>
+							<div>
 								<Menu.Item>
 									<ProfileMenuItem href={RouteConstants.Account}>
 										Профіль
@@ -83,24 +82,24 @@ const HeaderAuthentication = () => {
 					</Transition>
 				</Menu>
 			) : (
-				<>
+				<div className='flex gap-2'>
 					{pathname != RouteConstants.Login && (
-						<BorderedButton
-							className={classNames('mr-2 md:block', {
-								hidden: pathname != RouteConstants.Registration
-							})}
+						<Buttons.Secondary
+							as={Link}
 							href={RouteConstants.Login}
 						>
-							Ввійти
-						</BorderedButton>
+							Вхід
+						</Buttons.Secondary>
 					)}
 					{pathname != RouteConstants.Registration && (
-						<BlueButton href={RouteConstants.Registration}>
-							Спробувати{' '}
-							<span className="ml-1 hidden sm:inline">безкоштовно</span>
-						</BlueButton>
+						<Buttons.PrimaryReverse 
+							as={Link}
+							href={RouteConstants.Registration}
+						>
+							Реєстрація
+						</Buttons.PrimaryReverse>
 					)}
-				</>
+				</div>
 			)}
 		</div>
 	)

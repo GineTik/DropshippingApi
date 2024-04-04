@@ -26,18 +26,18 @@ public class ApiKeysService
         return apiKeys.Select(k => _mapper.Map<ApiKeyDto>(k));
     }
     
-    public async Task Create(CreateApiKeyDto dto)
+    public async Task Create(int userId, CreateApiKeyDto dto)
     {
         var apiKey = _mapper.Map<ApiKey>(dto);
-        apiKey.UserId = dto.UserId;
+        apiKey.UserId = userId;
         apiKey.Key = _apiKeyFactory.Create();
         _dataContext.ApiKeys.Add(apiKey);
         await _dataContext.SaveChangesAsync();
     }
     
-    public async Task Update(UpdateApiKeyDto dto)
+    public async Task Update(int userId, UpdateApiKeyDto dto)
     {
-        var apiKey = await _dataContext.ApiKeys.FirstOrDefaultAsync(k => k.UserId == dto.UserId && k.Key == dto.Key);
+        var apiKey = await _dataContext.ApiKeys.FirstOrDefaultAsync(k => k.UserId == userId && k.Key == dto.Key);
         // TODO: create exception
         if (apiKey == null) throw new Exception();
         
@@ -46,9 +46,9 @@ public class ApiKeysService
         await _dataContext.SaveChangesAsync();
     }
     
-    public async Task Refresh(RefreshApiKeyDto dto)
+    public async Task Refresh(int userId, RefreshApiKeyDto dto)
     {
-        var apiKey = await _dataContext.ApiKeys.FirstOrDefaultAsync(k => k.UserId == dto.UserId && k.Key == dto.Key);
+        var apiKey = await _dataContext.ApiKeys.FirstOrDefaultAsync(k => k.UserId == userId && k.Key == dto.Key);
         // TODO: create exception
         if (apiKey == null) throw new Exception();
         
@@ -56,9 +56,9 @@ public class ApiKeysService
         await _dataContext.SaveChangesAsync();
     }
     
-    public async Task Delete(DeleteApiKeyDto dto)
+    public async Task Delete(int userId, DeleteApiKeyDto dto)
     {
-        var apiKey = await _dataContext.ApiKeys.FirstOrDefaultAsync(k => k.UserId == dto.UserId && k.Key == dto.Key);
+        var apiKey = await _dataContext.ApiKeys.FirstOrDefaultAsync(k => k.UserId == userId && k.Key == dto.Key);
         // TODO: create exception
         if (apiKey == null) throw new Exception();
         

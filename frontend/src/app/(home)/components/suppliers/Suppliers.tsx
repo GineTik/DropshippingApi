@@ -1,7 +1,7 @@
 import MSDROPLogo from '@/../public/logos-of-suppliers/MS DROP.png'
 import WebSkladLogo from '@/../public/logos-of-suppliers/WebSklad.png'
 import ZimaLogo from '@/../public/logos-of-suppliers/zima.svg'
-import ColoredButton from '@/components/buttons/ColoredButton'
+import ColoredButton from '@/components/buttons/old-buttons/ColoredButton'
 import Section from '@/components/section/Section'
 import SuppliersItem from './SuppliersItem'
 

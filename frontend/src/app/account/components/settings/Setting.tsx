@@ -1,4 +1,4 @@
-import BlueButton from "@/components/buttons/BlueButton"
+import BlueButton from "@/components/buttons/old-buttons/BlueButton"
 import ErrorMessage from "@/components/error-message/ErrorMessage"
 import { MutationFunction, useMutation } from "@tanstack/react-query"
 import { AxiosError, AxiosResponse } from "axios"

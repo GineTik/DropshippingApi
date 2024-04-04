@@ -25,17 +25,17 @@ public class AllowHostsService
         return allowHosts.Select(host => _mapper.Map<AllowHostDto>(host));
     }
     
-    public async Task Create(CreateAllowHostDto dto)
+    public async Task Create(int userId, CreateAllowHostDto dto)
     {
         var allowHost = _mapper.Map<AllowHost>(dto);
-        allowHost.UserId = dto.UserId;
+        allowHost.UserId = userId;
         _dataContext.AllowHosts.Add(allowHost);
         await _dataContext.SaveChangesAsync();
     }
     
-    public async Task Update(UpdateAllowHostDto dto)
+    public async Task Update(int userId, UpdateAllowHostDto dto)
     {
-        var allowHost = await _dataContext.AllowHosts.FirstOrDefaultAsync(k => k.UserId == dto.UserId && k.Host == dto.OldHost);
+        var allowHost = await _dataContext.AllowHosts.FirstOrDefaultAsync(k => k.UserId == userId && k.Host == dto.OldHost);
         // TODO: create exception
         if (allowHost == null) throw new Exception();
         
@@ -45,9 +45,9 @@ public class AllowHostsService
         await _dataContext.SaveChangesAsync();
     }
     
-    public async Task Delete(DeleteAllowHostDto dto)
+    public async Task Delete(int userId, DeleteAllowHostDto dto)
     {
-        var allowHost = await _dataContext.AllowHosts.FirstOrDefaultAsync(k => k.UserId == dto.UserId && k.Host == dto.Host);
+        var allowHost = await _dataContext.AllowHosts.FirstOrDefaultAsync(k => k.UserId == userId && k.Host == dto.Host);
         // TODO: create exception
         if (allowHost == null) throw new Exception();
         

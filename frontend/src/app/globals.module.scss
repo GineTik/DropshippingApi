@@ -1,23 +1,26 @@
+$border-gray: #3B3E48;
+
 .body {
-    @apply  h-full bg-white flex flex-col;
+    @apply  h-full bg-white dark:bg-slate-950 flex flex-col;
+    font-family: Gilroy;
 
     h1 {
-        @apply text-gray-800 font-bold text-2xl md:text-[2.7rem] leading-tight;
+        @apply font-semibold text-[70px] leading-[1.1];
     }
     
     h2 {
-        @apply text-gray-800 font-bold text-xl md:text-2xl leading-snug;
+        @apply font-bold text-xl md:text-2xl leading-snug;
     }
     
     h3 {
-        @apply text-gray-800 font-bold text-lg md:text-xl leading-snug;
+        @apply text-5xl;
     }
     
     h4 {
-        @apply text-gray-800 font-bold text-xl;
+        @apply text-[24px] font-medium;
     }
     
     h5 {
-        @apply text-gray-800 font-bold text-sm;
+        @apply font-bold text-sm;
     }
 }

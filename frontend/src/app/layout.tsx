@@ -1,15 +1,9 @@
 import Footer from '@/components/footer/Footer'
 import Header from '@/components/header/Header'
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
 import ClientProviders from './ClientProviders'
 import styles from './globals.module.scss'
 import './import-tailwind.css'
-
-const montserrat = Montserrat({
-	weight: ['400', '500', '600', '700'],
-	subsets: ['latin']
-})
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -22,8 +16,8 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang="en" className="h-full">
-			<body className={`${styles.body} ${montserrat.className}`}>
+		<html lang="en" className="h-full" data-mode="dark">
+			<body className={`${styles.body}`}>
 				<ClientProviders>
 					<Header />
 					<main className="w-full flex-1 text-base/relaxed">{children}</main>

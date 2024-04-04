@@ -3,26 +3,33 @@ import Logo from '@/../public/logo.svg'
 import Section from '@/components/section/Section'
 import Image from 'next/image'
 import Link from 'next/link'
+import styles from './Header.module.scss'
 import HeaderAuthentication from './HeaderAuthentication'
 
 const Header = () => {
 	return (
-		<Section className="flex mt-5 items-center z-10">
+		<Section className={styles.header}>
 			<Link href={RouteConstants.Home}>
 				<Image src={Logo.src} alt="Logo" width={40} height={40} />
 			</Link>
-			<div className="ml-10 flex items-center max-sm:hidden gap-5">
+			<div>
 				<Link
 					href={RouteConstants.Api.Introduction}
-					className="hover:scale-110 transition"
+					className={styles.header_link}
 				>
 					Документація
 				</Link>
 				<Link
 					href={RouteConstants.Suppliers}
-					className="hover:scale-110 transition"
+					className={styles.header_link}
 				>
 					Поставщики
+				</Link>
+				<Link
+					href={RouteConstants.Suppliers}
+					className={styles.header_link}
+				>
+					Про нас
 				</Link>
 			</div>
 			<div className="ml-auto">

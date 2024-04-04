@@ -2,6 +2,5 @@
 
 public class DeleteApiKeyDto
 {
-    public int UserId { get; set; }
     public string Key { get; set; } = null!;
 }

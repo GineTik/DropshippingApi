@@ -2,6 +2,5 @@
 
 public class RefreshApiKeyDto
 {
-    public int UserId { get; set; }
     public required string Key { get; set; }
 }
