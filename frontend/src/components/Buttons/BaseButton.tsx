@@ -14,10 +14,7 @@ const BaseButton = (props: BaseButtonProps) => {
                 className={props.className}
                 href={props.href}
             >
-                {typeof props.children === 'string' 
-                    ? props.children.toUpperCase()
-                    : props.children
-                }
+                {props.children}
             </props.as>}
         </div>
     )

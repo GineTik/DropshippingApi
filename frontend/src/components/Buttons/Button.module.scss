@@ -18,7 +18,7 @@
     @apply font-bold text-base text-black uppercase leading-none flex items-center;
 
     //border
-    @apply py-6 px-12 border-2 rounded-lg transition;
+    @apply py-6 px-12 border-2 rounded-lg transition ease-in;
     @apply bg-lime border-lime;
 
     &:hover {
@@ -31,7 +31,7 @@
     @apply text-xs text-lime uppercase font-medium;
 
     //border
-    @apply py-3 px-7 border rounded-lg transition;
+    @apply py-3 px-7 border rounded-lg transition ease-in;
     @apply border-lime;
 
     &:hover {
@@ -45,5 +45,15 @@
 
     &:hover {
         @apply bg-gray-100 dark:bg-gray-800;
+    }
+}
+
+.tag {
+    @apply transform-none border-2 text-sm font-medium rounded-full leading-none;
+    @apply mb-6 px-[14px] py-[8px];
+    @apply dark:text-white border-gray-500 bg-slate-900 transition;
+
+    &:hover {
+        @apply bg-transparent border-gray-700;
     }
 }

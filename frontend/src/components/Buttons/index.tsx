@@ -29,4 +29,8 @@ export const Buttons = {
 		const cn = classNames(styles.emerging, 'py-3 px-7', props.className)
 		return <BaseButton {...props} className={cn} />
 	},
+	Tag: (props: BaseButtonProps) => {
+		const cn = classNames(styles.tag, props.className)
+		return <BaseButton {...props} className={cn} />
+	},
 }
