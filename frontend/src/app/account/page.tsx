@@ -1,8 +1,8 @@
 'use client'
 import { StateType } from '@/store/store'
 import { useSelector } from 'react-redux'
-import SupplierProfile from '../../components/supplier-profile/SupplierProfile'
 import DropshipperProfile from './components/dropshipper-profile/DropshipperProfile'
+import SupplierProfile from './components/supplier-profile/SupplierProfile'
 
 const AccountPage = () => {
 	const supplier = useSelector((state: StateType) => state.auth.user.supplierSettings)

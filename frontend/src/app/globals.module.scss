@@ -9,7 +9,7 @@ $border-gray: #3B3E48;
     }
     
     h2 {
-        @apply font-bold text-xl md:text-2xl leading-snug;
+        @apply font-normal text-[50px] leading-none;
     }
     
     h3 {

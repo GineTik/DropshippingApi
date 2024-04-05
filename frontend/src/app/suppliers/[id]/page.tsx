@@ -1,5 +1,5 @@
 'use client'
-import SupplierProfile from "@/components/supplier-profile/SupplierProfile";
+import SupplierProfile from "@/app/account/components/supplier-profile/SupplierProfile";
 import { SupplierService } from "@/services/user/supplier.service";
 import { useQuery } from "@tanstack/react-query";
 import { Loader } from "lucide-react";

@@ -19,7 +19,7 @@ const CodeString = ({
 				'text-nowrap',
 				{
 					'px-2 py-1': !withoutPadding,
-					'text-green-500 bg-gray-800 rounded-lg': isDark,
+					'text-green-500 bg-slate-950 rounded-lg': isDark,
 					'text-green-800 border rounded-lg': !isDark
 				},
 				className

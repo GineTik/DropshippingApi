@@ -1,5 +1,9 @@
 @import '../../app/globals.module.scss';
 
+.base {
+    @apply uppercase font-medium border rounded-[10px];
+}
+
 .secondary {
     //text
     @apply text-xs text-gray-600 dark:text-white uppercase font-medium;
@@ -26,7 +30,7 @@
     }
 }
 
-.primary_reverse {
+.primary_header {
     //text
     @apply text-xs text-lime uppercase font-medium;
 
@@ -40,8 +44,19 @@
     }
 }
 
+.primary_dark {
+    @apply flex text-xs text-black uppercase font-semibold;
+    @apply py-3 px-7 border rounded-lg transition ease-in;
+    @apply border-lime;
+
+    &:hover {
+        @apply text-black;
+        @apply bg-lime;
+    }
+}
+
 .emerging {
-    @apply py-2 px-3 rounded-lg transition;
+    @apply py-2 px-3 rounded-lg transition border-none normal-case;
 
     &:hover {
         @apply bg-gray-100 dark:bg-gray-800;
@@ -49,7 +64,7 @@
 }
 
 .tag {
-    @apply transform-none border-2 text-sm font-medium rounded-full leading-none;
+    @apply normal-case border-2 text-sm font-medium rounded-full leading-none;
     @apply mb-6 px-[14px] py-[8px];
     @apply dark:text-white border-gray-500 bg-slate-900 transition;
 

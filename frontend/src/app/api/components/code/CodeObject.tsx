@@ -13,7 +13,7 @@ const CodeObject = (props: CodeObjectProps) => {
 	return (
 		<div
 			className={classNames(
-				'bg-gray-800 rounded-xl text-white w-full px-5 py-4',
+				'bg-slate-950 rounded-xl text-white w-full px-5 py-4',
 				'overflow-x-auto',
 				props.className
 			)}

@@ -1,5 +1,5 @@
 .block_gray {
-    @apply border-2 rounded-[10px] ml-auto font-medium p-[25px];
+    @apply border-2 rounded-[10px] ml-auto font-medium p-[25px] flex flex-col;
     @apply border-gray-600 bg-gradient-to-t from-gray-800/80 to-gray-900/50;
 }
 
@@ -9,5 +9,29 @@
 }
 
 .block_blue {
-    @apply rounded-[10px] bg-blue-600 p-[25px];
+    @apply rounded-[10px] bg-blue-600 p-[25px] flex flex-col;
+
+    .block__button {
+        @apply border-white;
+
+        &:hover {
+            @apply bg-white/10;
+        }
+    }
+
+    .block__p {
+        @apply text-slate-200;
+    }
+}
+
+.block__button {
+    @apply mt-auto;
+
+    &:hover {
+        @apply bg-white/5;
+    }
+}
+
+.block__p {
+    @apply text-sm text-gray-400 mt-[20px];
 }

@@ -1,0 +1,28 @@
+.section {
+    @apply flex gap-[35px] text-white py-[100px];
+}
+
+.title__emphasis {
+    @apply font-semibold italic text-blue-600;
+}
+
+.section__block {
+    @apply rounded-[20px] bg-slate-900 p-[50px] min-h-[555px] flex flex-col items-start w-1/2;
+}
+
+.section__icon {
+    @apply w-[85px] h-[85px] rounded-full bg-white mb-[45px] flex justify-center items-center text-blue-600;
+}
+
+.section__title {
+    @apply mb-[20px];
+    font-size: 45px !important;
+}
+
+.section__p {
+    @apply mb-[18px] mb-[30px];
+}
+
+.section__button {
+    @apply mt-auto;
+}

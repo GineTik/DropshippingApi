@@ -92,12 +92,12 @@ const HeaderAuthentication = () => {
 						</Buttons.Secondary>
 					)}
 					{pathname != RouteConstants.Registration && (
-						<Buttons.PrimaryReverse 
+						<Buttons.PrimaryHeader 
 							as={Link}
 							href={RouteConstants.Registration}
 						>
 							Реєстрація
-						</Buttons.PrimaryReverse>
+						</Buttons.PrimaryHeader>
 					)}
 				</div>
 			)}
