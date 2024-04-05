@@ -1,3 +1,4 @@
+'use client'
 import RouteConstants from '@/../constants/RouteConstants'
 import Logo from '@/../public/logo.svg'
 import Section from '@/components/section/Section'
@@ -32,7 +33,7 @@ const Header = () => {
 					Про нас
 				</Link>
 			</div>
-			<div className="ml-auto">
+			<div className="flex items-center gap-2 ml-auto">
 				<HeaderAuthentication />
 			</div>
 		</Section>

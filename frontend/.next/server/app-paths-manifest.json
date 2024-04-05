@@ -2,6 +2,6 @@
   "/suppliers/[id]/page": "app/suppliers/[id]/page.js",
   "/(home)/page": "app/(home)/page.js",
   "/suppliers/page": "app/suppliers/page.js",
-  "/api/(pages)/(general)/introduction/page": "app/api/(pages)/(general)/introduction/page.js",
-  "/account/settings/supplier/page": "app/account/settings/supplier/page.js"
+  "/account/page": "app/account/page.js",
+  "/account/settings/security/page": "app/account/settings/security/page.js"
 }

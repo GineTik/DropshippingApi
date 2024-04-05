@@ -1,7 +1,7 @@
 @import '../../app/globals.module.scss';
 
 .base {
-    @apply uppercase font-medium border rounded-[10px];
+    @apply uppercase font-medium border rounded-[10px] transition;
 }
 
 .secondary {
@@ -108,5 +108,14 @@
 
     &:hover {
         @apply bg-transparent border-lime text-lime;
+    }
+}
+
+.light {
+    @apply text-xs py-3 px-7 text-gray-600 dark:text-white uppercase font-medium;
+    @apply border-white/40;
+
+    &:hover {
+        @apply bg-white/10 border-white/60;
     }
 }

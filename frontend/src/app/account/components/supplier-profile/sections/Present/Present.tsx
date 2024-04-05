@@ -1,6 +1,7 @@
 import { Buttons } from "@/components/buttons"
 import Section from "@/components/section/Section"
 import { SupplierSettings } from "@/dtos/user/settings/supplier-settings.dto"
+import { HeartIcon, ThumbsDownIcon, ThumbsUpIcon } from "lucide-react"
 import Link from "next/link"
 import blocks from '../../../../../../components/Blocks.module.scss'
 import styles from "./Present.module.scss"
@@ -12,6 +13,15 @@ const Present = (supplier: SupplierSettings) => {
 				<div>
 					<h1 className={styles.present__title}>{supplier.publicName}</h1>
 					
+					<div className={styles.present__buttons}>
+						<Buttons.Icon><ThumbsUpIcon /></Buttons.Icon>
+						<Buttons.Icon><ThumbsDownIcon /></Buttons.Icon>
+						<Buttons.Icon>
+							<HeartIcon />
+							<span>Підписатись</span>
+						</Buttons.Icon>
+					</div>
+
 					{supplier.description && <p className={styles.present__p}>{supplier.description}</p>}
 
 					<div className={styles.present__parameters}>
@@ -53,7 +63,7 @@ const Present = (supplier: SupplierSettings) => {
 						<div className={`${blocks.block_blue} w-[220px] h-[280px]`}>
 							<h5 className={styles.block__title}>Використати АПІ</h5>
 							<p className={`${blocks.block__p} w-2/3`}>Використовуйте АПІ для своїх потреб</p>
-							<Buttons.Secondary className={blocks.block__button}>Перейти</Buttons.Secondary>
+							<Buttons.Light className={blocks.block__button}>Перейти</Buttons.Light>
 						</div>
 					</div>
 				</div>

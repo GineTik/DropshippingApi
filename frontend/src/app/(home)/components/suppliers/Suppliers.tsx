@@ -3,7 +3,7 @@ import WebSkladLogo from '@/../public/logos-of-suppliers/WebSklad.png'
 import ZimaLogo from '@/../public/logos-of-suppliers/zima.svg'
 import ColoredButton from '@/components/buttons/old-buttons/ColoredButton'
 import Section from '@/components/section/Section'
-import SuppliersItem from './SuppliersItem'
+import SupplierItem from '../../../suppliers/components/SupplierItem/SupplierItem'
 
 const Suppliers = () => {
 	return (
@@ -17,18 +17,18 @@ const Suppliers = () => {
 					</div>
 				</div>
 				<div className="flex flex-wrap lg:flex-nowrap justify-center lg:justify-between gap-10">
-					<SuppliersItem
+					<SupplierItem
 						imgSrc={MSDROPLogo.src}
 						title="MS DROP"
 						description="Free for small teams. 14-day free trial
                         for premium features."
 					/>
-					<SuppliersItem
+					<SupplierItem
 						imgSrc={ZimaLogo.src}
 						title="Zima"
 						description="Off-load the details for your most stressful project here."
 					/>
-					<SuppliersItem
+					<SupplierItem
 						imgSrc={WebSkladLogo.src}
 						title="Web Sklad"
 						description="Offload the stressful stuff. Drag and drop your way to sanity."

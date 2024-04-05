@@ -3,7 +3,11 @@
 }
 
 .present__title {
-    @apply mb-[20px];
+    @apply mb-[10px];
+}
+
+.present__buttons {
+    @apply flex gap-3 mb-[20px];
 }
 
 .present__p {

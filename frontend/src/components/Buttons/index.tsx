@@ -39,7 +39,7 @@ export const Buttons = {
 		return <BaseButton {...props} className={cn} />
 	},
 	Icon: (props: BaseButtonProps) => {
-		const cn = classNames(styles.base, styles.secondary, 'p-2', props.className)
+		const cn = classNames(styles.base, styles.secondary, 'p-2 flex gap-3 items-center', props.className)
 		return <BaseButton {...props} className={cn} />
 	},
 	Emerging: (props: BaseButtonProps) => {
@@ -56,5 +56,11 @@ export const Buttons = {
 		var pathname = usePathname();
 		const cn = classNames(styles.base, styles.tab, props.href === pathname ? styles.tab_selected : '', props.className)
 		return <BaseButton as={props.href === pathname ? "span" : Link} {...props} className={cn} />
+	},
+	Light: (props: BaseButtonProps) => {
+		return <BaseButton 
+			{...props} 
+			className={`${styles.base} ${styles.light} ${props.className}`} 
+		/>
 	},
 }

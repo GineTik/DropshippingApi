@@ -1,5 +1,7 @@
 import { Buttons } from '@/components/buttons'
 import Section from '@/components/section/Section'
+import Link from 'next/link'
+import RouteConstants from '../../../../../constants/RouteConstants'
 import blocks from '../../../../components/Blocks.module.scss'
 import styles from './Present.module.scss'
 
@@ -14,7 +16,7 @@ const Present = () => {
 				<p className={styles.p}>
 					<span className={styles.emphasis}>Вибирай</span> та <span className={styles.emphasis}>фільтруй</span> товари поставщиків, використовуючи зручний інтерфейс або апі.
 				</p>
-				<Buttons.Present>ЗАРЕЄСТРУВАТИСЬ</Buttons.Present>
+				<Buttons.Present as={Link} href={RouteConstants.Registration}>ЗАРЕЄСТРУВАТИСЬ</Buttons.Present>
 			</div>
 			<div className="flex gap-5 items-start pt-[60px]">
 				<div className='w-[180px] grid gap-5'>

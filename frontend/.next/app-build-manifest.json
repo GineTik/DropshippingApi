@@ -32,6 +32,7 @@
     "/suppliers/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/app/suppliers/page.css",
       "static/chunks/app/suppliers/page.js"
     ],
     "/(home)/page": [
@@ -68,6 +69,17 @@
       "static/chunks/main-app.js",
       "static/css/app/account/settings/supplier/page.css",
       "static/chunks/app/account/settings/supplier/page.js"
+    ],
+    "/api/(pages)/(general)/filtration/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/api/(pages)/(general)/filtration/page.css",
+      "static/chunks/app/api/(pages)/(general)/filtration/page.js"
+    ],
+    "/account/settings/payment/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/account/settings/payment/page.js"
     ]
   }
 }

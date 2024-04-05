@@ -2,13 +2,17 @@
 import { Buttons } from '@/components/buttons'
 import Section from '@/components/section/Section'
 import RequireAuthMiddleware from '@/middlewares/RequireAuthMiddleware'
+import { StateType } from '@/store/store'
 import { Shield } from 'lucide-react'
 import Image from 'next/image'
+import { useSelector } from 'react-redux'
 import RouteConstants from '../../../../constants/RouteConstants'
 import banner_image from '../../../../public/banner-image.png'
 import styles from './Settings.module.scss'
 
 const SettingsLayout = ({children}: any) => {
+    const user = useSelector((state: StateType) => state.auth.user)
+
 	return (
         <RequireAuthMiddleware>
             <Section className={styles.settings}>
@@ -17,7 +21,7 @@ const SettingsLayout = ({children}: any) => {
                     <div className={styles.settings__tabs}>
                         <Buttons.Tab href={RouteConstants.Settings.Security}>Безпека</Buttons.Tab>
                         <Buttons.Tab href={RouteConstants.Settings.Payment}>Платіжні дані</Buttons.Tab>
-                        <Buttons.Tab href={RouteConstants.Settings.Supplier}>Дані поставщика</Buttons.Tab>
+                        {user.supplierSettings && <Buttons.Tab href={RouteConstants.Settings.Supplier}>Дані поставщика</Buttons.Tab>}
                     </div>
                 </div>
                 <div className={styles.settings__content}>

@@ -138,13 +138,6 @@ const AuthForm = ({ type }: AuthFormProps) => {
 				{isLogin ? 'Увійти' : 'Зареєструватись'}
 			</Buttons.Form>
 
-			{/* <HrWithText />
-			
-			<BorderedButton>
-				<Image src={GoogleLogo.src} alt="GoogleLogo" width={20} height={20} />
-				<span className="ml-3">Google</span>
-			</BorderedButton> */}
-
 			{isLogin ? (
 				<Link href={RouteConstants.Registration} className="text-gray-400">
 					Ще не маю <span className="text-blue-500">акаунту</span>!

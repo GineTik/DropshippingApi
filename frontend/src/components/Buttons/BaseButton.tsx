@@ -2,7 +2,7 @@
 export interface BaseButtonProps {
     children: any
     className?: string
-    onClick?: () => void
+    onClick?: (e: any) => void
     href?: string
     as?: React.ElementType
 }

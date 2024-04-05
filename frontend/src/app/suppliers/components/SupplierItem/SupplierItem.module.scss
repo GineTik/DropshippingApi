@@ -1,0 +1,23 @@
+.card {
+    @apply w-[240px] px-[16px] py-[32px] rounded-[10px] bg-slate-900 text-white flex flex-col gap-4 items-center text-center border border-transparent transition cursor-pointer;
+
+    &:hover {
+        @apply border-gray-500 bg-slate-800;
+    }
+}
+
+.card__p {
+    @apply text-sm leading-normal line-clamp-3;
+}
+
+.card__tags {
+    @apply px-5 line-clamp-2;
+}
+
+.card__buttons {
+    @apply flex gap-2 mt-auto;
+}
+
+.tags__title {
+    @apply text-gray-500 italic;
+}
