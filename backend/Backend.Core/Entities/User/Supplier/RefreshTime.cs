@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using Backend.Core.Services.User.Supplier;
-
-namespace Backend.Core.Entities;
+﻿namespace Backend.Core.Entities.User.Supplier;
 
 public class RefreshTime
 {

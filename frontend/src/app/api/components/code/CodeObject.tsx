@@ -53,7 +53,7 @@ const CodeOfObjectInner = ({ object }: { object: Record<string, any> }) => {
 						{parameterKey}
 					</CodeString>
 					{': '}
-					<CodeInner object={object[parameterKey]} />
+					{object[parameterKey] ? <CodeInner object={object[parameterKey]} /> : <Comment>null</Comment>}
 				</Line>
 			))}
 			{'}'}

@@ -1,55 +1,19 @@
-using System.Net.Mime;
-using System.Reflection;
-using System.Text;
 using Backend.Core;
 using Backend.Core.Exceptions.ServiceExceptions;
 using Backend.Core.Sheduler;
+using backend.Extensions;
 using Backend.Infrastructure;
 using Coravel;
 using Coravel.Scheduling.Schedule.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.IdentityModel.Protocols;
-using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddAuthorization();
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    })
-    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme,
-        options =>  options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidIssuer = builder.Configuration.GetSection("JWT:ISSUER").Value,
-            ValidateAudience = true,
-            ValidAudience = builder.Configuration.GetSection("JWT:AUDIENCE").Value,
-            ValidateLifetime = true,
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                builder.Configuration.GetSection("JWT:KEY").Value!
-            )),
-            ValidateIssuerSigningKey = true,
-        });
-builder.Services.AddControllers();
-
 builder.Services.AddTransient<ConfigurationManager>(_ => builder.Configuration);
+
+builder.Services.AddControllers();
+builder.Services.AddFullAuth();
 builder.Services.AddCore();
 builder.Services.AddInfrastructure();
-
-// builder.Services.AddCors(options =>
-// {
-//     options.AddPolicy(name: "Default",
-//         policy  =>
-//         {
-//             policy.WithOrigins("http://localhost:3000");
-//             policy.AllowCredentials();
-//         });
-// });
-
 
 var app = builder.Build();
 
@@ -65,9 +29,6 @@ app.UseExceptionHandler(exceptionHandlerApp =>
 {
     exceptionHandlerApp.Run(async context =>
     {
-        //context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-        //context.Response.ContentType = MediaTypeNames.Text.Plain;
-
         var exceptionHandlerPathFeature =
             context.Features.Get<IExceptionHandlerPathFeature>();
 

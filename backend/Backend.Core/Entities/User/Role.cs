@@ -1,12 +1,7 @@
-﻿namespace Backend.Core.Entities;
+﻿namespace Backend.Core.Entities.User;
 
 public class Role
 {
-    public Role()
-    {
-        
-    }
-    
     public int Id { get; set; }
     public string Name { get; set; } = null!;
 

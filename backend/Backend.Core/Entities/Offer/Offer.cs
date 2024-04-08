@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using Backend.Core.EF;
+using Backend.Core.Entities.User.Supplier;
 
 namespace Backend.Core.Entities.Offer;
 

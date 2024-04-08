@@ -25,7 +25,29 @@ namespace Backend.Core.EF.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Backend.Core.Entities.AllowHost", b =>
+            modelBuilder.Entity("Backend.Core.Entities.Offer.Offer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Fields")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SupplierId");
+
+                    b.ToTable("Offers");
+                });
+
+            modelBuilder.Entity("Backend.Core.Entities.User.Dropshipper.AllowHost", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,7 +74,7 @@ namespace Backend.Core.EF.Migrations
                     b.ToTable("AllowHosts");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.ApiKey", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.Dropshipper.ApiKey", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -79,7 +101,7 @@ namespace Backend.Core.EF.Migrations
                     b.ToTable("ApiKeys");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.DropshipperSettings", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.Dropshipper.DropshipperSettings", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -100,7 +122,7 @@ namespace Backend.Core.EF.Migrations
                     b.ToTable("DropshipperSettings");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.Offer.Offer", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,21 +130,64 @@ namespace Backend.Core.EF.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Fields")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SupplierId")
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Dropshipper"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Supplier"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Owner"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "UnconfirmedEmail"
+                        });
+                });
+
+            modelBuilder.Entity("Backend.Core.Entities.User.Supplier.Link", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SupplierSettingsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SupplierId");
+                    b.HasIndex("SupplierSettingsId");
 
-                    b.ToTable("Offers");
+                    b.ToTable("Links");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.RefreshTime", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.Supplier.RefreshTime", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -167,46 +232,7 @@ namespace Backend.Core.EF.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Dropshipper"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Supplier"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Owner"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "UnconfirmedEmail"
-                        });
-                });
-
-            modelBuilder.Entity("Backend.Core.Entities.SupplierSettings", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.Supplier.SupplierSettings", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -254,7 +280,7 @@ namespace Backend.Core.EF.Migrations
                     b.ToTable("SupplierSettings");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.User", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -281,7 +307,7 @@ namespace Backend.Core.EF.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.UserRole", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.UserRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -306,7 +332,7 @@ namespace Backend.Core.EF.Migrations
 
             modelBuilder.Entity("Backend.Core.Entities.Offer.Offer", b =>
                 {
-                    b.HasOne("Backend.Core.Entities.SupplierSettings", "Supplier")
+                    b.HasOne("Backend.Core.Entities.User.Supplier.SupplierSettings", "Supplier")
                         .WithMany()
                         .HasForeignKey("SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -315,24 +341,33 @@ namespace Backend.Core.EF.Migrations
                     b.Navigation("Supplier");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.SupplierSettings", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.Supplier.Link", b =>
                 {
-                    b.HasOne("Backend.Core.Entities.RefreshTime", "RefreshTime")
+                    b.HasOne("Backend.Core.Entities.User.Supplier.SupplierSettings", null)
+                        .WithMany("Links")
+                        .HasForeignKey("SupplierSettingsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Backend.Core.Entities.User.Supplier.SupplierSettings", b =>
+                {
+                    b.HasOne("Backend.Core.Entities.User.Supplier.RefreshTime", "RefreshTime")
                         .WithMany("Settings")
                         .HasForeignKey("RefreshTimeId");
 
                     b.Navigation("RefreshTime");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.UserRole", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.UserRole", b =>
                 {
-                    b.HasOne("Backend.Core.Entities.Role", "Role")
+                    b.HasOne("Backend.Core.Entities.User.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Backend.Core.Entities.User", "User")
+                    b.HasOne("Backend.Core.Entities.User.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -343,17 +378,22 @@ namespace Backend.Core.EF.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.RefreshTime", b =>
-                {
-                    b.Navigation("Settings");
-                });
-
-            modelBuilder.Entity("Backend.Core.Entities.Role", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.Role", b =>
                 {
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("Backend.Core.Entities.User", b =>
+            modelBuilder.Entity("Backend.Core.Entities.User.Supplier.RefreshTime", b =>
+                {
+                    b.Navigation("Settings");
+                });
+
+            modelBuilder.Entity("Backend.Core.Entities.User.Supplier.SupplierSettings", b =>
+                {
+                    b.Navigation("Links");
+                });
+
+            modelBuilder.Entity("Backend.Core.Entities.User.User", b =>
                 {
                     b.Navigation("UserRoles");
                 });

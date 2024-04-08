@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using Backend.Core.EF;
-
-namespace Backend.Core.Entities;
+﻿namespace Backend.Core.Entities.User.Supplier;
 
 public class SupplierSettings : IBaseSettings
 {
@@ -26,4 +23,6 @@ public class SupplierSettings : IBaseSettings
     public virtual RefreshTime RefreshTime { get; set; } = null!;
     
     public DateTime OffersUpdatedAtUtc { get; set; }
+    
+    public virtual ICollection<Link> Links { get; set; } = null!;
 }

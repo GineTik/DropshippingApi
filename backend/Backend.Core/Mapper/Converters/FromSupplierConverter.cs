@@ -19,11 +19,22 @@ public class FromSupplierConverter : ITypeConverter<SupplierSettings, SupplierSe
 
     public SupplierSettingsDto Convert(SupplierSettings source, SupplierSettingsDto destination, ResolutionContext context)
     {
-        destination.Links = _linkService.GetAllOfSupplier(source.Id).Result.Select(o => new GetLinkDto
+        return new SupplierSettingsDto
         {
-            Name = o.Name,
-            Url = o.Url
-        });
-        return destination;
+            Id = source.Id,
+            YmlLink = source.YmlLink,
+            YmlLoadType = ((YmlLoadTypes)source.YmlLoadTypeId).ToString(),
+            RefreshTimeId = source.RefreshTimeId,
+            PublicName = source.PublicName,
+            ApiName = source.ApiName,
+            Description = source.Description,
+            Searchable = source.Searchable,
+            OffersUpdatedAtUtc = source.OffersUpdatedAtUtc,
+            Links = _linkService.GetAllOfSupplier(source.Id).Result.Select(o => new GetLinkDto
+            {
+                Name = o.Name,
+                Url = o.Url
+            })
+        };
     }
 }

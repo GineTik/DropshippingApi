@@ -1,4 +1,5 @@
 ﻿using Backend.Core.Entities;
+using Backend.Core.Entities.User;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Backend.Core.Interfaces.JwtTokenFactory;

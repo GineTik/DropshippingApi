@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Backend.Core.EF;
 using Backend.Core.Entities;
+using Backend.Core.Entities.User.Supplier;
 using Backend.Core.Exceptions.ServiceExceptions;
 using Backend.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;

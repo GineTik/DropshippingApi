@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Backend.Core.DTOs.User;
 using Backend.Core.DTOs.User.Supplier;
+using Backend.Core.DTOs.User.Supplier.Link;
 using Backend.Core.EF;
+using Backend.Core.Entities.User.Supplier;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Core.Services.User.Supplier;
@@ -9,12 +11,14 @@ namespace Backend.Core.Services.User.Supplier;
 public class SupplierService
 {
     private readonly DataContext _dataContext;
+    private readonly LinkService _linkService;
     private readonly IMapper _mapper;
 
-    public SupplierService(DataContext dataContext, IMapper mapper)
+    public SupplierService(DataContext dataContext, IMapper mapper, LinkService linkService)
     {
         _dataContext = dataContext;
         _mapper = mapper;
+        _linkService = linkService;
     }
 
     public async Task<SuppliersPageDto> GetSuppliersPage(int page, int pageSize)
@@ -37,13 +41,36 @@ public class SupplierService
             TotalPages = totalPages,
             Page = page,
             PageSize = suppliers.Count,
-            Suppliers = suppliers.Select(s => _mapper.Map<SupplierSettingsDto>(s))
+            Suppliers = suppliers.Select(o => new ShortSupplierSettingsDto
+            {
+                Id = o.Id,
+                PublicName = o.PublicName,
+                Description = o.Description
+            })
         };
     }
 
     public async Task<SupplierSettingsDto> GetSupplier(int id)
     {
-        var supplier = await _dataContext.SupplierSettings.FirstOrDefaultAsync(s => s.Id == id);
-        return _mapper.Map<SupplierSettingsDto>(supplier);
+        var supplier = await _dataContext.SupplierSettings.FirstOrDefaultAsync(o => o.Id == id);
+        if (supplier == null) throw new Exception("GetSupplier error");
+        
+        return new SupplierSettingsDto
+        {
+            Id = supplier.Id,
+            YmlLink = supplier.YmlLink,
+            YmlLoadType = ((YmlLoadTypes)supplier.YmlLoadTypeId).ToString(),
+            RefreshTimeId = supplier.RefreshTimeId,
+            PublicName = supplier.PublicName,
+            ApiName = supplier.ApiName,
+            Description = supplier.Description,
+            Searchable = supplier.Searchable,
+            OffersUpdatedAtUtc = supplier.OffersUpdatedAtUtc,
+            Links = (await _linkService.GetAllOfSupplier(supplier.Id)).Select(o => new GetLinkDto
+            {   
+                Name = o.Name,
+                Url = o.Url
+            })
+        };
     }
 }

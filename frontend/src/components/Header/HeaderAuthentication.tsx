@@ -67,6 +67,18 @@ const HeaderAuthentication = () => {
 										Профіль
 									</ProfileMenuItem>
 								</Menu.Item>
+								{user.roles.includes("Supplier") && <>
+									<Menu.Item>
+										<ProfileMenuItem href={RouteConstants.Settings.Security}>
+											Замовлення
+										</ProfileMenuItem>
+									</Menu.Item>
+								</>}
+								<Menu.Item>
+									<ProfileMenuItem href={RouteConstants.Settings.Security}>
+										Повідомлення
+									</ProfileMenuItem>
+								</Menu.Item>
 								<Menu.Item>
 									<ProfileMenuItem href={RouteConstants.Settings.Security}>
 										Налаштування

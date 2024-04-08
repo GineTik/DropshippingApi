@@ -1,4 +1,5 @@
-﻿using Backend.Core.DTOs.User.Supplier;
+﻿using backend.Constants;
+using Backend.Core.DTOs.User.Supplier;
 using Backend.Core.Services.User.Supplier;
 using backend.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace backend.Controllers.User.Supplier;
 
-[Authorize]
+[Authorize(Policy = AuthorizationPolicies.Supplier)]
 [Route("api/user/supplier")]
 public class SupplierInformationController : Controller
 {
@@ -18,25 +19,25 @@ public class SupplierInformationController : Controller
     }
 
     [HttpPost("change-public-name")]
-    public async Task ChangePublicName([FromBody] ChangeSupplierFieldDto dto)
+    public async Task ChangePublicName([FromBody] ChangeSupplierFieldDto<string> dto)
     {
         await _supplierInformationService.ChangePublicName(User.Identity!.GetId(), dto.Content);
     }
     
     [HttpPost("change-api-name")]
-    public async Task ChangeApiName([FromBody] ChangeSupplierFieldDto dto)
+    public async Task ChangeApiName([FromBody] ChangeSupplierFieldDto<string> dto)
     {
         await _supplierInformationService.ChangeApiName(User.Identity!.GetId(), dto.Content);
     }
     
     [HttpPost("change-description")]
-    public async Task ChangeDescription([FromBody] ChangeSupplierFieldDto dto)
+    public async Task ChangeDescription([FromBody] ChangeSupplierFieldDto<string> dto)
     {
         await _supplierInformationService.ChangeDescription(User.Identity!.GetId(), dto.Content);
     }
     
     [HttpPost("change-yml-type")]
-    public async Task ChangeYmlType([FromBody] ChangeSupplierFieldDto dto)
+    public async Task ChangeYmlType([FromBody] ChangeSupplierFieldDto<string> dto)
     {
         await _supplierInformationService.ChangeYmlType(User.Identity!.GetId(), dto.Content);
     }

@@ -1,13 +1,9 @@
-import { Buttons } from '@/components/buttons'
+import EntityList from '@/components/entity-list/EntityList'
 import { ApiKeyDto } from '@/dtos/user/api-key/api-key.dto'
 import { ApiKeysService } from '@/services/user/api-keys.service'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
-import { Expand, Plus } from 'lucide-react'
-import Link from 'next/link'
 import { useState } from 'react'
-import styles from '../DropshipperProfile.module.scss'
-import CreateApiKeysDialog from './CreateApiKeysDialog'
 import ReadAndEditApiKeysDialog from './ReadAndEditApiKeysDialog'
 
 const ApiKeys = () => {
@@ -17,12 +13,29 @@ const ApiKeys = () => {
 		staleTime: 1 * 60 * 1000
 	})
 
-	const [creatingDialogOpened, setCreatingDialogOpened] = useState(false)
 	const [selectedItem, setSelectedItem] = useState<ApiKeyDto | null>(null)
 
 	return (
 		<>
-		<div className={styles.allows}>
+		<EntityList
+			title='Апі ключі'
+			description='Використовуйте апі ключі для доступу до кінцевих точок АПІ.'
+			moreHref='#'
+			getAllItems={() => ApiKeysService.getAll()}
+			createItemRequest={(values) => ApiKeysService.create(values)}
+			changingFields={{
+				name: '',
+				description: ''
+			}}
+			contentOfItem={o => o.name}
+			copyData={o => o.key}
+			translates={{
+				name: 'Im\'я',
+				description: 'Опис',
+				key: 'Ключ',
+			}}
+		/>
+		{/* <div className={styles.allows}>
 			<div className={styles.allows_header}>
 				<h3>Апі ключі</h3>
 				<Buttons.Icon onClick={() => setCreatingDialogOpened(true)}><Plus /></Buttons.Icon>
@@ -36,13 +49,7 @@ const ApiKeys = () => {
 				{k.name}
 				<Expand className='text-gray-400' size={15} />
 			</div>)}
-		</div>
-		
-		<CreateApiKeysDialog 
-			close={() => setCreatingDialogOpened(false)}
-			refetch={refetch} 
-			show={creatingDialogOpened} 
-		/>
+		</div> */}
 
 		{selectedItem && <ReadAndEditApiKeysDialog 
 			item={selectedItem}

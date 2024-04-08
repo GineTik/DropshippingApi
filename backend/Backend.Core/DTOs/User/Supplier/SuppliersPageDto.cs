@@ -6,5 +6,5 @@ public class SuppliersPageDto
     public int TotalPages { get; set; }
     public int PageSize { get; set; }
     public int Page { get; set; }
-    public IEnumerable<SupplierSettingsDto> Suppliers { get; set; } = null!;
+    public IEnumerable<ShortSupplierSettingsDto> Suppliers { get; set; } = null!;
 }

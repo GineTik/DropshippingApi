@@ -1,4 +1,4 @@
-﻿namespace Backend.Core.Entities.Users.Supplier;
+﻿namespace Backend.Core.Entities.User.Supplier;
 
 public enum YmlLoadTypes
 {

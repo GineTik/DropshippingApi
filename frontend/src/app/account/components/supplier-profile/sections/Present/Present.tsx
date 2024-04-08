@@ -33,10 +33,14 @@ const Present = (supplier: SupplierSettings) => {
 							<span className={styles.parameters__title}>Теги:</span> 
 							<span className={styles.parameters__value}>Для дома, дешевий сегмент, і тому подібне</span>
 						</div>
-						<div className={styles.present__links}>
+						{supplier.links && supplier.links.length > 0 && <div className={styles.present__links}>
 							<span className={styles.parameters__title}>Силки:</span> 
-							<span className={styles.parameters__value}><Link href='#'>Website</Link>, <Link href='#'>Portfolio</Link></span>
-						</div>
+							<span className={styles.parameters__value}>
+								{supplier.links.map((link, i) => 
+									<><Link href={link.url}>{link.name}</Link>{i != supplier.links.length - 1 && ','} </>
+								)}
+							</span>
+						</div>}
 					</div>
 
 					<div className={styles.present__footer}>

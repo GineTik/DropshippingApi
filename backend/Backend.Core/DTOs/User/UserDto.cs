@@ -1,4 +1,5 @@
-﻿using Backend.Core.Entities;
+﻿using Backend.Core.DTOs.User.Supplier;
+using Backend.Core.Entities;
 
 namespace Backend.Core.DTOs.User;
 

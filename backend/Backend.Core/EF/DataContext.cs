@@ -1,6 +1,9 @@
 ﻿using System.Text.Json;
 using Backend.Core.Entities;
 using Backend.Core.Entities.Offer;
+using Backend.Core.Entities.User;
+using Backend.Core.Entities.User.Dropshipper;
+using Backend.Core.Entities.User.Supplier;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Core.EF;
@@ -19,6 +22,7 @@ public class DataContext : DbContext
     // Supplier
     public required DbSet<SupplierSettings> SupplierSettings { get; set; }
     public required DbSet<RefreshTime> AvailableYmlRefreshTimes { get; set; }
+    public required DbSet<Link> Links { get; set; }
     
     // Offer
     public required DbSet<Offer> Offers { get; set; }

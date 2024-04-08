@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Backend.Core.Entities;
+﻿namespace Backend.Core.Entities.User;
 
 public class UserRole
 {

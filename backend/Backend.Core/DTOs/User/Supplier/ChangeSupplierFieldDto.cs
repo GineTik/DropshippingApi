@@ -1,6 +1,6 @@
 ﻿namespace Backend.Core.DTOs.User.Supplier;
 
-public class ChangeSupplierFieldDto
+public class ChangeSupplierFieldDto<T>
 {
-    public string Content { get; set; } = null!;
+    public required T Content { get; set; }
 }

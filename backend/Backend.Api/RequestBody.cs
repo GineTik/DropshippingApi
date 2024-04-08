@@ -1,6 +1,6 @@
 ﻿namespace backend;
 
-public class RequestBody
+public class RequestBody<T>
 {
-    
+    public required T Content { get; set; }
 }

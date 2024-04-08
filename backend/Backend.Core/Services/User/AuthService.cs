@@ -35,7 +35,7 @@ public class AuthService
     
     public async Task<SuccessAuthDto> Login(LoginDto dto)
     {
-        var user = await _dataContext.Users
+        var user = await _dataContext.Users.Include(user => user.UserRoles)
             .FirstOrDefaultAsync(u => u.Email == dto.Email);
         if (user is null || _passwordHasher.Compare(user.Password, dto.Password) == false) throw new UserNotExistsException();
 
@@ -52,13 +52,13 @@ public class AuthService
         {
             AccessToken = tokens.AccessToken,
             RefreshToken = tokens.RefreshToken,
-            User = await _mapper.Map<Task<UserDto>>(user)
+            User = _mapper.Map<UserDto>(user)
         };
     }
 
     public async Task<SuccessAuthDto> RegistrationDropshipper(RegistrationDropshipperDto dto)
     {
-        return await Registration(new User
+        return await Registration(new Entities.User.User
             {
                 Email = dto.Email,
                 Password = _passwordHasher.Hash(dto.Password),
@@ -70,7 +70,7 @@ public class AuthService
 
     public async Task<SuccessAuthDto> RegistrationSupplier(RegistrationSupplierDto dto)
     {
-        return await Registration(new User
+        return await Registration(new Entities.User.User
             {
                 Email = dto.Email,
                 Password = _passwordHasher.Hash(dto.Password),
@@ -103,7 +103,7 @@ public class AuthService
         {
             AccessToken = tokens.AccessToken,
             RefreshToken = tokens.RefreshToken,
-            User = await _mapper.Map<Task<UserDto>>(user)
+            User = _mapper.Map<UserDto>(user)
         };
     }
 
@@ -124,7 +124,7 @@ public class AuthService
     }
     
     
-    private async Task<SuccessAuthDto> Registration(User newUser, Roles role, IBaseSettings settings)
+    private async Task<SuccessAuthDto> Registration(Entities.User.User newUser, Roles role, IBaseSettings settings)
     {
         var foundUser = await _dataContext.Users
             .FirstOrDefaultAsync(u => u.Email == newUser.Email);
@@ -149,11 +149,11 @@ public class AuthService
         
         var tokens = _jwtTokenFactory.CreateTokens(newUser);
 
-        return  new SuccessAuthDto
+        return new SuccessAuthDto
         {
             AccessToken = tokens.AccessToken,
             RefreshToken = tokens.RefreshToken,
-            User = await _mapper.Map<Task<UserDto>>(newUser)
+            User = _mapper.Map<UserDto>(newUser)
         };
     }
 }

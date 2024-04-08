@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Text;
 using Backend.Core.Entities;
+using Backend.Core.Entities.User;
 using Backend.Core.Interfaces.JwtTokenFactory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -21,13 +22,16 @@ public class JwtTokenFactory : IJwtTokenFactory
     {
         var claims = new[]
         {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            // TODO: rewrite 
+            new Claim(ClaimTypes.Role, user.UserRoles.Any(o => o.RoleId == (int)Roles.Dropshipper) 
+                ? Roles.Dropshipper.ToString() : Roles.Supplier.ToString())
         };
         
         return new JwtTokens
         {
-            AccessToken = create(claims, DateTime.UtcNow.Add(TimeSpan.FromMinutes(15))),
-            RefreshToken = create(claims, DateTime.UtcNow.Add(TimeSpan.FromDays(30)))
+            AccessToken = Create(claims, DateTime.UtcNow.Add(TimeSpan.FromMinutes(15))),
+            RefreshToken = Create(claims, DateTime.UtcNow.Add(TimeSpan.FromDays(30)))
         };
     }
 
@@ -47,7 +51,7 @@ public class JwtTokenFactory : IJwtTokenFactory
         };
     }
    
-   private string create(IEnumerable<Claim> claims, DateTime expires)
+   private string Create(IEnumerable<Claim> claims, DateTime expires)
    {
        return new JwtSecurityTokenHandler().WriteToken(new JwtSecurityToken(
            issuer: _configuration.GetSection("JWT:ISSUER").Value,

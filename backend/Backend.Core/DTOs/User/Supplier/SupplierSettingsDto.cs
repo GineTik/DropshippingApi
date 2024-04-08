@@ -1,6 +1,6 @@
 ﻿using Backend.Core.DTOs.User.Supplier.Link;
 
-namespace Backend.Core.DTOs.User;
+namespace Backend.Core.DTOs.User.Supplier;
 
 public class SupplierSettingsDto
 {
@@ -14,5 +14,5 @@ public class SupplierSettingsDto
     public int? RefreshTimeId { get; set; }
     public DateTime OffersUpdatedAtUtc { get; set; }
 
-    public IEnumerable<LinkDto> Links { get; set; } = null!;
+    public IEnumerable<GetLinkDto> Links { get; set; } = null!;
 }

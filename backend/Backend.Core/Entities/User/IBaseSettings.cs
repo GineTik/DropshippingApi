@@ -1,4 +1,4 @@
-﻿namespace Backend.Core.Entities;
+﻿namespace Backend.Core.Entities.User;
 
 public interface IBaseSettings
 {
