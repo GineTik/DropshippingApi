@@ -1,4 +1,6 @@
-﻿namespace Backend.Core.DTOs.User;
+﻿using Backend.Core.DTOs.User.Supplier.Link;
+
+namespace Backend.Core.DTOs.User;
 
 public class SupplierSettingsDto
 {
@@ -11,4 +13,6 @@ public class SupplierSettingsDto
     public string? YmlLink { get; set; } = null!;
     public int? RefreshTimeId { get; set; }
     public DateTime OffersUpdatedAtUtc { get; set; }
+
+    public IEnumerable<LinkDto> Links { get; set; } = null!;
 }

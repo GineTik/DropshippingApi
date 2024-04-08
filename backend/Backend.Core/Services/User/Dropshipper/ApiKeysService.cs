@@ -2,6 +2,7 @@
 using Backend.Core.DTOs.User.Dropshipper.ApiKey;
 using Backend.Core.EF;
 using Backend.Core.Entities;
+using Backend.Core.Entities.User.Dropshipper;
 using Backend.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 

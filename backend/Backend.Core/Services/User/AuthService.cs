@@ -3,7 +3,9 @@ using AutoMapper;
 using Backend.Core.DTOs.User;
 using Backend.Core.DTOs.User.Auth;
 using Backend.Core.EF;
-using Backend.Core.Entities;
+using Backend.Core.Entities.User;
+using Backend.Core.Entities.User.Dropshipper;
+using Backend.Core.Entities.User.Supplier;
 using Backend.Core.Exceptions.ServiceExceptions;
 using Backend.Core.Interfaces;
 using Backend.Core.Interfaces.ConfirmationCode;
@@ -56,7 +58,7 @@ public class AuthService
 
     public async Task<SuccessAuthDto> RegistrationDropshipper(RegistrationDropshipperDto dto)
     {
-        return await Registration(new Entities.User
+        return await Registration(new User
             {
                 Email = dto.Email,
                 Password = _passwordHasher.Hash(dto.Password),
@@ -68,7 +70,7 @@ public class AuthService
 
     public async Task<SuccessAuthDto> RegistrationSupplier(RegistrationSupplierDto dto)
     {
-        return await Registration(new Entities.User
+        return await Registration(new User
             {
                 Email = dto.Email,
                 Password = _passwordHasher.Hash(dto.Password),
@@ -122,7 +124,7 @@ public class AuthService
     }
     
     
-    private async Task<SuccessAuthDto> Registration(Entities.User newUser, Roles role, IBaseSettings settings)
+    private async Task<SuccessAuthDto> Registration(User newUser, Roles role, IBaseSettings settings)
     {
         var foundUser = await _dataContext.Users
             .FirstOrDefaultAsync(u => u.Email == newUser.Email);

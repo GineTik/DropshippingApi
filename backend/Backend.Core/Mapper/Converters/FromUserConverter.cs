@@ -1,23 +1,27 @@
 ﻿using AutoMapper;
 using Backend.Core.DTOs.User;
+using Backend.Core.DTOs.User.Supplier;
+using Backend.Core.DTOs.User.Supplier.Link;
 using Backend.Core.EF;
 using Backend.Core.Entities;
+using Backend.Core.Entities.User;
+using Backend.Core.Entities.User.Supplier;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Core.Mapper.Converters;
 
-public class UserToUserDtoConverter : ITypeConverter<User, Task<UserDto>>
+public class FromUserConverter : ITypeConverter<User, UserDto>
 {
     private readonly DataContext _dataContext;
     private readonly IMapper _mapper;
 
-    public UserToUserDtoConverter(DataContext dataContext, IMapper mapper)
+    public FromUserConverter(DataContext dataContext, IMapper mapper)
     {
         _dataContext = dataContext;
         _mapper = mapper;
     }
 
-    public async Task<UserDto> Convert(User source, Task<UserDto> destination, ResolutionContext context)
+    public UserDto Convert(User source, UserDto destination, ResolutionContext context)
     {
         var roleIds = source.UserRoles.Select(ur => ur.RoleId);
         var result = new UserDto
@@ -29,14 +33,14 @@ public class UserToUserDtoConverter : ITypeConverter<User, Task<UserDto>>
         
         if (source.UserRoles.Any(r => r.RoleId == (int)Roles.Dropshipper))
         {
-            var settings = await _dataContext.DropshipperSettings
-                .FirstOrDefaultAsync(s => s.Id == source.SettingsId);
+            var settings = _dataContext.DropshipperSettings
+                .FirstOrDefault(s => s.Id == source.SettingsId);
             result.DropshipperSettings = _mapper.Map<DropshipperSettingsDto>(settings);
         }
         else if (source.UserRoles.Any(r => r.RoleId == (int)Roles.Supplier))
         {
-            var settings = await _dataContext.SupplierSettings
-                .FirstOrDefaultAsync(s => s.Id == source.SettingsId);
+            var settings = _dataContext.SupplierSettings
+                .FirstOrDefault(s => s.Id == source.SettingsId);
             result.SupplierSettings = _mapper.Map<SupplierSettingsDto>(settings);
         }
 
