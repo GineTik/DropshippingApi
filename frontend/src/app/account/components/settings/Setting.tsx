@@ -2,6 +2,8 @@ import { Buttons } from "@/components/buttons"
 import ErrorMessage from "@/components/error-message/ErrorMessage"
 import { MutationFunction, useMutation } from "@tanstack/react-query"
 import { AxiosError, AxiosResponse } from "axios"
+import { useState } from "react"
+import { toast } from "react-toastify"
 
 interface SettingProps {
 	title: string
@@ -13,15 +15,27 @@ interface SettingProps {
 
 const Setting = ({title, children, buttonText, sendRequest: sentRequest, onChangeSetting}: SettingProps) => {
 
+	const [toastId, setToastId] = useState<any>(null)
+
 	const {
 		mutateAsync: changeSetting,
 		error,
-		isPending
 	} = useMutation<AxiosResponse, AxiosError<{ message: string }>>({
 		mutationKey: [`change-${title}`],
 		mutationFn: (v) => sentRequest(v),
+		onMutate: () => {
+			toast.clearWaitingQueue()
+			setToastId(toast.loading('Змінюємо'))
+		},
 		onSuccess: () => {
 			onChangeSetting && onChangeSetting()
+			toast.update(toastId, { render: "Оновлено", type: "success", isLoading: false, closeOnClick: true, autoClose: 2000 });
+		},
+		onSettled: () => {
+			toast.clearWaitingQueue()
+		},
+		onError: (err) => {
+			toast.update(toastId, { render: err.response?.data.message, type: "error", isLoading: false, closeOnClick: true, autoClose: 2000 });
 		}
 	})
 

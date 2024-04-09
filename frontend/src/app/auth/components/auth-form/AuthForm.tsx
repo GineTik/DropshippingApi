@@ -7,10 +7,11 @@ import { AuthService } from '@/services/auth.service'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios'
 import classNames from 'classnames'
+import { OctagonXIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import RouteConstants from '../../../../../constants/RouteConstants'
-import ErrorMessage from '../../../../components/error-message/ErrorMessage'
 import { AuthDto } from '../../../../dtos/user/auth.dto'
 import styles from './AuthForm.module.scss'
 
@@ -37,7 +38,6 @@ const AuthForm = ({ type }: AuthFormProps) => {
 		publicName: '',
 		apiName: ''
 	})
-	const [error, setError] = useState<AxiosError<any> | string>()
 
 	const { mutateAsync: authAsync, isPending } = useMutation<
 		AxiosResponse<SuccessAuthDto>,
@@ -54,7 +54,9 @@ const AuthForm = ({ type }: AuthFormProps) => {
 			}
 		},
 		onError: (err) => {
-			setError(err)
+			toast.error(err.response?.data.message, {
+				icon: <OctagonXIcon className='text-red-500' />
+			})
 		},
 		onSuccess: ({ data }) => {
 			login(data)
@@ -63,17 +65,18 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
 	const handleSubmit = () => {
 		if (!isLogin && data.password !== data.confirmPassword) {
-			setError('Пароль не співпадає з паролем у полі "Підтвердіть пароль"')
+			toast.error('Пароль не співпадає з паролем у полі "Підтвердіть пароль"', {
+				icon: <OctagonXIcon className='text-red-500' />
+			})
 			return
 		}
 
-		setError(undefined)
 		authAsync()
 	}
 
 	return (
-		<form action="" className="flex flex-col gap-3 text-sm text-white">
-			<h4 className='mb-4'>{isLogin ? 'Вхід' : 'Реєстрація'}</h4>
+		<form action="" className="flex flex-col gap-3 text-sm text-white w-[280px]">
+			<h4 className=''>{isLogin ? 'Вхід' : 'Реєстрація'}</h4>
 			<Inputs.Default
 				placeholder="Почта"
 				type="email"
@@ -147,8 +150,6 @@ const AuthForm = ({ type }: AuthFormProps) => {
 					Вже маю <span className="text-blue-500">акаунт</span>!
 				</Link>
 			)}
-
-			{error && <ErrorMessage>{error}</ErrorMessage>}
 		</form>
 	)
 }

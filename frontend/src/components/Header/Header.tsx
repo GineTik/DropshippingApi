@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from './Header.module.scss'
 import HeaderAuthentication from './HeaderAuthentication'
+import Notifications from './Notifications'
 
 const Header = () => {
 	return (
@@ -35,6 +36,7 @@ const Header = () => {
 			</div>
 			<div className="flex items-center gap-2 ml-auto">
 				<HeaderAuthentication />
+				<Notifications />
 			</div>
 		</Section>
 	)

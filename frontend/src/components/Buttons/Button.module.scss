@@ -119,3 +119,11 @@
         @apply bg-white/10 border-white/60;
     }
 }
+
+.toasts_clear_button {
+    @apply bg-slate-950 w-full;
+
+    &:hover {
+        @apply bg-slate-900;
+    }
+}
