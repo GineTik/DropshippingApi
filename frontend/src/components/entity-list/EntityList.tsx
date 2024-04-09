@@ -67,6 +67,7 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 			</p>
 			<div>
 				{items?.data.map((o: any) => <div 
+					key={crypto.randomUUID()}
 					className={styles.list__item}
 					onClick={() => setSelectedItem(o)}
 				>
@@ -83,6 +84,7 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 			<div className="flex flex-col gap-3 w-[300px]">
 				<h4>{creationTitle}</h4>
 				{Object.keys(changingFields).map(o => <Inputs.Default
+					key={crypto.randomUUID()}
 					className="w-full"
 					placeholder={translates[o]}
 					type="text"
@@ -117,7 +119,10 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 				</div>
 			</div>
 				<div className="flex flex-wrap gap-3 w-[500px]">
-					{selectedItem && Object.keys(selectedItem).map(o => <div className='w-[48%] flex-grow'>
+					{selectedItem && Object.keys(selectedItem).map(o => <div
+						key={crypto.randomUUID()} 
+						className='w-[48%] flex-grow'
+					>
 						<span className={styles.dialog__field_title}>{translates[o]}</span>
 						<div>{selectedItem[o]}</div>
 					</div>)}

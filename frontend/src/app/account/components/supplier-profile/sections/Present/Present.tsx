@@ -1,12 +1,19 @@
 import { Buttons } from "@/components/buttons"
 import Section from "@/components/section/Section"
 import { SupplierSettings } from "@/dtos/user/settings/supplier-settings.dto"
+import { OffersService } from "@/services/user/offers.service"
+import { useQuery } from "@tanstack/react-query"
 import { HeartIcon, ThumbsDownIcon, ThumbsUpIcon } from "lucide-react"
 import Link from "next/link"
 import blocks from '../../../../../../components/Blocks.module.scss'
 import styles from "./Present.module.scss"
 
 const Present = (supplier: SupplierSettings) => {
+	const { data: count } = useQuery<any>({
+		queryKey: [`get-count-of-offers-${supplier.id}`],
+		queryFn: () => OffersService.getCount(supplier.id),
+	})
+
   return (
     <Section>
 			<div className={styles.present}>
@@ -55,7 +62,7 @@ const Present = (supplier: SupplierSettings) => {
 					<div className={styles.present__statistics}>
 						<div>
 							<span className={styles.statistics__title}>Кількість товарів</span>
-							<span className={styles.statistics__value}>11576 товарів</span>
+							<span className={styles.statistics__value}>{count?.data} товарів</span>
 						</div>
 						<div>
 							<span className={styles.statistics__title}>Останнє оновлення товарів</span>

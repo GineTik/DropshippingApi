@@ -542,6 +542,9 @@ video {
 .pointer-events-none {
   pointer-events: none;
 }
+.static {
+  position: static;
+}
 .fixed {
   position: fixed;
 }
@@ -857,9 +860,6 @@ video {
 .items-center {
   align-items: center;
 }
-.justify-start {
-  justify-content: flex-start;
-}
 .justify-center {
   justify-content: center;
 }
@@ -970,10 +970,6 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
-.bg-gray-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
@@ -1046,10 +1042,6 @@ video {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1141,9 +1133,6 @@ video {
 }
 .pt-\[60px\] {
   padding-top: 60px;
-}
-.text-left {
-  text-align: left;
 }
 .text-center {
   text-align: center;

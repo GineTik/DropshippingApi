@@ -14,7 +14,10 @@ const BaseButton = ({children, className, onClick, href, ...props}: BaseButtonPr
         <props.as 
             className={className}
             href={href}
-            onClick={onClick}
+            onClick={(e: { preventDefault: () => void }) => {
+                props.as === 'button' && e.preventDefault()
+                onClick && onClick(e)
+            }}
         >
             {children}
         </props.as>

@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Dynamic;
+using System.Text.Json;
 using Backend.Core.Entities;
 using Backend.Core.Entities.Offer;
 using Backend.Core.Entities.User;
@@ -80,8 +81,8 @@ public class DataContext : DbContext
             .Property(e => e.Fields)
             .HasConversion(
                 v => JsonSerializer.Serialize(v, new JsonSerializerOptions()),
-                v => JsonSerializer.Deserialize<IDictionary<string, object>>(
-                    v, new JsonSerializerOptions()) ?? new Dictionary<string, object>()
+                v => JsonSerializer.Deserialize<ExpandoObject>(
+                    v, new JsonSerializerOptions()) ?? new ExpandoObject()
             );
         
         base.OnModelCreating(modelBuilder);

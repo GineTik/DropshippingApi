@@ -33,7 +33,7 @@ const HeaderAuthentication = () => {
 			{user ? (
 				<Menu as="div" className="relative">
 					<Menu.Button>
-						<Buttons.Emerging className={styles.header_profile}>
+						<Buttons.Emerging as="div" className={styles.header_profile}>
 							<Image
 								src={UserLogo.src}
 								alt="User"
@@ -46,7 +46,7 @@ const HeaderAuthentication = () => {
 									{user?.email}
 								</div>
 								<div className={styles.header_profile_subscribe}>
-									Немає підписки
+									{user.roles.includes('Supplier') ? 'Поставщик' : 'Дропшипер'}
 								</div>
 							</div>
 						</Buttons.Emerging>

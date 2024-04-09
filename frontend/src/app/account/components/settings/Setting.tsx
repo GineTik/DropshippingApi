@@ -32,7 +32,7 @@ const Setting = ({title, children, buttonText, sendRequest: sentRequest, onChang
 				{children}
 				
 				<Buttons.Secondary
-					onClick={() => changeSetting()}
+					onClick={(e) => changeSetting()}
 				>
 					{buttonText}
 				</Buttons.Secondary>

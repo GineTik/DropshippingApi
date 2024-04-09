@@ -6,7 +6,7 @@ interface StringValueProps {
 }
 
 const StringValue = ({ children }: StringValueProps) => {
-	const indexOfStartComment = children.indexOf('//')
+	const indexOfStartComment = children.indexOf(' //')
 
 	if (indexOfStartComment == -1) {
 		return (

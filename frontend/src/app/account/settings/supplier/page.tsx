@@ -39,9 +39,16 @@ const SupplierSettings = () => {
 				<input className={styles.input} value={settings.description} onChange={(e) => changeDescription(e.target.value)} />
 			</Setting>
 			<Setting title="Тип загрузки yml файла" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlType(settings.ymlLoadType)}>
-				<Inputs.Select onChange={(e) => changeYmlType(e.target.value)}>
+				<Inputs.Select 
+					onChange={(e) => changeYmlType(e.target.value)}
+					value={settings.ymlLoadType}>
 				{availableYmlLoadTypes?.data.map((type: any) => 
-					<option selected={type === settings.ymlLoadType} value={type}>{type}</option>
+					<option 
+						key={crypto.randomUUID()}
+						value={type}
+					>
+						{type}
+					</option>
 				)}
 				</Inputs.Select>
 			</Setting>
@@ -55,10 +62,16 @@ const SupplierSettings = () => {
 					<Inputs.Select 
 						onChange={(e) => changeYmlCatalogRefreshTime(Number(e.target.value))}
 						className=''
+						value={settings.refreshTimeId}
 					>
-						{availableRefreshTimes?.data.map((time: any) => <>
-						<option selected={time.id === settings.refreshTimeId} value={time.id}>{time.name}</option>
-						</>)}
+						{availableRefreshTimes?.data.map((time: any) => 
+							<option 
+								key={crypto.randomUUID()} 
+								value={time.id}
+							>
+								{time.name}
+							</option>
+						)}
 					</Inputs.Select>
 				</Setting>
 			</>}

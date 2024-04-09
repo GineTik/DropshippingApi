@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Dynamic;
 using Backend.Core.EF;
 using Backend.Core.Entities.User.Supplier;
 
@@ -13,5 +14,5 @@ public class Offer
 
     public virtual SupplierSettings Supplier { get; set; } = null!;
 
-    public IDictionary<string, object> Fields { get; set; } = null!;
+    public ExpandoObject Fields { get; set; } = null!;
 }

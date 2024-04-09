@@ -5,15 +5,15 @@ namespace Backend.Core.Sheduler;
 
 public class UnloadOfferJob : IInvocable
 {
-    private readonly OfferService _offerService;
+    private readonly OfferUnloaderService _offerUnloaderService;
 
-    public UnloadOfferJob(OfferService offerService)
+    public UnloadOfferJob(OfferUnloaderService offerUnloaderService)
     {
-        _offerService = offerService;
+        _offerUnloaderService = offerUnloaderService;
     }
 
     public async Task Invoke()
     {
-        await _offerService.UnloadOffersByLink();
+        await _offerUnloaderService.UnloadOffersByLink();
     }
 }

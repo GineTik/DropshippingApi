@@ -25,10 +25,12 @@ public static class ServiceExtension
         services.AddTransient<UserService>();
         services.AddTransient<SupplierInformationService>();
         services.AddTransient<SupplierService>();
-        services.AddTransient<OfferService>();
+        services.AddTransient<OfferUnloaderService>();
         services.AddTransient<LinkService>();
         services.AddTransient<TagService>();
+        services.AddTransient<OfferService>();
         services.AddDbContext<DataContext>(options => options.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString("Local")));
+        services.AddDbContextFactory<DataContext>(options => options.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString("Local")), ServiceLifetime.Scoped);
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScheduler();
         services.AddTransient<UnloadOfferJob>();

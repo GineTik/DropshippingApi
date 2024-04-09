@@ -1,9 +1,9 @@
-﻿using System.Xml.Linq;
-using Backend.Core.Entities.Offer;
+﻿using System.Dynamic;
+using System.Xml.Linq;
 
 namespace Backend.Infrastructure.Parsers.YmlParser;
 
 public interface IYmlParseIncertepter
 {
-    void Parse(XElement offer, XElement shop, Dictionary<string, object> fields);
+    void Parse(XElement offer, XElement shop, ExpandoObject fields);
 }

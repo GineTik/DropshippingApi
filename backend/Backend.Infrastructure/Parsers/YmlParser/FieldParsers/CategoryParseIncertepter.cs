@@ -1,18 +1,19 @@
-﻿using System.Xml.Linq;
+﻿using System.Dynamic;
+using System.Xml.Linq;
 using Backend.Core.Entities.Offer;
 
 namespace Backend.Infrastructure.Parsers.YmlParser.FieldParsers;
 
 public class CategoryParseIncertepter : IYmlParseIncertepter
 {
-    public void Parse(XElement offer, XElement shop, Dictionary<string, object> fields)
+    public void Parse(XElement offer, XElement shop, ExpandoObject fields)
     {
         if (offer.Element("categoryId") == null)
             return;
         
         var categories = shop.Element("categories")!.Elements("category");
-        fields["category"] = ParseCategory(offer.Element("categoryId")!.Value, categories)!;
-        fields.Remove("categoryId");
+        fields.TryAdd("category", ParseCategory(offer.Element("categoryId")!.Value, categories)!);
+        fields.Remove("categoryId", out _);
     }
 
     private static Category? ParseCategory(string id, IEnumerable<XElement> categories)

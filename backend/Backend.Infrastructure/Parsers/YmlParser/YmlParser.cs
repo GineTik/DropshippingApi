@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Dynamic;
+using System.Xml.Linq;
 using Backend.Core.Entities.Offer;
 using Backend.Core.Interfaces;
 using Backend.Infrastructure.Parsers.YmlParser.FieldParsers;
@@ -32,7 +33,7 @@ public class YmlParser : IYmlParser
         
         foreach (var offer in offers)
         {
-            var fields = new Dictionary<string, object>();
+            var fields = new ExpandoObject();
             foreach (var incertepter in _incertepters)
                 incertepter.Parse(offer, shop, fields);
             
