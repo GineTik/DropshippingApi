@@ -1,0 +1,7 @@
+.error_block {
+    @apply flex gap-4 my-4;
+
+    div:first-child {
+        @apply w-[300px];
+    }
+}

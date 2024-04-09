@@ -1,0 +1,31 @@
+.header {
+    @apply flex mt-3 items-center z-10;
+}
+
+.header_link {
+    @apply text-sm transition py-3 px-3 text-gray-700 dark:text-gray-600 font-semibold;
+    
+    &:first-child {
+        @apply ml-8;
+    }
+
+    &:hover {
+        @apply scale-110 text-gray-950 dark:text-white;
+    }
+}
+
+.header_profile {
+    @apply flex items-center p-1 pr-2;
+
+    &_email {
+        @apply w-[130px] truncate text-black dark:text-white;
+    }
+
+    &_subscribe {
+        @apply text-gray-400 text-xs text-left;
+    }
+
+    &_menu {
+        @apply rounded-[10px] absolute right-0 origin-top-right divide-y divide-gray-100 shadow-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none p-2;
+    }
+}

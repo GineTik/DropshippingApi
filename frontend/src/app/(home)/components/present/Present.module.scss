@@ -1,0 +1,18 @@
+.section {
+    @apply flex gap-3 mt-20 mb-28 items-start flex-col md:flex-row;
+    @apply text-white;
+}
+
+.title {
+    @apply text-white;
+    @apply text-[70px] mb-9;
+}
+
+.p {
+    @apply text-gray-400;
+    @apply mb-12 text-xl max-w-[500px];
+
+    .emphasis {
+        @apply text-white;
+    }
+}

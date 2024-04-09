@@ -1,0 +1,43 @@
+.list {
+    @apply w-[380px] mb-14 flex flex-col gap-3;
+ 
+    &__header {
+        @apply flex justify-between items-center;
+    }
+
+    &__p {
+        @apply text-sm;
+    }
+
+    &__item {
+        @apply flex justify-between items-center px-5 py-4 rounded-[10px] font-medium transition border border-transparent mb-3 text-base;
+        @apply bg-gray-100 dark:bg-slate-900;
+
+        &:hover {
+            @apply cursor-pointer border border-gray-700 dark:border-gray-700;
+        }
+    }
+
+    &.is_settings {
+        @apply mb-6;
+    }
+}
+
+.dialog {
+    &__content {
+        @apply transform overflow-hidden rounded-[10px] p-10 text-left align-middle shadow-xl transition-all;
+        @apply bg-slate-100 text-black dark:bg-slate-900 dark:text-white;
+    }
+
+    &__header {
+        @apply flex justify-between items-center;
+    }
+
+    &__icons {
+        @apply flex gap-1;
+    }
+
+    &__field_title {
+        @apply text-zinc-400 dark:text-zinc-500 italic mt-3 block truncate font-medium;
+    }
+}

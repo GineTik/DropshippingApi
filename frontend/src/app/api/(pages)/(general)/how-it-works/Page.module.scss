@@ -1,0 +1,17 @@
+.list {
+    @apply space-y-10 py-6;
+
+    li {
+        @apply flex gap-4;
+
+
+        h5  {
+            @apply font-bold mb-1;
+        }
+    }
+}
+
+
+.list_image {
+    @apply min-w-[200px] w-[200px] h-[150px] bg-gray-100 rounded-xl;
+}

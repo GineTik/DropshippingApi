@@ -1,0 +1,20 @@
+.wrapper {
+    @apply w-full py-[100px] rounded-b-[45px];
+    @apply bg-gray-100;
+}
+
+.section {
+    @apply flex gap-[65px];
+}
+
+.title__emphasis {
+    @apply font-semibold italic;
+}
+
+.section__title {
+    @apply mb-[40px];
+}
+
+.section__p {
+    @apply mb-[18px];
+}

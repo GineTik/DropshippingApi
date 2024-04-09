@@ -1,0 +1,51 @@
+.profile {
+    @apply flex gap-14 mt-[60px] text-black dark:text-white;
+}
+
+.orders {
+    @apply w-full;
+
+    &_header {
+        @apply flex justify-between items-end; 
+    }
+}
+
+.allows {
+    @apply w-[380px] mb-14;
+ 
+    &_header {
+        @apply flex justify-between items-center;
+    }
+
+    &_item {
+        @apply flex justify-between items-center px-5 py-4 rounded-[10px] text-base font-medium transition border border-transparent mb-3;
+        @apply bg-gray-100 dark:bg-slate-900;
+
+        &:hover {
+            @apply cursor-pointer border border-gray-700 dark:border-gray-700;
+        }
+    }
+}
+
+.p {
+    @apply my-5 leading-normal text-sm;
+}
+
+.dialog {
+    &_content {
+        @apply transform overflow-hidden rounded-[10px] p-10 text-left align-middle shadow-xl transition-all;
+        @apply bg-slate-100 text-black dark:bg-slate-900 dark:text-white;
+    }
+
+    &_header {
+        @apply flex justify-between items-center;
+    }
+
+    &_icons {
+        @apply flex gap-1;
+    }
+
+    &_field_title {
+        @apply text-zinc-400 dark:text-zinc-500 italic mt-3 block truncate font-medium;
+    }
+}

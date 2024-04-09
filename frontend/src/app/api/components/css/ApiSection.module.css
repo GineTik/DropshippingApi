@@ -1,0 +1,6 @@
+.section {
+  @apply py-5 space-y-4;
+}
+.section b {
+  @apply mt-6;
+}/*# sourceMappingURL=ApiSection.module.css.map */

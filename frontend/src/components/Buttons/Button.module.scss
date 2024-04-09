@@ -1,0 +1,121 @@
+@import '../../app/globals.module.scss';
+
+.base {
+    @apply uppercase font-medium border rounded-[10px] transition;
+}
+
+.secondary {
+    //text
+    @apply text-xs text-gray-600 dark:text-white uppercase font-medium;
+
+    // border
+    @apply border rounded-[10px] transition;
+    @apply border-gray-400 dark:border-gray-700;
+
+    &:hover {
+        @apply bg-gray-200 dark:bg-black dark:bg-gray-900/50 dark:border-zinc-500;
+    }
+}
+
+.primary {
+    //text
+    @apply font-bold text-base text-black uppercase leading-none flex justify-center items-center;
+
+    //border
+    @apply py-6 px-12 border-2 rounded-lg transition ease-in;
+    @apply bg-lime border-lime;
+
+    &:hover {
+        @apply bg-transparent border-lime;
+    }
+}
+
+.primary_header {
+    //text
+    @apply text-xs text-lime uppercase font-medium;
+
+    //border
+    @apply py-3 px-7 border rounded-lg transition ease-in;
+    @apply border-lime;
+
+    &:hover {
+        @apply text-black;
+        @apply bg-lime;
+    }
+}
+
+.primary_dark {
+    @apply flex text-xs text-black uppercase font-semibold;
+    @apply py-3 px-7 border rounded-lg transition ease-in;
+    @apply border-lime;
+
+    &:hover {
+        @apply text-black;
+        @apply bg-lime;
+    }
+}
+
+.emerging {
+    @apply py-2 px-3 rounded-lg transition border-none normal-case;
+
+    &:hover {
+        @apply bg-gray-100 dark:bg-gray-800;
+    }
+}
+
+.tag {
+    @apply normal-case border-2 text-sm font-medium rounded-full leading-none;
+    @apply mb-6 px-[14px] py-[8px];
+    @apply dark:text-white border-gray-500 bg-slate-900 transition;
+
+    &:hover {
+        @apply bg-transparent border-gray-700;
+    }
+}
+
+.tab {
+    @apply text-xs text-gray-600 dark:text-white uppercase font-medium;
+    @apply border rounded-lg transition py-3 px-7 block;
+    @apply border-gray-400 dark:border-gray-700;
+
+    &:hover {
+        @apply bg-gray-200 dark:bg-black dark:bg-gray-900/50 dark:border-zinc-500;
+    }
+}
+
+.tab_selected {
+    @apply border-lime;
+
+    &:hover {
+        @apply border-lime;
+    }
+}
+
+.banner {
+    @apply font-bold text-sm uppercase leading-tight flex justify-center items-center;
+    @apply py-[20px] w-full border-2 rounded-lg transition ease-in;
+    @apply text-black bg-lime border-lime;
+
+    &:hover {
+        @apply bg-transparent border-lime;
+    }
+}
+
+.form {
+    @apply font-bold text-sm uppercase leading-tight flex justify-center items-center;
+    @apply py-[12px] w-full border-2 rounded-lg transition ease-in;
+    @apply text-black bg-lime border-lime;
+
+    &:hover {
+        @apply bg-transparent border-lime text-lime;
+    }
+}
+
+.light {
+    @apply text-xs py-3 px-7 text-gray-600 dark:text-white uppercase font-medium;
+    @apply border-white/40;
+
+    &:hover {
+        @apply bg-white/10 border-white/60;
+    }
+}

@@ -1,0 +1,42 @@
+.input {
+    @apply border rounded-[10px] py-3 px-6 outline-none text-sm max-w-[300px] block w-full transition;
+    @apply border-gray-600 bg-transparent text-white;
+
+    &::placeholder {
+        @apply text-gray-500;
+    }
+
+    &:hover {
+        @apply dark:border-zinc-500;
+    }
+}
+
+.input_non_width {
+    @apply border rounded-[10px] py-3 px-6 outline-none text-sm transition;
+    @apply border-gray-600 bg-transparent text-white;
+
+    &::placeholder {
+        @apply text-gray-500;
+    }
+
+    &:hover {
+        @apply dark:border-zinc-500;
+    }
+}
+
+.select {
+    @apply border rounded-[10px] py-3 px-6 outline-none text-sm cursor-pointer w-full block appearance-none transition;
+    @apply border-gray-600 bg-slate-950 text-white;
+
+    &::placeholder {
+        @apply text-gray-500;
+    }
+    
+    &::-ms-expand { 
+        @apply hidden;
+    }
+    
+    &:hover {
+        @apply dark:border-zinc-500;
+    }
+}
