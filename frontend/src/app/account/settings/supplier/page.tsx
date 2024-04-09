@@ -1,9 +1,11 @@
 'use client'
 import EntityList from '@/components/entity-list/EntityList'
+import { Inputs } from '@/components/inputs'
 import styles from '@/components/inputs/Input.module.scss'
 import { useActions } from '@/hooks/useActions'
 import { LinkService } from '@/services/user/link.service'
 import { SupplierService } from '@/services/user/supplier.service'
+import { TagService } from '@/services/user/tag.service'
 import { StateType } from '@/store/store'
 import { useQuery } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
@@ -27,30 +29,37 @@ const SupplierSettings = () => {
 
   	return (
 		<div>
-			<Setting title="Змінити публічне ім'я" buttonText="Змінити" sendRequest={() => SupplierService.changePublicName(settings.publicName)}>
+			<Setting title="Публічне ім'я" buttonText="Змінити" sendRequest={() => SupplierService.changePublicName(settings.publicName)}>
 				<input className={styles.input} value={settings.publicName} onChange={(e) => changePublicName(e.target.value)} />
 			</Setting>
-			<Setting title="Змінити апі ім'я" buttonText="Змінити" sendRequest={() => SupplierService.changeApiName(settings.apiName)}>
+			<Setting title="Апі ім'я" buttonText="Змінити" sendRequest={() => SupplierService.changeApiName(settings.apiName)}>
 				<input className={styles.input} value={settings.apiName} onChange={(e) => changeApiNameName(e.target.value)} />
 			</Setting>
-			<Setting title="Змінити опис" buttonText="Змінити" sendRequest={() => SupplierService.changeDescription(settings.description)}>
+			<Setting title="Опис" buttonText="Змінити" sendRequest={() => SupplierService.changeDescription(settings.description)}>
 				<input className={styles.input} value={settings.description} onChange={(e) => changeDescription(e.target.value)} />
 			</Setting>
-			<Setting title="Змінити тип загрузки yml файла" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlType(settings.ymlLoadType)}>
-				<select onChange={(e) => changeYmlType(e.target.value)}>
+			<Setting title="Тип загрузки yml файла" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlType(settings.ymlLoadType)}>
+				<Inputs.Select onChange={(e) => changeYmlType(e.target.value)}>
 				{availableYmlLoadTypes?.data.map((type: any) => 
 					<option selected={type === settings.ymlLoadType} value={type}>{type}</option>
 				)}
-				</select>
+				</Inputs.Select>
 			</Setting>
 			{settings.ymlLoadType.toLowerCase() === 'link' && <>
-				<Setting title="Змінити силку та частоту оновлення yml каталогу" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlCatalogLink({ link: settings.ymlLink, refreshTimeId: settings.refreshTimeId })}>
-					<input className={styles.input} value={settings.ymlLink} onChange={(e) => changeYmlCatalogUrl(e.target.value)} />
-					<select onChange={(e) => changeYmlCatalogRefreshTime(Number(e.target.value))}>
+				<Setting title="Силка та частота оновлення yml каталогу" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlCatalogLink({ link: settings.ymlLink, refreshTimeId: settings.refreshTimeId })}>
+					<Inputs.InputNonWidth 
+						value={settings.ymlLink} 
+						onChange={(e) => changeYmlCatalogUrl(e.target.value)} 
+						className='min-w-[180px]'
+					/>
+					<Inputs.Select 
+						onChange={(e) => changeYmlCatalogRefreshTime(Number(e.target.value))}
+						className=''
+					>
 						{availableRefreshTimes?.data.map((time: any) => <>
 						<option selected={time.id === settings.refreshTimeId} value={time.id}>{time.name}</option>
 						</>)}
-					</select>
+					</Inputs.Select>
 				</Setting>
 			</>}
 			<EntityList
@@ -74,18 +83,16 @@ const SupplierSettings = () => {
 			<EntityList
 				title='Теги'
 				creationTitle='Додати новий тег'
-				readTitle='Силка'
-				getAllItems={() => LinkService.getAll(settings.id)}
-				createItemRequest={(values) => LinkService.add(values)}
+				readTitle='Тег'
+				getAllItems={() => TagService.getAll(settings.id)}
+				createItemRequest={(values) => TagService.add(values)}
 				changingFields={{
 					name: '',
-					url: ''
 				}}
 				contentOfItem={o => o.name}
 				copyData={o => o.url}
 				translates={{
 					name: 'Назва',
-					url: 'Силка',
 				}}
 				settings
 			/>

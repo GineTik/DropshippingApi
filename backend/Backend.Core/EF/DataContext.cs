@@ -23,6 +23,7 @@ public class DataContext : DbContext
     public required DbSet<SupplierSettings> SupplierSettings { get; set; }
     public required DbSet<RefreshTime> AvailableYmlRefreshTimes { get; set; }
     public required DbSet<Link> Links { get; set; }
+    public required DbSet<Tag> Tags { get; set; }
     
     // Offer
     public required DbSet<Offer> Offers { get; set; }

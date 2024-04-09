@@ -280,6 +280,26 @@ namespace Backend.Core.EF.Migrations
                     b.ToTable("SupplierSettings");
                 });
 
+            modelBuilder.Entity("Backend.Core.Entities.User.Supplier.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SupplierSettingsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
+                });
+
             modelBuilder.Entity("Backend.Core.Entities.User.User", b =>
                 {
                     b.Property<int>("Id")

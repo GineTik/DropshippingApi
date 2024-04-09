@@ -41,12 +41,7 @@ public class SupplierService
             TotalPages = totalPages,
             Page = page,
             PageSize = suppliers.Count,
-            Suppliers = suppliers.Select(o => new ShortSupplierSettingsDto
-            {
-                Id = o.Id,
-                PublicName = o.PublicName,
-                Description = o.Description
-            })
+            Suppliers = suppliers.Select(o => _mapper.Map<SupplierSettingsDto>(o))
         };
     }
 
@@ -54,23 +49,7 @@ public class SupplierService
     {
         var supplier = await _dataContext.SupplierSettings.FirstOrDefaultAsync(o => o.Id == id);
         if (supplier == null) throw new Exception("GetSupplier error");
-        
-        return new SupplierSettingsDto
-        {
-            Id = supplier.Id,
-            YmlLink = supplier.YmlLink,
-            YmlLoadType = ((YmlLoadTypes)supplier.YmlLoadTypeId).ToString(),
-            RefreshTimeId = supplier.RefreshTimeId,
-            PublicName = supplier.PublicName,
-            ApiName = supplier.ApiName,
-            Description = supplier.Description,
-            Searchable = supplier.Searchable,
-            OffersUpdatedAtUtc = supplier.OffersUpdatedAtUtc,
-            Links = (await _linkService.GetAllOfSupplier(supplier.Id)).Select(o => new GetLinkDto
-            {   
-                Name = o.Name,
-                Url = o.Url
-            })
-        };
+
+        return _mapper.Map<SupplierSettingsDto>(supplier);
     }
 }

@@ -8,4 +8,5 @@ export type SupplierSettings = {
 	refreshTimeId: number
 	offersUpdatedAtUtc: Date
 	links: Array<{ name: string; url: string }>
+	tags: Array<{ name: string }>
 }

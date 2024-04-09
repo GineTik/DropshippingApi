@@ -18,7 +18,7 @@ const Present = (supplier: SupplierSettings) => {
 						<Buttons.Icon><ThumbsDownIcon /></Buttons.Icon>
 						<Buttons.Icon>
 							<HeartIcon />
-							<span>Підписатись</span>
+							<span>До улюблених</span>
 						</Buttons.Icon>
 					</div>
 
@@ -29,15 +29,19 @@ const Present = (supplier: SupplierSettings) => {
 							<span className={styles.parameters__title}>Ім'я в АПІ:</span> 
 							<span className={styles.parameters__value}>{supplier.apiName}</span>
 						</div>
-						<div>
+						{supplier.tags && supplier.tags.length > 0 && <div>
 							<span className={styles.parameters__title}>Теги:</span> 
-							<span className={styles.parameters__value}>Для дома, дешевий сегмент, і тому подібне</span>
-						</div>
+							<span className={styles.parameters__value}>
+								{supplier.tags.map((o, i) => 
+									<><span>{o.name}</span>{i != supplier.tags.length - 1 && ','} </>
+								)}
+							</span>
+						</div>}
 						{supplier.links && supplier.links.length > 0 && <div className={styles.present__links}>
 							<span className={styles.parameters__title}>Силки:</span> 
 							<span className={styles.parameters__value}>
-								{supplier.links.map((link, i) => 
-									<><Link href={link.url}>{link.name}</Link>{i != supplier.links.length - 1 && ','} </>
+								{supplier.links.map((o, i) => 
+									<><Link href={o.url}>{o.name}</Link>{i != supplier.links.length - 1 && ','} </>
 								)}
 							</span>
 						</div>}

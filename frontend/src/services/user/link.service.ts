@@ -1,13 +1,11 @@
-import { AddAllowedHostDto } from '@/dtos/user/allowed-hosts/add-allowed-host.dto'
-import { UpdateAllowedHostDto } from '@/dtos/user/allowed-hosts/update-allowed-host.dto'
 import $api from '../api'
 
 export const LinkService = {
-	async add(dto: AddAllowedHostDto) {
+	async add(dto: any) {
 		return await $api.post('suppliers/links/add', { content: dto })
 	},
 
-	async update(dto: UpdateAllowedHostDto) {
+	async update(dto: any) {
 		return await $api.post('suppliers/links/update', { content: dto })
 	},
 

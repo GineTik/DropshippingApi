@@ -1,4 +1,5 @@
 ﻿using Backend.Core.DTOs.User.Supplier.Link;
+using Backend.Core.DTOs.User.Supplier.Tag;
 
 namespace Backend.Core.DTOs.User.Supplier;
 
@@ -15,4 +16,5 @@ public class SupplierSettingsDto
     public DateTime OffersUpdatedAtUtc { get; set; }
 
     public IEnumerable<GetLinkDto> Links { get; set; } = null!;
+    public IEnumerable<TagDto> Tags { get; set; } = null!;
 }

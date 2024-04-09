@@ -2,6 +2,7 @@
 using Backend.Core.DTOs.User;
 using Backend.Core.DTOs.User.Supplier;
 using Backend.Core.DTOs.User.Supplier.Link;
+using Backend.Core.DTOs.User.Supplier.Tag;
 using Backend.Core.Entities;
 using Backend.Core.Entities.User.Supplier;
 using Backend.Core.Services.User.Supplier;
@@ -11,10 +12,12 @@ namespace Backend.Core.Mapper.Converters;
 public class FromSupplierConverter : ITypeConverter<SupplierSettings, SupplierSettingsDto>
 {
     private readonly LinkService _linkService;
+    private readonly TagService _tagService;
 
-    public FromSupplierConverter(LinkService linkService)
+    public FromSupplierConverter(LinkService linkService, TagService tagService)
     {
         _linkService = linkService;
+        _tagService = tagService;
     }
 
     public SupplierSettingsDto Convert(SupplierSettings source, SupplierSettingsDto destination, ResolutionContext context)
@@ -34,6 +37,10 @@ public class FromSupplierConverter : ITypeConverter<SupplierSettings, SupplierSe
             {
                 Name = o.Name,
                 Url = o.Url
+            }),
+            Tags = _tagService.GetAllOfSupplier(source.Id).Result.Select(o => new TagDto
+            {
+                Name = o.Name,
             })
         };
     }

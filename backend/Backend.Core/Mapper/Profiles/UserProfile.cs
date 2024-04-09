@@ -5,6 +5,7 @@ using Backend.Core.DTOs.User.Dropshipper.AllowHost;
 using Backend.Core.DTOs.User.Dropshipper.ApiKey;
 using Backend.Core.DTOs.User.Supplier;
 using Backend.Core.DTOs.User.Supplier.Link;
+using Backend.Core.DTOs.User.Supplier.Tag;
 using Backend.Core.Entities;
 using Backend.Core.Entities.User;
 using Backend.Core.Entities.User.Dropshipper;
@@ -40,5 +41,6 @@ public class UserProfile : Profile
                 opt => opt.MapFrom(s => s.ToString()));
 
         CreateMap<Link, GetLinkDto>();
+        CreateMap<Tag, TagDto>();
     }
 }

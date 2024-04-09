@@ -27,6 +27,7 @@ public static class ServiceExtension
         services.AddTransient<SupplierService>();
         services.AddTransient<OfferService>();
         services.AddTransient<LinkService>();
+        services.AddTransient<TagService>();
         services.AddDbContext<DataContext>(options => options.UseLazyLoadingProxies().UseSqlServer(configuration.GetConnectionString("Local")));
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScheduler();
