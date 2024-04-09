@@ -28,3 +28,15 @@ $border-gray: #3B3E48;
         @apply font-semibold text-sm;
     }
 }
+
+.toast {
+    @apply rounded-[10px] min-h-[50px] h-[50px] bg-slate-900;
+
+    &__body {
+        @apply m-0 py-0;
+    }
+
+    &__progress {
+        @apply bg-lime;
+    }
+}

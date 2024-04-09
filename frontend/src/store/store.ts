@@ -12,7 +12,7 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/es/storage'
 import { authSlice } from './auth/auth.slice'
-import { supplierSlice } from './supplier/supplier.slice'
+import { toastsSlice } from './toasts/toasts.slice'
 
 const persistConfig = {
 	key: 'root',
@@ -24,14 +24,14 @@ const authPersistConfig = {
 	storage
 }
 
-const supplierPersistConfig = {
-	key: 'supplier',
+const toastsPersistConfig = {
+	key: 'toasts',
 	storage
 }
 
 const rootReducer = combineReducers({
 	auth: persistReducer(authPersistConfig, authSlice.reducer),
-	supplier: persistReducer(supplierPersistConfig, supplierSlice.reducer)
+	toasts: persistReducer(toastsPersistConfig, toastsSlice.reducer)
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

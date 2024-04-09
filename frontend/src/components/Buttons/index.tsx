@@ -63,4 +63,10 @@ export const Buttons = {
 			className={`${styles.base} ${styles.light} ${props.className}`} 
 		/>
 	},
+	Toasts: (props: BaseButtonProps) => {
+		return <BaseButton 
+			{...props} 
+			className={`${styles.base} ${styles.secondary} py-3 px-7 ${styles.toasts_clear_button} ${props.className}`} 
+		/>
+	},
 }

@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Expand, File, Pen, Plus, RefreshCcw, Trash } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 import { Buttons } from '../buttons'
 import ErrorMessage from '../error-message/ErrorMessage'
 import { Inputs } from '../inputs'
@@ -35,6 +36,7 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 	})
 
   	const [creationValues, setCreationValues] = useState(changingFields)
+	const [toastId, setToastId] = useState<any>()
 
 	const {
 		mutateAsync: createAsync,
@@ -45,6 +47,17 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 		onSettled: () => {
 			setShowCreateDialog(false)
 			refetch()
+			toast.clearWaitingQueue()
+		},
+		onMutate: () => {
+			toast.clearWaitingQueue()
+			setToastId(toast.loading('Додаємо'))
+		},
+		onSuccess: () => {
+			toast.update(toastId, { render: "Додано", type: "success", isLoading: false, closeOnClick: true, autoClose: 2000 });
+		},
+		onError: (err) => {
+			toast.update(toastId, { render: err.response?.data.message, type: "error", isLoading: false, closeOnClick: true, autoClose: 2000 });
 		}
 	})
 
@@ -58,6 +71,17 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 			setSelectedItem(null)
 			setConfirmToDelete(false)
 			refetch()
+			toast.clearWaitingQueue()
+		},
+		onMutate: () => {
+			toast.clearWaitingQueue()
+			setToastId(toast.loading('Видаляємо'))
+		},
+		onSuccess: () => {
+			toast.update(toastId, { render: "Видалено", type: "success", isLoading: false, closeOnClick: true, autoClose: 2000 });
+		},
+		onError: (err) => {
+			toast.update(toastId, { render: err.response?.data.message, type: "error", isLoading: false, closeOnClick: true, autoClose: 2000 });
 		}
 	})
 
@@ -70,6 +94,17 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 			setShowCreateDialog(false)
 			setSelectedItem(null)
 			refetch()
+			toast.clearWaitingQueue()
+		},
+		onMutate: () => {
+			toast.clearWaitingQueue()
+			setToastId(toast.loading('Оновлюємо'))
+		},
+		onSuccess: () => {
+			toast.update(toastId, { render: "Оновлено", type: "success", isLoading: false, closeOnClick: true, autoClose: 2000 });
+		},
+		onError: (err) => {
+			toast.update(toastId, { render: err.response?.data.message, type: "error", isLoading: false, closeOnClick: true, autoClose: 2000 });
 		}
 	})
 
