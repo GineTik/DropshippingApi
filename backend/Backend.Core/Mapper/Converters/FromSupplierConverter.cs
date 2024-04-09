@@ -13,11 +13,13 @@ public class FromSupplierConverter : ITypeConverter<SupplierSettings, SupplierSe
 {
     private readonly LinkService _linkService;
     private readonly TagService _tagService;
+    private readonly IMapper _mapper;
 
-    public FromSupplierConverter(LinkService linkService, TagService tagService)
+    public FromSupplierConverter(LinkService linkService, TagService tagService, IMapper mapper)
     {
         _linkService = linkService;
         _tagService = tagService;
+        _mapper = mapper;
     }
 
     public SupplierSettingsDto Convert(SupplierSettings source, SupplierSettingsDto destination, ResolutionContext context)
@@ -33,15 +35,8 @@ public class FromSupplierConverter : ITypeConverter<SupplierSettings, SupplierSe
             Description = source.Description,
             Searchable = source.Searchable,
             OffersUpdatedAtUtc = source.OffersUpdatedAtUtc,
-            Links = _linkService.GetAllOfSupplier(source.Id).Result.Select(o => new GetLinkDto
-            {
-                Name = o.Name,
-                Url = o.Url
-            }),
-            Tags = _tagService.GetAllOfSupplier(source.Id).Result.Select(o => new TagDto
-            {
-                Name = o.Name,
-            })
+            Links = _linkService.GetAllOfSupplier(source.Id).Result.Select(o => _mapper.Map<GetLinkDto>(o)),
+            Tags = _tagService.GetAllOfSupplier(source.Id).Result.Select(o => _mapper.Map<TagDto>(o))
         };
     }
 }

@@ -25,6 +25,8 @@ const DropshipperProfile = () => {
 					moreHref='#'
 					getAllItems={() => ApiKeysService.getAll()}
 					createItemRequest={(values) => ApiKeysService.create(values)}
+					deleteItemRequest={(values) => ApiKeysService.delete(values.key)}
+					refreshKeyRequest={(values) => ApiKeysService.refresh(values.key)}
 					changingFields={{
 						name: '',
 						description: ''
@@ -45,6 +47,7 @@ const DropshipperProfile = () => {
 					moreHref='#'
 					getAllItems={() => AllowedHostsService.getAll()}
 					createItemRequest={(values) => AllowedHostsService.add(values)}
+					deleteItemRequest={(values) => AllowedHostsService.delete(values.host)}
 					changingFields={{
 						name: '',
 						description: ''

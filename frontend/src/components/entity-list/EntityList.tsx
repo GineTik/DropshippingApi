@@ -18,13 +18,15 @@ interface EntityListProps {
   contentOfItem: (item: any) => any
   getAllItems: () => Promise<any>
   createItemRequest: (values: any) => Promise<any>
+  refreshKeyRequest?: (values: any) => Promise<any>
+  deleteItemRequest: (values: any) => Promise<any>
   changingFields: any
   copyData: (item: any) => any
   translates: Record<string, string>
   settings?: boolean
 }
 
-const EntityList = ({title, creationTitle, readTitle, description, moreHref, contentOfItem, createItemRequest, changingFields, getAllItems, copyData, translates, settings}: EntityListProps) => {
+const EntityList = ({title, creationTitle, readTitle, description, moreHref, contentOfItem, createItemRequest, changingFields, getAllItems, copyData, translates, settings, deleteItemRequest, refreshKeyRequest}: EntityListProps) => {
 
 	const { data: items, refetch } = useQuery<any>({
 		queryKey: [title],
@@ -35,7 +37,7 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
   	const [creationValues, setCreationValues] = useState(changingFields)
 
 	const {
-		mutateAsync: createApiKeyAsync,
+		mutateAsync: createAsync,
 		error
 	} = useTypedMutation({
 		mutationKey: [title],
@@ -46,8 +48,34 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 		}
 	})
 
+	const {
+		mutateAsync: deleteAsync,
+	} = useTypedMutation({
+		mutationKey: [title],
+		mutationFn: () => deleteItemRequest(selectedItem),
+		onSettled: () => {
+			setShowCreateDialog(false)
+			setSelectedItem(null)
+			setConfirmToDelete(false)
+			refetch()
+		}
+	})
+
+	const {
+		mutateAsync: refreshAsync,
+	} = useTypedMutation({
+		mutationKey: [title],
+		mutationFn: () => refreshKeyRequest!(selectedItem),
+		onSettled: () => {
+			setShowCreateDialog(false)
+			setSelectedItem(null)
+			refetch()
+		}
+	})
+
 	const [showCreateDialog, setShowCreateDialog] = useState(false);
 	const [selectedItem, setSelectedItem] = useState<any>(null)
+	const [confirmToDelete, setConfirmToDelete] = useState<boolean>(false)
 
 	const iconSize = 16;
 
@@ -96,7 +124,7 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 
 				<Buttons.Form
 					className='w-full'
-					onClick={() => createApiKeyAsync()}
+					onClick={() => createAsync()}
 				>
 					Додати
 				</Buttons.Form>
@@ -107,19 +135,19 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 
 		{selectedItem && <Dialog
 			show={selectedItem != null}
-			close={() => setSelectedItem(null)}
+			close={() => confirmToDelete === false && setSelectedItem(null)}
 		>
 			<div className={styles.dialog__header}>
 				<h4>{readTitle}</h4>
 				<div className={styles.dialog__icons}>
 				<Buttons.Icon onClick={copy}><File size={iconSize} /></Buttons.Icon>
-				<Buttons.Icon><RefreshCcw size={iconSize} /></Buttons.Icon>
+				{refreshKeyRequest && <Buttons.Icon onClick={refreshAsync}><RefreshCcw size={iconSize} /></Buttons.Icon>}
 				<Buttons.Icon><Pen size={iconSize} /></Buttons.Icon>
-				<Buttons.Icon><Trash size={iconSize} /></Buttons.Icon>
+				<Buttons.Icon onClick={() => setConfirmToDelete(true)}><Trash size={iconSize} /></Buttons.Icon>
 				</div>
 			</div>
 				<div className="flex flex-wrap gap-3 w-[500px]">
-					{selectedItem && Object.keys(selectedItem).map(o => <div
+					{selectedItem && Object.keys(selectedItem).map(o => o.toLowerCase() == 'id' ? <></> : <div
 						key={crypto.randomUUID()} 
 						className='w-[48%] flex-grow'
 					>
@@ -127,6 +155,20 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 						<div>{selectedItem[o]}</div>
 					</div>)}
 				</div>
+		</Dialog>}
+
+		{confirmToDelete && <Dialog
+			show={confirmToDelete}
+			close={() => setConfirmToDelete(false)}
+		>
+			<div className={styles.dialog__header}>
+				<h4>Ви справді хочете видалити?</h4>
+			</div>
+			<p className='mt-3 text-gray-300 w-[80%]'>Після видалення ви не зможете відмінити дію!</p>
+			<div className="flex gap-3 mt-4">
+				<Buttons.Secondary className='w-full' onClick={deleteAsync}>Так</Buttons.Secondary>
+				<Buttons.Secondary className='w-full' onClick={() => setConfirmToDelete(false)}>Ні</Buttons.Secondary>
+			</div>
 		</Dialog>}
 		</>
 	)

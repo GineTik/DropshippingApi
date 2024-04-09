@@ -81,6 +81,7 @@ const SupplierSettings = () => {
 				readTitle='Силка'
 				getAllItems={() => LinkService.getAll(settings.id)}
 				createItemRequest={(values) => LinkService.add(values)}
+				deleteItemRequest={(values) => LinkService.delete(values.id)}
 				changingFields={{
 					name: '',
 					url: ''
@@ -99,6 +100,7 @@ const SupplierSettings = () => {
 				readTitle='Тег'
 				getAllItems={() => TagService.getAll(settings.id)}
 				createItemRequest={(values) => TagService.add(values)}
+				deleteItemRequest={(values) => TagService.delete(values.id)}
 				changingFields={{
 					name: '',
 				}}
