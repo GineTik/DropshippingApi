@@ -16,11 +16,11 @@ const CodeString = ({
 	return (
 		<code
 			className={classNames(
-				'text-nowrap',
+				'text-nowrap text-green-500 bg-slate-950 rounded-lg',
 				{
 					'px-2 py-1': !withoutPadding,
-					'text-green-500 bg-slate-950 rounded-lg': isDark,
-					'text-green-800 border rounded-lg': !isDark
+					// 'text-green-500 bg-slate-950 rounded-lg': isDark,
+					// 'text-green-800 border rounded-lg': !isDark
 				},
 				className
 			)}

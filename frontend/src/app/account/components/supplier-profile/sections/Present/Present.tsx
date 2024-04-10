@@ -1,9 +1,9 @@
 import { Buttons } from "@/components/buttons"
+import Rating from "@/components/rating/Rating"
 import Section from "@/components/section/Section"
 import { SupplierSettings } from "@/dtos/user/settings/supplier-settings.dto"
 import { OffersService } from "@/services/user/offers.service"
 import { useQuery } from "@tanstack/react-query"
-import { HeartIcon, ThumbsDownIcon, ThumbsUpIcon } from "lucide-react"
 import Link from "next/link"
 import blocks from '../../../../../../components/Blocks.module.scss'
 import styles from "./Present.module.scss"
@@ -21,12 +21,7 @@ const Present = (supplier: SupplierSettings) => {
 					<h1 className={styles.present__title}>{supplier.publicName}</h1>
 					
 					<div className={styles.present__buttons}>
-						<Buttons.Icon><ThumbsUpIcon /></Buttons.Icon>
-						<Buttons.Icon><ThumbsDownIcon /></Buttons.Icon>
-						<Buttons.Icon>
-							<HeartIcon />
-							<span>До улюблених</span>
-						</Buttons.Icon>
+						<Rating />
 					</div>
 
 					{supplier.description && <p className={styles.present__p}>{supplier.description}</p>}

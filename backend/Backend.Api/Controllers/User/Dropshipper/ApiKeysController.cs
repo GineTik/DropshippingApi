@@ -42,8 +42,8 @@ public class ApiKeysController : Controller
     }
     
     [HttpPost("refresh")]
-    public async Task Refresh([FromBody] RefreshApiKeyDto dto)
+    public async Task<ApiKeyDto> Refresh([FromBody] RefreshApiKeyDto dto)
     {
-        await _apiKeysService.Refresh(User.Identity!.GetId(), dto);
+        return await _apiKeysService.Refresh(User.Identity!.GetId(), dto);
     }
 }

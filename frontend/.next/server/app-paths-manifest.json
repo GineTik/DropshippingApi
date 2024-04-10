@@ -1,7 +1,8 @@
 {
-  "/not-found": "app/not-found.js",
-  "/auth/[type]/page": "app/auth/[type]/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/account/page": "app/account/page.js",
-  "/account/settings/supplier/page": "app/account/settings/supplier/page.js"
+  "/suppliers/[id]/page": "app/suppliers/[id]/page.js",
+  "/suppliers/page": "app/suppliers/page.js",
+  "/api/(pages)/(general)/errors/page": "app/api/(pages)/(general)/errors/page.js",
+  "/api/(pages)/(general)/filtration/page": "app/api/(pages)/(general)/filtration/page.js",
+  "/api/(pages)/(general)/how-it-works/page": "app/api/(pages)/(general)/how-it-works/page.js",
+  "/api/(pages)/(endpoints)/get-filtered-offers/page": "app/api/(pages)/(endpoints)/get-filtered-offers/page.js"
 }

@@ -22,7 +22,7 @@ public class AuthController : Controller
     public async Task<SuccessAuthDto> Login([FromBody] LoginDto dto)
     {
         var result = await _authService.Login(dto);
-        AddRefreshTokenCookie(result);
+        AddRefreshTokenToCookie(result);
         return result;
     }
     
@@ -30,7 +30,7 @@ public class AuthController : Controller
     public async Task<SuccessAuthDto> RegistrationDropshipper([FromBody] RegistrationDropshipperDto dto)
     {
         var result = await _authService.RegistrationDropshipper(dto);
-        AddRefreshTokenCookie(result);
+        AddRefreshTokenToCookie(result);
         return result;
     }
     
@@ -38,31 +38,19 @@ public class AuthController : Controller
     public async Task<SuccessAuthDto> RegistrationSupplier([FromBody] RegistrationSupplierDto dto)
     {
         var result = await _authService.RegistrationSupplier(dto);
-        AddRefreshTokenCookie(result);
+        AddRefreshTokenToCookie(result);
         return result;
     }
     
-    [Authorize]
     [HttpPost("refresh")]
     public async Task<SuccessAuthDto> Refresh()
     {
-        _ = Request.Cookies[CookieKeys.RefreshToken];
         if (Request.Cookies[CookieKeys.RefreshToken] == null)
             throw new BadHttpRequestException("Refresh token not found");
 
-        var result = await _authService.Refresh(User.Identity!.GetId(), Request.Cookies[CookieKeys.RefreshToken]!);
-        AddRefreshTokenCookie(result);
+        var result = await _authService.Refresh(Request.Cookies[CookieKeys.RefreshToken]!);
+        AddRefreshTokenToCookie(result);
         return result;
-    }
-
-    private void AddRefreshTokenCookie(SuccessAuthDto result)
-    {
-        Response.Cookies.Append(CookieKeys.RefreshToken, result.RefreshToken, new CookieOptions
-        {
-            Expires = DateTime.Now.AddDays(30),
-            HttpOnly = true,
-            Path = "/"
-        });
     }
 
     [Authorize]
@@ -78,5 +66,15 @@ public class AuthController : Controller
     {
         Response.Cookies.Delete(CookieKeys.RefreshToken);
         await Task.CompletedTask;
+    }
+    
+    private void AddRefreshTokenToCookie(SuccessAuthDto result)
+    {
+        Response.Cookies.Append(CookieKeys.RefreshToken, result.RefreshToken, new CookieOptions
+        {
+            Expires = DateTime.Now.AddDays(30),
+            HttpOnly = true,
+            Path = "/"
+        });
     }
 }

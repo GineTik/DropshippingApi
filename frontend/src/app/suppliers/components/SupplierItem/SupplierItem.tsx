@@ -1,7 +1,6 @@
 'use client'
-import { Buttons } from '@/components/buttons'
+import Rating from '@/components/rating/Rating'
 import { SupplierSettings } from '@/dtos/user/settings/supplier-settings.dto'
-import { HeartIcon, ThumbsDownIcon, ThumbsUpIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 import RouteConstants from '../../../../../constants/RouteConstants'
@@ -26,9 +25,7 @@ const SupplierItem = (supplier: SupplierSettings) => {
 				) : <span className={styles.tags__nothing}>Немає</span> }
 			</div>
 			<div className={styles.card__buttons}>
-				<Buttons.Icon onClick={(e) => {e.stopPropagation()}}><ThumbsUpIcon /></Buttons.Icon>
-				<Buttons.Icon onClick={(e) => {e.stopPropagation()}}><ThumbsDownIcon /></Buttons.Icon>
-				<Buttons.Icon onClick={(e) => {e.stopPropagation()}}><HeartIcon /></Buttons.Icon>
+				<Rating short />
 			</div>
 		</div>
 	)

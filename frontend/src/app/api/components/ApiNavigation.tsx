@@ -1,33 +1,38 @@
+'use client'
+import { Buttons } from '@/components/buttons'
 import RouteConstants from '../../../../constants/RouteConstants'
-import ListLink from './list-link/ListLink'
+import styles from './Navigation.module.scss'
 
 const ApiNavigation = () => {
 	return (
-		<div className="text-sm md:min-w-[250px] max-md:w-full md:sticky top-3">
-			<h5 className="mx-3 mt-3 mb-2">Основне</h5>
-			<ListLink href={RouteConstants.Api.Introduction}>Вступ</ListLink>
-			<ListLink href={RouteConstants.Api.HowItWorks}>Як це працює</ListLink>
-			<ListLink href={RouteConstants.Api.Filtration}>Фільтрація</ListLink>
-			<ListLink href={RouteConstants.Api.Errors}>Можливі помилки</ListLink>
+		<div className={styles.navigation}>
+			<div className={styles.navigation__section}>
+				<h5 className={styles.navigation__title}>Основне</h5>
+				<div  className={styles.navigation__list}>
+					<Buttons.ApiTab href={RouteConstants.Api.Introduction}>Вступ</Buttons.ApiTab>
+					<Buttons.ApiTab href={RouteConstants.Api.HowItWorks}>Як це працює</Buttons.ApiTab>
+					<Buttons.ApiTab href={RouteConstants.Api.Filtration}>Фільтрація</Buttons.ApiTab>
+					<Buttons.ApiTab href={RouteConstants.Api.Errors}>Можливі помилки</Buttons.ApiTab>
+				</div>
+			</div>
 
-			<h5 className="mx-3 mt-3 mb-2">Кінцеві точки</h5>
-			<ListLink href={RouteConstants.Api.GetFilteredOffers}>
-				Відфільтровані пропозиції
-			</ListLink>
-			<ListLink href={RouteConstants.Api.GetOneOffer}>
-				Отримати пропозицію
-			</ListLink>
-			<ListLink href={RouteConstants.Api.SendOrder}>
-				Надіслати замовлення
-			</ListLink>
-			<ListLink href={RouteConstants.Api.GetExtract}>
-				Отримати вижимку даних
-			</ListLink>
-
-			<h5 className="mx-3 mt-3 mb-2">Особливості роботи з</h5>
-			<ListLink href="#">MS DROP</ListLink>
-			<ListLink href="#">Zima</ListLink>
-			<ListLink href="#">Web Sklad</ListLink>
+			<div className={styles.navigation__section}>
+				<h5 className={styles.navigation__title}>Кінцеві точки</h5>
+				<div className={styles.navigation__list}>
+					<Buttons.ApiTab href={RouteConstants.Api.GetFilteredOffers}>
+						Відфільтровані пропозиції
+					</Buttons.ApiTab>
+					<Buttons.ApiTab href={RouteConstants.Api.GetOneOffer}>
+						Отримати пропозицію
+					</Buttons.ApiTab>
+					<Buttons.ApiTab href={RouteConstants.Api.SendOrder}>
+						Надіслати замовлення
+					</Buttons.ApiTab>
+					<Buttons.ApiTab href={RouteConstants.Api.GetExtract}>
+						Отримати вижимку даних
+					</Buttons.ApiTab>
+				</div>
+			</div>
 		</div>
 	)
 }

@@ -12,7 +12,6 @@ const Api = (supplier: SupplierSettings) => {
 		queryKey: [`get-first-of-offers-${supplier.id}`],
 		queryFn: () => OffersService.getFirst(supplier.id),
 	})
-	console.log(firstOffer?.data)
 
 	return (
 		<div className={styles.wrapper}>

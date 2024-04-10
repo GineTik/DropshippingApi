@@ -30,7 +30,7 @@ $border-gray: #3B3E48;
 }
 
 .toast {
-    @apply rounded-[10px] min-h-[50px] h-[50px] bg-slate-900;
+    @apply rounded-[10px] min-h-[50px] h-auto bg-slate-900;
 
     &__body {
         @apply m-0 py-0;

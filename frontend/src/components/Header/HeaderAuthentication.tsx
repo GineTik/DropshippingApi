@@ -76,11 +76,6 @@ const HeaderAuthentication = () => {
 								</>}
 								<Menu.Item>
 									<ProfileMenuItem href={RouteConstants.Settings.Security}>
-										Повідомлення
-									</ProfileMenuItem>
-								</Menu.Item>
-								<Menu.Item>
-									<ProfileMenuItem href={RouteConstants.Settings.Security}>
 										Налаштування
 									</ProfileMenuItem>
 								</Menu.Item>

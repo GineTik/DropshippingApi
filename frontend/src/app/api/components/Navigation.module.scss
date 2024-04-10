@@ -1,0 +1,11 @@
+.navigation {
+    @apply md:min-w-[250px] max-md:w-full md:sticky top-10;
+
+    &__section {
+        @apply grid gap-2 mb-10;
+    }
+
+    &__title {
+        @apply mb-3;
+    }
+}

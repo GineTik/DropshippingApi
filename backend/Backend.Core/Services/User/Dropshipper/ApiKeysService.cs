@@ -24,7 +24,7 @@ public class ApiKeysService
     public async Task<IEnumerable<ApiKeyDto>> GetAll(int userId)
     {
         var apiKeys = await _dataContext.ApiKeys.Where(k => k.UserId == userId).ToListAsync();
-        return apiKeys.Select(k => _mapper.Map<ApiKeyDto>(k));
+        return apiKeys.Select(o => _mapper.Map<ApiKeyDto>(o));
     }
     
     public async Task Create(int userId, CreateApiKeyDto dto)
@@ -47,7 +47,7 @@ public class ApiKeysService
         await _dataContext.SaveChangesAsync();
     }
     
-    public async Task Refresh(int userId, RefreshApiKeyDto dto)
+    public async Task<ApiKeyDto> Refresh(int userId, RefreshApiKeyDto dto)
     {
         var apiKey = await _dataContext.ApiKeys.FirstOrDefaultAsync(k => k.UserId == userId && k.Key == dto.Key);
         // TODO: create exception
@@ -55,6 +55,7 @@ public class ApiKeysService
         
         apiKey.Key = _apiKeyFactory.Create();
         await _dataContext.SaveChangesAsync();
+        return _mapper.Map<ApiKeyDto>(apiKey);
     }
     
     public async Task Delete(int userId, DeleteApiKeyDto dto)
