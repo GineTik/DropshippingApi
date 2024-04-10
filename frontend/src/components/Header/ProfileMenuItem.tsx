@@ -17,7 +17,10 @@ const ProfileMenuItem = forwardRef(
 		return (
 			<Link
 				href={href ?? 'none'}
-				onClick={onClick}
+				onClick={(e) => {
+					href == null && e.preventDefault()
+					onClick && onClick()
+				}}
 				className={classNames(
 					'block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-[10px]',
 					'transition-colors duration-100',

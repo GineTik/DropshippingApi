@@ -1,3 +1,4 @@
+'use client'
 import classNames from 'classnames'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
@@ -50,12 +51,15 @@ export const Buttons = {
 		const cn = classNames(styles.base, styles.tag, props.className)
 		return <BaseButton {...props} className={cn} />
 	},
-	Tab: (props: Omit<BaseButtonProps, 'href'> & {
-		href: string
-	}) => { 
+	Tab: (props: BaseButtonProps) => { 
 		var pathname = usePathname();
 		const cn = classNames(styles.base, styles.tab, props.href === pathname ? styles.tab_selected : '', props.className)
-		return <BaseButton as={props.href === pathname ? "span" : Link} {...props} className={cn} />
+		return <BaseButton as={props.href == null ? 'span' : props.href === pathname ? 'span' : Link} {...props} className={cn} />
+	},
+	ApiTab: (props: BaseButtonProps) => { 
+		var pathname = usePathname();
+		const cn = classNames(styles.api_tab, props.href === pathname ? styles.api_tab_selected : '', props.className)
+		return <BaseButton as={props.href == null ? 'span' : props.href === pathname ? 'span' : Link} {...props} className={cn} />
 	},
 	Light: (props: BaseButtonProps) => {
 		return <BaseButton 

@@ -1,6 +1,7 @@
 'use client'
 import { Buttons } from '@/components/buttons'
 import Section from '@/components/section/Section'
+import { pageInDeveloping } from '@/helpers/ToastHelper'
 import RequireAuthMiddleware from '@/middlewares/RequireAuthMiddleware'
 import { StateType } from '@/store/store'
 import { Shield } from 'lucide-react'
@@ -20,7 +21,7 @@ const SettingsLayout = ({children}: any) => {
                     <h3>Налаштування</h3>
                     <div className={styles.settings__tabs}>
                         <Buttons.Tab href={RouteConstants.Settings.Security}>Безпека</Buttons.Tab>
-                        <Buttons.Tab href={RouteConstants.Settings.Payment}>Платіжні дані</Buttons.Tab>
+                        <Buttons.Tab onClick={() => pageInDeveloping('Платіжні дані')}>Платіжні дані</Buttons.Tab>
                         {user.supplierSettings && <Buttons.Tab href={RouteConstants.Settings.Supplier}>Дані поставщика</Buttons.Tab>}
                     </div>
                 </div>

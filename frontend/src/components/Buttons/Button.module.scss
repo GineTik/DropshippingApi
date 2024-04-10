@@ -74,20 +74,32 @@
 }
 
 .tab {
-    @apply text-xs text-gray-600 dark:text-white uppercase font-medium;
+    @apply text-xs text-gray-600 dark:text-white uppercase font-medium cursor-pointer;
     @apply border rounded-lg transition py-3 px-7 block;
     @apply border-gray-400 dark:border-gray-700;
 
     &:hover {
         @apply bg-gray-200 dark:bg-black dark:bg-gray-900/50 dark:border-zinc-500;
     }
+     
+    &_selected {
+        @apply border-lime cursor-default;
+    
+        &:hover {
+            @apply border-lime;
+        }
+    }
 }
 
-.tab_selected {
-    @apply border-lime;
+.api_tab {
+    @apply block py-1 text-sm text-slate-500 font-medium transition pl-5 border-l border-gray-500;
 
-    &:hover {
-        @apply border-lime;
+    &:hover:not(.api_tab_selected) {
+        @apply text-white border-l-white;
+    }
+
+    &_selected {
+        @apply text-lime border-lime cursor-default;
     }
 }
 

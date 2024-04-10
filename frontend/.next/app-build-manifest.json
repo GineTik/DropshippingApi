@@ -6,18 +6,6 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/(home)/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/(home)/page.css",
-      "static/chunks/app/(home)/page.js"
-    ],
-    "/auth/[type]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/auth/[type]/page.css",
-      "static/chunks/app/auth/[type]/page.js"
-    ],
     "/account/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -28,6 +16,18 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/account/layout.js"
+    ],
+    "/suppliers/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/suppliers/page.css",
+      "static/chunks/app/suppliers/page.js"
+    ],
+    "/(home)/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(home)/page.css",
+      "static/chunks/app/(home)/page.js"
     ],
     "/account/settings/layout": [
       "static/chunks/webpack.js",
@@ -41,23 +41,6 @@
       "static/css/app/account/settings/security/page.css",
       "static/chunks/app/account/settings/security/page.js"
     ],
-    "/account/settings/supplier/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/account/settings/supplier/page.css",
-      "static/chunks/app/account/settings/supplier/page.js"
-    ],
-    "/account/settings/payment/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/account/settings/payment/page.js"
-    ],
-    "/suppliers/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/suppliers/page.css",
-      "static/chunks/app/suppliers/page.js"
-    ],
     "/suppliers/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -67,6 +50,7 @@
     "/api/(pages)/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/app/api/(pages)/layout.css",
       "static/chunks/app/api/(pages)/layout.js"
     ],
     "/api/(pages)/(general)/introduction/page": [
@@ -75,10 +59,41 @@
       "static/css/app/api/(pages)/(general)/introduction/page.css",
       "static/chunks/app/api/(pages)/(general)/introduction/page.js"
     ],
-    "/not-found": [
+    "/api/(pages)/(general)/filtration/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/css/app/api/(pages)/(general)/filtration/page.css",
+      "static/chunks/app/api/(pages)/(general)/filtration/page.js"
+    ],
+    "/api/(pages)/(general)/how-it-works/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/api/(pages)/(general)/how-it-works/page.css",
+      "static/chunks/app/api/(pages)/(general)/how-it-works/page.js"
+    ],
+    "/api/(pages)/(general)/errors/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/api/(pages)/(general)/errors/page.css",
+      "static/chunks/app/api/(pages)/(general)/errors/page.js"
+    ],
+    "/api/(pages)/(endpoints)/send-order/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/api/(pages)/(endpoints)/send-order/page.css",
+      "static/chunks/app/api/(pages)/(endpoints)/send-order/page.js"
+    ],
+    "/api/(pages)/(endpoints)/extract/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/api/(pages)/(endpoints)/extract/page.css",
+      "static/chunks/app/api/(pages)/(endpoints)/extract/page.js"
+    ],
+    "/api/(pages)/(endpoints)/get-filtered-offers/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/api/(pages)/(endpoints)/get-filtered-offers/page.css",
+      "static/chunks/app/api/(pages)/(endpoints)/get-filtered-offers/page.js"
     ]
   }
 }

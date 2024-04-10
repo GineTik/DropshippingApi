@@ -1,5 +1,6 @@
 import { Buttons } from '@/components/buttons'
 import Section from '@/components/section/Section'
+import { pageInDeveloping } from '@/helpers/ToastHelper'
 import Link from 'next/link'
 import RouteConstants from '../../../../../constants/RouteConstants'
 import blocks from '../../../../components/Blocks.module.scss'
@@ -9,7 +10,7 @@ const Present = () => {
 	return (
 		<Section className={styles.section}>
 			<div className="flex flex-col items-center md:items-start w-full">
-				<Buttons.Tag>Для дропшипера</Buttons.Tag>
+				<Buttons.Tag onClick={() => pageInDeveloping('Для поставщика')}>Для дропшипера</Buttons.Tag>
 				<h1 className={styles.title}>
 					Кращий досвід дропшипінга з <span className='text-blue-700 font-medium'>DropshippingBridge</span>
 				</h1>

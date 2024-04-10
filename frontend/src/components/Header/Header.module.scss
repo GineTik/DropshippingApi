@@ -3,7 +3,7 @@
 }
 
 .header_link {
-    @apply text-sm transition py-3 px-3 text-gray-700 dark:text-gray-600 font-semibold;
+    @apply text-sm transition py-3 px-3 text-gray-700 dark:text-gray-600 font-semibold cursor-pointer;
     
     &:first-child {
         @apply ml-8;

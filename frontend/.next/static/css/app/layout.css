@@ -740,7 +740,7 @@
 }
 
 .globals_toast__YZrHL {
-  height: 50px;
+  height: auto;
   min-height: 50px;
   border-radius: 10px;
   --tw-bg-opacity: 1;
@@ -1254,9 +1254,6 @@ video {
 }
 .pointer-events-none {
   pointer-events: none;
-}
-.static {
-  position: static;
 }
 .fixed {
   position: fixed;
@@ -2257,7 +2254,7 @@ video {
 }
 
 .Button_toast__jsVaw {
-  height: 50px;
+  height: auto;
   min-height: 50px;
   border-radius: 10px;
   --tw-bg-opacity: 1;
@@ -2478,6 +2475,7 @@ video {
 }
 
 .Button_tab__YfudA {
+  cursor: pointer;
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 500;
@@ -2523,14 +2521,47 @@ video {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
   background-color: rgb(17 24 39 / 0.5);
 }
-
 .Button_tab_selected__OcIhS {
+  cursor: default;
   --tw-border-opacity: 1;
   border-color: rgb(192 228 73 / var(--tw-border-opacity));
 }
 .Button_tab_selected__OcIhS:hover {
   --tw-border-opacity: 1;
   border-color: rgb(192 228 73 / var(--tw-border-opacity));
+}
+
+.Button_api_tab__Y9ZAz {
+  display: block;
+  border-left-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-border-opacity));
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.Button_api_tab__Y9ZAz:hover:not(.Button_api_tab_selected__PD3kA) {
+  --tw-border-opacity: 1;
+  border-left-color: rgb(255 255 255 / var(--tw-border-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.Button_api_tab_selected__PD3kA {
+  cursor: default;
+  --tw-border-opacity: 1;
+  border-color: rgb(192 228 73 / var(--tw-border-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(192 228 73 / var(--tw-text-opacity));
 }
 
 .Button_banner__Gz_B8 {
@@ -2651,6 +2682,8 @@ video {
 }
 
 .Header_header_link__1cyvb {
+
+    cursor: pointer;
 
     padding-top: 0.75rem;
 
