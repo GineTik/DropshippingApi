@@ -91,8 +91,6 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 		mutationKey: [title],
 		mutationFn: () => refreshKeyRequest!(selectedItem),
 		onSettled: () => {
-			setShowCreateDialog(false)
-			setSelectedItem(null)
 			refetch()
 			toast.clearWaitingQueue()
 		},
@@ -100,7 +98,8 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 			toast.clearWaitingQueue()
 			setToastId(toast.loading('Оновлюємо'))
 		},
-		onSuccess: () => {
+		onSuccess: ({data}) => {
+			setSelectedItem(data)
 			toast.update(toastId, { render: "Оновлено", type: "success", isLoading: false, closeOnClick: true, autoClose: 2000 });
 		},
 		onError: (err) => {

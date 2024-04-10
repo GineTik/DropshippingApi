@@ -84,19 +84,12 @@ public class AuthService
         );
     }
 
-    public async Task<SuccessAuthDto> Refresh(int id, string refreshToken)
+    public async Task<SuccessAuthDto> Refresh(string refreshToken)
     {
-        try
-        {
-            new JwtSecurityTokenHandler().ValidateToken(refreshToken, _jwtTokenFactory.CreateValidationOptions(), out _);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
+        if (_jwtTokenFactory.Validate(refreshToken, out var userId) == false)
             throw new RefreshTokenIncorrectException();
-        }
 
-        var user = await _dataContext.Users.FirstAsync(u => u.Id == id);
+        var user = await _dataContext.Users.FirstAsync(u => u.Id == userId);
         var tokens = _jwtTokenFactory.CreateTokens(user);
 
         return new SuccessAuthDto

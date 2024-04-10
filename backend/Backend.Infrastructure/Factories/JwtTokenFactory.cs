@@ -1,7 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Backend.Core.Entities;
 using Backend.Core.Entities.User;
 using Backend.Core.Interfaces.JwtTokenFactory;
 using Microsoft.Extensions.Configuration;
@@ -27,15 +26,37 @@ public class JwtTokenFactory : IJwtTokenFactory
             new Claim(ClaimTypes.Role, user.UserRoles.Any(o => o.RoleId == (int)Roles.Dropshipper) 
                 ? Roles.Dropshipper.ToString() : Roles.Supplier.ToString())
         };
-        
+
         return new JwtTokens
         {
-            AccessToken = Create(claims, DateTime.UtcNow.Add(TimeSpan.FromMinutes(15))),
-            RefreshToken = Create(claims, DateTime.UtcNow.Add(TimeSpan.FromDays(30)))
+            AccessToken = Create(claims, DateTime.UtcNow.Add(TimeSpan.FromMinutes(
+                int.Parse(_configuration.GetSection("JWT:AccessExpiresMinutes").Value!)
+            ))),
+            RefreshToken = Create(claims, DateTime.UtcNow.Add(TimeSpan.FromDays(
+                int.Parse(_configuration.GetSection("JWT:RefreshExpiresDays").Value!)                
+            )))
         };
     }
 
-   public TokenValidationParameters CreateValidationOptions()
+    public bool Validate(string token, out int userId)
+    {
+        try
+        {
+            var claimsPrincipal = new JwtSecurityTokenHandler().ValidateToken(token, CreateValidationOptions(), out _);
+            var claimsIdentity = claimsPrincipal.Identity as ClaimsIdentity;
+            var claim = claimsIdentity!.FindFirst(ClaimTypes.NameIdentifier);
+            userId = int.Parse(claim!.Value);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            userId = 0;
+            return false;
+        }
+    }
+
+    public TokenValidationParameters CreateValidationOptions()
     {
         return new TokenValidationParameters
         {

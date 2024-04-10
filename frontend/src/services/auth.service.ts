@@ -25,8 +25,9 @@ export const AuthService = {
 		return await $api.post(`auth/activate/${activationCode}`)
 	},
 
+	refreshUrl: 'auth/refresh',
 	async refresh() {
-		return await $api.post('auth/refresh')
+		return await $api.post(this.refreshUrl)
 	},
 
 	async logout() {

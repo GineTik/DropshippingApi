@@ -2,7 +2,7 @@
 
 public class RefreshTokenIncorrectException : ServiceException
 {
-    public RefreshTokenIncorrectException() : base("Refresh token not found")
+    public RefreshTokenIncorrectException() : base("Refresh token incorrect")
     {
     }
 }

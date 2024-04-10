@@ -16,24 +16,22 @@ $api.interceptors.request.use((config) => {
 	return config
 })
 
-var refreshed = false
-
 $api.interceptors.response.use(
 	(response) => response,
 	async (error) => {
 		const originalRequest = error.config
 		const status = error.response?.status
+		const url = originalRequest.url
 
-		console.log(refreshed)
-		if ((status === 401 || status === 403) && refreshed === false) {
-			refreshed = true
-			const { data } = await AuthService.refresh()
+		if (url !== AuthService.refreshUrl && (status === 401 || status === 403)) {
+			const { data, status } = await AuthService.refresh()
+			if (status >= 400) return Promise.reject(error)
+
 			store.dispatch(authSlice.actions.login(data))
 			return $api(originalRequest)
-		} else {
-			refreshed = false
-			return Promise.reject(error)
 		}
+
+		return Promise.reject(error)
 	}
 )
 

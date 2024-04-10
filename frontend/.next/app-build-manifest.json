@@ -1,27 +1,33 @@
 {
   "pages": {
-    "/auth/[type]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/auth/[type]/page.css",
-      "static/chunks/app/auth/[type]/page.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/account/layout": [
+    "/(home)/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/account/layout.js"
+      "static/css/app/(home)/page.css",
+      "static/chunks/app/(home)/page.js"
+    ],
+    "/auth/[type]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/auth/[type]/page.css",
+      "static/chunks/app/auth/[type]/page.js"
     ],
     "/account/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/account/page.css",
       "static/chunks/app/account/page.js"
+    ],
+    "/account/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/account/layout.js"
     ],
     "/account/settings/layout": [
       "static/chunks/webpack.js",
@@ -40,6 +46,34 @@
       "static/chunks/main-app.js",
       "static/css/app/account/settings/supplier/page.css",
       "static/chunks/app/account/settings/supplier/page.js"
+    ],
+    "/account/settings/payment/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/account/settings/payment/page.js"
+    ],
+    "/suppliers/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/suppliers/page.css",
+      "static/chunks/app/suppliers/page.js"
+    ],
+    "/suppliers/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/suppliers/[id]/page.css",
+      "static/chunks/app/suppliers/[id]/page.js"
+    ],
+    "/api/(pages)/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/(pages)/layout.js"
+    ],
+    "/api/(pages)/(general)/introduction/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/api/(pages)/(general)/introduction/page.css",
+      "static/chunks/app/api/(pages)/(general)/introduction/page.js"
     ],
     "/not-found": [
       "static/chunks/webpack.js",
