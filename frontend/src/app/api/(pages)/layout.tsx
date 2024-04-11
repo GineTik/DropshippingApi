@@ -1,3 +1,4 @@
+'use client'
 import Section from '@/components/section/Section'
 import ApiNavigation from '../components/ApiNavigation'
 

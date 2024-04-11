@@ -9,7 +9,7 @@ const Line = ({ children, withoutTab, tabsCount }: LineProps) => {
 		<div
 			className="text-nowrap"
 			style={{
-				marginLeft: withoutTab ? '' : `${2.75 * (tabsCount ?? 1)}rem`
+				marginLeft: withoutTab ? '' : `${2 * (tabsCount ?? 1)}rem`
 			}}
 		>
 			{children}

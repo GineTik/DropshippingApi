@@ -1,14 +1,14 @@
 'use client'
-import HowItWorks from './components/how-it-works/HowItWorks'
 import Present from './components/present/Present'
-import Suppliers from './components/suppliers/Suppliers'
+import ReasonsToWorkWithUs from './components/reasons-to-work-with-us/ReasonsToWorkWithUs'
+import WhoIsMe from './components/who-is-me/WhoIsMe'
 
 const HomePage = () => {
 	return (
 		<>
 			<Present />
-			<HowItWorks />
-			<Suppliers />
+			<WhoIsMe />
+			<ReasonsToWorkWithUs />
 		</>
 	)
 }

@@ -6,7 +6,7 @@
 
 .secondary {
     //text
-    @apply text-xs text-gray-600 dark:text-white uppercase font-medium;
+    @apply text-xs text-gray-600 dark:text-white uppercase font-medium text-center;
 
     // border
     @apply border rounded-[10px] transition;
@@ -124,7 +124,7 @@
 }
 
 .light {
-    @apply text-xs py-3 px-7 text-gray-600 dark:text-white uppercase font-medium;
+    @apply text-xs py-3 px-7 text-gray-600 dark:text-white uppercase font-medium text-center;
     @apply border-white/40;
 
     &:hover {

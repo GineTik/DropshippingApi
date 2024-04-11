@@ -1,0 +1,27 @@
+.section {
+    @apply text-white py-[140px] flex gap-[20px] max-w-[1180px] px-[30px] justify-center;
+
+    &__first {
+        @apply flex flex-col;
+    }
+
+    &__second {
+        @apply flex gap-[20px];
+    }
+
+    &__title {
+        @apply w-[300px];
+    }
+
+    &__emphasis {
+        @apply italic font-semibold;
+    }
+
+    &__row {
+        @apply flex gap-[20px] mt-auto;
+    }
+
+    &__col {
+        @apply flex flex-col gap-[20px];
+    }
+}

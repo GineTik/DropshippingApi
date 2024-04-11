@@ -694,6 +694,24 @@
 }
 
 /*# sourceMappingURL=ReactToastify.css.map */
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[11].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[11].oneOf[9].use[5]!./src/middlewares/Middleware.module.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.Middleware_min_width__m2A8l {
+
+  display: flex;
+
+  height: 100%;
+
+  flex-direction: column
+}
+
+@media (max-width: 1020px) {
+  .Middleware_min_width__m2A8l {
+
+    display: none
+  }
+}
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[11].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[11].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[11].oneOf[9].use[5]!./src/app/globals.module.scss ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -1282,18 +1300,11 @@ video {
 .top-0 {
   top: 0px;
 }
-.top-3 {
-  top: 0.75rem;
-}
 .-z-10 {
   z-index: -10;
 }
 .z-10 {
   z-index: 10;
-}
-.mx-3 {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
 }
 .mx-auto {
   margin-left: auto;
@@ -1310,9 +1321,6 @@ video {
 .-mt-6 {
   margin-top: -1.5rem;
 }
-.mb-10 {
-  margin-bottom: 2.5rem;
-}
 .mb-12 {
   margin-bottom: 3rem;
 }
@@ -1327,9 +1335,6 @@ video {
 }
 .mb-5 {
   margin-bottom: 1.25rem;
-}
-.mb-6 {
-  margin-bottom: 1.5rem;
 }
 .mb-7 {
   margin-bottom: 1.75rem;
@@ -1364,14 +1369,23 @@ video {
 .mt-4 {
   margin-top: 1rem;
 }
-.mt-8 {
-  margin-top: 2rem;
-}
 .mt-\[150px\] {
   margin-top: 150px;
 }
 .mt-auto {
   margin-top: auto;
+}
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+.mt-5 {
+  margin-top: 1.25rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.mt-10 {
+  margin-top: 2.5rem;
 }
 .block {
   display: block;
@@ -1388,8 +1402,8 @@ video {
 .grid {
   display: grid;
 }
-.h-28 {
-  height: 7rem;
+.hidden {
+  display: none;
 }
 .h-\[100px\] {
   height: 100px;
@@ -1402,9 +1416,6 @@ video {
 }
 .h-\[280px\] {
   height: 280px;
-}
-.h-\[433px\] {
-  height: 433px;
 }
 .h-\[60px\] {
   height: 60px;
@@ -1421,9 +1432,6 @@ video {
 .w-2\/3 {
   width: 66.666667%;
 }
-.w-28 {
-  width: 7rem;
-}
 .w-5 {
   width: 1.25rem;
 }
@@ -1438,9 +1446,6 @@ video {
 }
 .w-8 {
   width: 2rem;
-}
-.w-80 {
-  width: 20rem;
 }
 .w-\[145px\] {
   width: 145px;
@@ -1480,9 +1485,6 @@ video {
 }
 .min-w-\[180px\] {
   min-width: 180px;
-}
-.max-w-\[1068px\] {
-  max-width: 1068px;
 }
 .max-w-\[1136px\] {
   max-width: 1136px;
@@ -1614,6 +1616,11 @@ video {
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
 .self-center {
   align-self: center;
 }
@@ -1628,9 +1635,6 @@ video {
 }
 .text-nowrap {
   text-wrap: nowrap;
-}
-.rounded-2xl {
-  border-radius: 1rem;
 }
 .rounded-3xl {
   border-radius: 1.5rem;
@@ -1687,14 +1691,6 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-.bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-.bg-gray-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
-}
 .bg-gray-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
@@ -1722,6 +1718,10 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.bg-slate-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
 }
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
@@ -1890,9 +1890,6 @@ video {
 .leading-5 {
   line-height: 1.25rem;
 }
-.leading-7 {
-  line-height: 1.75rem;
-}
 .leading-normal {
   line-height: 1.5;
 }
@@ -1947,6 +1944,10 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.text-blue-400 {
+  --tw-text-opacity: 1;
+  color: rgb(96 165 250 / var(--tw-text-opacity));
 }
 .underline {
   text-decoration-line: underline;
@@ -2031,9 +2032,6 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-.hover\:bg-gray-200\/30:hover {
-  background-color: rgb(229 231 235 / 0.3);
-}
 .hover\:bg-gray-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -2087,12 +2085,6 @@ video {
 .group:hover .group-hover\:opacity-100 {
   opacity: 1;
 }
-@media not all and (min-width: 768px) {
-
-  .max-md\:w-full {
-    width: 100%;
-  }
-}
 @media (min-width: 640px) {
 
   .sm\:hover\:scale-110:hover {
@@ -2103,24 +2095,12 @@ video {
 }
 @media (min-width: 768px) {
 
-  .md\:sticky {
-    position: sticky;
-  }
-
-  .md\:mb-16 {
-    margin-bottom: 4rem;
-  }
-
   .md\:mb-20 {
     margin-bottom: 5rem;
   }
 
-  .md\:mt-10 {
-    margin-top: 2.5rem;
-  }
-
-  .md\:min-w-\[250px\] {
-    min-width: 250px;
+  .md\:block {
+    display: block;
   }
 
   .md\:flex-row {
@@ -2129,15 +2109,6 @@ video {
 
   .md\:items-start {
     align-items: flex-start;
-  }
-
-  .md\:p-0 {
-    padding: 0px;
-  }
-
-  .md\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
   }
 
   .md\:py-32 {
@@ -2152,13 +2123,16 @@ video {
   .md\:pt-20 {
     padding-top: 5rem;
   }
-
-  .md\:text-xl\/8 {
-    font-size: 1.25rem;
-    line-height: 2rem;
-  }
 }
 @media (min-width: 1024px) {
+
+  .lg\:block {
+    display: block;
+  }
+
+  .lg\:flex {
+    display: flex;
+  }
 
   .lg\:flex-nowrap {
     flex-wrap: nowrap;
@@ -2167,12 +2141,16 @@ video {
   .lg\:justify-between {
     justify-content: space-between;
   }
-
-  .lg\:gap-7 {
-    gap: 1.75rem;
-  }
 }
 @media (min-width: 1280px) {
+
+  .xl\:block {
+    display: block;
+  }
+
+  .xl\:flex {
+    display: flex;
+  }
 
   .xl\:px-5 {
     padding-left: 1.25rem;
@@ -2283,6 +2261,7 @@ video {
 }
 
 .Button_secondary__rocQX {
+  text-align: center;
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 500;
@@ -2637,6 +2616,7 @@ video {
   padding-bottom: 0.75rem;
   padding-left: 1.75rem;
   padding-right: 1.75rem;
+  text-align: center;
   font-size: 0.75rem;
   line-height: 1rem;
   font-weight: 500;

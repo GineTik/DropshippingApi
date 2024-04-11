@@ -17,7 +17,7 @@ const page = () => {
 				</p>
 			</ApiSection>
 			<ApiSection>
-				<h4 className="pt-3">Наше API надає такі ключові можливості:</h4>
+				<h4 className="pt-3 mb-7">Наше API надає такі ключові можливості:</h4>
 				<div className="grid grid-cols-2 gap-5 pb-10 max-w-[750px]">
 					<LinkBlock
 						href={RouteConstants.Api.GetFilteredOffers}

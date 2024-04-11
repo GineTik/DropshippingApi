@@ -3,7 +3,7 @@ import Section from '@/components/section/Section'
 import { pageInDeveloping } from '@/helpers/ToastHelper'
 import Link from 'next/link'
 import RouteConstants from '../../../../../constants/RouteConstants'
-import blocks from '../../../../components/Blocks.module.scss'
+import blocks from '../../../../components/blocks/Blocks.module.scss'
 import styles from './Present.module.scss'
 
 const Present = () => {
@@ -19,7 +19,7 @@ const Present = () => {
 				</p>
 				<Buttons.Present as={Link} href={RouteConstants.Registration}>ЗАРЕЄСТРУВАТИСЬ</Buttons.Present>
 			</div>
-			<div className="flex gap-5 items-start pt-[60px]">
+			<div className="gap-5 items-start pt-[60px] xl:flex hidden">
 				<div className='w-[180px] grid gap-5'>
 					<div className={`${blocks.block_small_gray} w-[145px] h-[60px] mt-[150px]`}>
 						100k+ товарів

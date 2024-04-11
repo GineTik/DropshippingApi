@@ -14,7 +14,7 @@ const Api = (supplier: SupplierSettings) => {
 	})
 
 	return (
-		<div className={styles.wrapper}>
+		<div className={styles.wrapper} id="api">
 			<Section className={styles.section}>
 				<div>
 					<Code.Object className={styles.section__code} object={firstOffer?.data} />
@@ -23,7 +23,7 @@ const Api = (supplier: SupplierSettings) => {
 					<h2 className={styles.section__title}>АПІ - як <span className={styles.title__emphasis}>інтегрувати</span> товари у ваш інтернет-магазин?</h2>
 					<p className={styles.section__p}>Використовуючи кінцеві точки нашого АПІ ви можете отримувати товари відсортованими та за потрібними вам фільтрами.</p>
 					<p className={styles.section__fields}><MoveLeft strokeWidth={1} /> Поля товара цього поставщика</p>
-					<Buttons.PrimaryDark>Детальніше</Buttons.PrimaryDark>
+					<Buttons.PrimaryBorderWithArrow>Детальніше</Buttons.PrimaryBorderWithArrow>
 				</div>
 			</Section>
 		</div>

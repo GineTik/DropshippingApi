@@ -31,24 +31,3 @@
 .banner_blue__p {
 
 }
-
-.banner_white {
-    @apply w-[280px] h-[660px] rounded-[20px] px-[20px] pt-[40px] pb-[20px] flex flex-col items-center text-center;
-    @apply bg-gray-50 text-black;
-}
-
-.banner_white__image {
-    @apply -mr-[20px] self-end;
-}
-
-.banner_white__title {
-    @apply mt-[45px] mb-[32px];
-}
-
-.banner_white__emphasis {
-    @apply text-blue-700 italic;
-}
-
-.banner_white__p {
-    @apply w-[200px];
-}

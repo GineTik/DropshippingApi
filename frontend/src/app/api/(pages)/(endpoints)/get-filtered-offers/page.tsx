@@ -1,5 +1,4 @@
 import ApiSection from '@/app/api/components/section/ApiSection'
-import { AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import ApiEndpointsConstants from '../../../../../../constants/ApiEndpointsConstants'
 import RouteConstants from '../../../../../../constants/RouteConstants'
@@ -44,14 +43,6 @@ const GetFilteredOffersPage = () => {
 	return (
 		<div>
 			<div className="space-y-3">
-				<div className="flex gap-3 p-4 bg-orange-100 border border-orange-400 rounded-xl">
-					<AlertCircle size={24} className="text-orange-500" />
-					<div className="text-sm">
-						Якщо ще не ознайомились з статтями зліва в групі "Основне",
-						рекомендуємо це зробити, щоб повністю розуміти те, що нижче.
-					</div>
-				</div>
-
 				<h2 className="pt-4">Отримати список товарів</h2>
 
 				<ApiSection>
@@ -87,7 +78,7 @@ const GetFilteredOffersPage = () => {
 						Отримати усі товари, які в імені мають слово "аксесуар"{' '}
 						<Link
 							href={RouteConstants.Api.Filtration}
-							className="font-medium text-blue-600"
+							className="font-medium text-blue-500"
 						>
 							(детальніше про фільтрацію)
 						</Link>
