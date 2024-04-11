@@ -10,10 +10,10 @@ const LinkBlock = ({ href, title, description }: LinkBlockProps) => {
 	return (
 		<Link
 			href={href}
-			className="block p-9 shadow-lg shadow-blue-100 rounded-xl text-sm hover:scale-105 transition space-y-2"
+			className="block p-9 shadow-lg bg-slate-900 rounded-xl text-sm hover:scale-105 transition space-y-4"
 		>
-			<span className="font-bold mb-4 text-base">{title}</span>
-			<p className="text-sm/normal">{description}</p>
+			<h5>{title}</h5>
+			<p className="text-sm/normal leading-normal">{description}</p>
 		</Link>
 	)
 }

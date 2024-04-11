@@ -1,6 +1,7 @@
 'use client'
 import RouteConstants from '@/../constants/RouteConstants'
 import UserLogo from '@/../public/UserLogo.png'
+import { pageInDeveloping } from '@/helpers/ToastHelper'
 import { useActions } from '@/hooks/useActions'
 import { AuthService } from '@/services/auth.service'
 import { StateType } from '@/store/store'
@@ -69,7 +70,7 @@ const HeaderAuthentication = () => {
 								</Menu.Item>
 								{user.roles.includes("Supplier") && <>
 									<Menu.Item>
-										<ProfileMenuItem href={RouteConstants.Settings.Security}>
+										<ProfileMenuItem onClick={() => pageInDeveloping('Ваші замовлення')}>
 											Замовлення
 										</ProfileMenuItem>
 									</Menu.Item>

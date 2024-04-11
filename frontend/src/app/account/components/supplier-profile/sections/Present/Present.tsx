@@ -2,10 +2,11 @@ import { Buttons } from "@/components/buttons"
 import Rating from "@/components/rating/Rating"
 import Section from "@/components/section/Section"
 import { SupplierSettings } from "@/dtos/user/settings/supplier-settings.dto"
+import { pageInDeveloping } from "@/helpers/ToastHelper"
 import { OffersService } from "@/services/user/offers.service"
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
-import blocks from '../../../../../../components/Blocks.module.scss'
+import blocks from '../../../../../../components/blocks/Blocks.module.scss'
 import styles from "./Present.module.scss"
 
 const Present = (supplier: SupplierSettings) => {
@@ -50,7 +51,9 @@ const Present = (supplier: SupplierSettings) => {
 					</div>
 
 					<div className={styles.present__footer}>
-						<Buttons.Present>Перейти до товарів</Buttons.Present>
+						<Buttons.Present onClick={() => pageInDeveloping('Товари поставщика')}>
+							Перейти до товарів
+						</Buttons.Present>
 					</div>
 				</div>
 				<div>
@@ -68,12 +71,24 @@ const Present = (supplier: SupplierSettings) => {
 						<div className={`${blocks.block_gray} w-[220px] h-[280px]`}>
 							<h5 className={styles.block__title}>Викачати товари</h5>
 							<p className={`${blocks.block__p} w-[80%]`}>Викачайте товари, які вам потрібні у вигляді файлу</p>
-							<Buttons.Secondary className={blocks.block__button}>Перейти</Buttons.Secondary>
+							<Buttons.Secondary 
+								as={Link}
+								href="#download-offers"
+								className={blocks.block__button}
+							>
+								Перейти
+							</Buttons.Secondary>
 						</div>
 						<div className={`${blocks.block_blue} w-[220px] h-[280px]`}>
 							<h5 className={styles.block__title}>Використати АПІ</h5>
 							<p className={`${blocks.block__p} w-2/3`}>Використовуйте АПІ для своїх потреб</p>
-							<Buttons.Light className={blocks.block__button}>Перейти</Buttons.Light>
+							<Buttons.Light 
+								as={Link}
+								href="#api"
+								className={blocks.block__button}
+							>
+								Перейти
+							</Buttons.Light>
 						</div>
 					</div>
 				</div>

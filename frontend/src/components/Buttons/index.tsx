@@ -30,7 +30,7 @@ export const Buttons = {
 	PrimaryHeader: (props: BaseButtonProps) => {
 		return <BaseButton {...props} className={`${styles.base} ${styles.primary_header} ${props.className}`} />
 	},
-	PrimaryDark: (props: BaseButtonProps) => {
+	PrimaryBorderWithArrow: (props: BaseButtonProps) => {
 		return <BaseButton {...props} className={`${styles.base} ${styles.primary_dark} ${props.className}`}>
 			{props.children} <ArrowRight className='ml-3' size={14} strokeWidth={2} />
 		</BaseButton>

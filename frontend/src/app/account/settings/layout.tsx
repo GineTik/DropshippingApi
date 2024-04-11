@@ -1,14 +1,13 @@
 'use client'
+import { Blocks } from '@/components/blocks'
 import { Buttons } from '@/components/buttons'
 import Section from '@/components/section/Section'
 import { pageInDeveloping } from '@/helpers/ToastHelper'
 import RequireAuthMiddleware from '@/middlewares/RequireAuthMiddleware'
 import { StateType } from '@/store/store'
 import { Shield } from 'lucide-react'
-import Image from 'next/image'
 import { useSelector } from 'react-redux'
 import RouteConstants from '../../../../constants/RouteConstants'
-import banner_image from '../../../../public/banner-image.png'
 import styles from './Settings.module.scss'
 
 const SettingsLayout = ({children}: any) => {
@@ -39,14 +38,7 @@ const SettingsLayout = ({children}: any) => {
                                 При зміні деяких налаштувань вам потрібно підтвердити операцію надавши код з почти 
                             </p>
                         </div>
-                        <div className={styles.banner_white}>
-                            <Image className={styles.banner_white__image} src={banner_image.src} alt='banner-image' width={250} height={250} />
-                            <h4 className={styles.banner_white__title}>
-                                Маєте <span className={styles.banner_white__emphasis}>питання</span> <br /> до нас по сервісу?
-                            </h4>
-                            <p className={styles.banner_white__p}>Напишіть нам ваше питання та ми відповімо вам найближчим часом</p>
-                            <Buttons.Banner className='mt-auto'>Написати нам</Buttons.Banner>
-                        </div>
+                        <Blocks.Banner />
                     </div>
                 </div>
             </Section>

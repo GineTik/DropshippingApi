@@ -18,6 +18,7 @@ const Header = () => {
 				<Link
 					href={RouteConstants.Api.Introduction}
 					className={styles.header_link}
+					// onClick={() => toast.warning('Приклад наповнення документації')}
 				>
 					Документація
 				</Link>
