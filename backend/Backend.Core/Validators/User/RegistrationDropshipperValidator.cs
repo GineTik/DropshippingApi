@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Backend.Core.Validators.User;
 
-public class LoginValidator : AbstractValidator<LoginDto>
+public class RegistrationDropshipperValidator : AbstractValidator<RegistrationDropshipperDto>
 {
-    public LoginValidator()
+    public RegistrationDropshipperValidator()
     {
         RuleFor(o => o.Email)
             .EmailAddress()

@@ -1,4 +1,5 @@
 import Dialog from '@/app/account/components/dropshipper-profile/Dialog'
+import { functionalInDeveloping, pageInDeveloping } from '@/helpers/ToastHelper'
 import { useTypedMutation } from '@/hooks/useTypedMutation'
 import { useQuery } from '@tanstack/react-query'
 import { Expand, File, Pen, Plus, RefreshCcw, Trash } from 'lucide-react'
@@ -27,7 +28,7 @@ interface EntityListProps {
   settings?: boolean
 }
 
-const EntityList = ({title, creationTitle, readTitle, description, moreHref, contentOfItem, createItemRequest, changingFields, getAllItems, copyData, translates, settings, deleteItemRequest, refreshKeyRequest}: EntityListProps) => {
+const EntityList = ({title, creationTitle, readTitle, description, moreHref, contentOfItem, createItemRequest, changingFields, getAllItems, translates, settings, deleteItemRequest, refreshKeyRequest}: EntityListProps) => {
 
 	const { data: items, refetch } = useQuery<any>({
 		queryKey: [title],
@@ -113,8 +114,9 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 
 	const iconSize = 16;
 
-	const copy = () => {
-		navigator.clipboard.writeText(copyData(selectedItem))
+	const copy = (content: string) => {
+		navigator.clipboard.writeText(content)
+		toast.success('Скопійовано')
 	}
 
 	return (
@@ -125,7 +127,15 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 				<Buttons.Icon onClick={() => setShowCreateDialog(true)}><Plus /></Buttons.Icon>
 			</div>
 			<p className={styles.list__p}>
-			{description} {moreHref && <Link className="text-blue-600 underline-offset-4 underline hover:text-blue-400 transition" href={moreHref}>Детальніше</Link>}
+			{description} {moreHref && <Link 
+				className="text-blue-600 underline-offset-4 underline hover:text-blue-400 transition" 
+				href={moreHref} 
+				onClick={(e) => {
+					if (moreHref === '#') {
+						e.preventDefault()
+						pageInDeveloping('Детальніше')
+					}
+				}}>Детальніше</Link>}
 			</p>
 			<div>
 				{items?.data.map((o: any) => <div 
@@ -174,18 +184,27 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 			<div className={styles.dialog__header}>
 				<h4>{readTitle}</h4>
 				<div className={styles.dialog__icons}>
-				<Buttons.Icon onClick={copy}><File size={iconSize} /></Buttons.Icon>
-				{refreshKeyRequest && <Buttons.Icon onClick={refreshAsync}><RefreshCcw size={iconSize} /></Buttons.Icon>}
-				<Buttons.Icon><Pen size={iconSize} /></Buttons.Icon>
-				<Buttons.Icon onClick={() => setConfirmToDelete(true)}><Trash size={iconSize} /></Buttons.Icon>
+					{refreshKeyRequest && <Buttons.Icon onClick={refreshAsync}>
+						<RefreshCcw size={iconSize} />
+					</Buttons.Icon>}
+					<Buttons.Icon onClick={() => functionalInDeveloping('Редагування')}>
+						<Pen size={iconSize} />
+					</Buttons.Icon>
+					<Buttons.Icon onClick={() => setConfirmToDelete(true)}>
+						<Trash size={iconSize} />
+					</Buttons.Icon>
 				</div>
 			</div>
 				<div className="flex flex-wrap gap-3 w-[500px]">
 					{selectedItem && Object.keys(selectedItem).map(o => o.toLowerCase() == 'id' ? <></> : <div
 						key={crypto.randomUUID()} 
-						className='w-[48%] flex-grow'
+						className={styles.dialog__field}
+						onClick={() => copy(selectedItem[o])}
 					>
-						<span className={styles.dialog__field_title}>{translates[o]}</span>
+						<div className={styles.dialog__field_header}>
+							<span className={styles.dialog__field_title}>{translates[o]}</span>
+							<File size={15}/>
+						</div>
 						<div>{selectedItem[o]}</div>
 					</div>)}
 				</div>

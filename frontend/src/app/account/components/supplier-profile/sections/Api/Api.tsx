@@ -13,11 +13,13 @@ const Api = (supplier: SupplierSettings) => {
 		queryFn: () => OffersService.getFirst(supplier.id),
 	})
 
+	console.log(firstOffer)
+
 	return (
 		<div className={styles.wrapper} id="api">
 			<Section className={styles.section}>
 				<div>
-					<Code.Object className={styles.section__code} object={firstOffer?.data} />
+					<Code.Object className={styles.section__code} object={firstOffer?.data === '' ? {} : firstOffer?.data} />
 				</div>
 				<div>
 					<h2 className={styles.section__title}>АПІ - як <span className={styles.title__emphasis}>інтегрувати</span> товари у ваш інтернет-магазин?</h2>

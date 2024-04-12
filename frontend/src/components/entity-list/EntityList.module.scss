@@ -37,7 +37,25 @@
         @apply flex gap-1;
     }
 
-    &__field_title {
-        @apply text-zinc-400 dark:text-zinc-500 italic mt-3 block truncate font-medium;
+    &__field {
+        @apply w-[48%] flex-grow cursor-pointer;
+
+        &_header {
+            @apply flex gap-1 mt-3 items-center;
+    
+            svg {
+                @apply stroke-transparent fill-gray-800 transition;
+            }
+        }
+
+        &_title {
+            @apply text-zinc-400 dark:text-zinc-500 italic block truncate font-medium;
+        }
+
+        &:hover {
+            svg {
+                @apply fill-gray-700;
+            }
+        }
     }
 }

@@ -5,12 +5,13 @@ import { SupplierSettings } from "@/dtos/user/settings/supplier-settings.dto"
 import { pageInDeveloping } from "@/helpers/ToastHelper"
 import { OffersService } from "@/services/user/offers.service"
 import { useQuery } from "@tanstack/react-query"
+import { AxiosResponse } from "axios"
 import Link from "next/link"
 import blocks from '../../../../../../components/blocks/Blocks.module.scss'
 import styles from "./Present.module.scss"
 
 const Present = (supplier: SupplierSettings) => {
-	const { data: count } = useQuery<any>({
+	const { data: count } = useQuery<AxiosResponse<number>>({
 		queryKey: [`get-count-of-offers-${supplier.id}`],
 		queryFn: () => OffersService.getCount(supplier.id),
 	})
@@ -57,7 +58,8 @@ const Present = (supplier: SupplierSettings) => {
 					</div>
 				</div>
 				<div>
-					<div className={styles.present__statistics}>
+					{!supplier.searchable && <p className="text-gray-400 w-[460px] mb-7">Наразі вас не зможуть знайти в пошуку. Наші менеджери проведуть перевірку вашого аккаунту, ви маєте мати адекватну назву та перелік товар!</p>}
+					{count?.data != null && count?.data > 0 && <div className={styles.present__statistics}>
 						<div>
 							<span className={styles.statistics__title}>Кількість товарів</span>
 							<span className={styles.statistics__value}>{count?.data} товарів</span>
@@ -66,7 +68,7 @@ const Present = (supplier: SupplierSettings) => {
 							<span className={styles.statistics__title}>Останнє оновлення товарів</span>
 							<span className={styles.statistics__value}>{formatDate(supplier.offersUpdatedAtUtc)}</span>
 						</div>
-					</div>
+					</div>}
 					<div className={styles.blocks}>
 						<div className={`${blocks.block_gray} w-[220px] h-[280px]`}>
 							<h5 className={styles.block__title}>Викачати товари</h5>

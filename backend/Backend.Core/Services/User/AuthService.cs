@@ -1,5 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using AutoMapper;
+﻿using AutoMapper;
 using Backend.Core.DTOs.User;
 using Backend.Core.DTOs.User.Auth;
 using Backend.Core.EF;
@@ -10,6 +9,7 @@ using Backend.Core.Exceptions.ServiceExceptions;
 using Backend.Core.Interfaces;
 using Backend.Core.Interfaces.ConfirmationCode;
 using Backend.Core.Interfaces.JwtTokenFactory;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Core.Services.User;
@@ -22,8 +22,11 @@ public class AuthService
     private readonly DataContext _dataContext;
     private readonly IMapper _mapper;
     private readonly IPasswordHasher _passwordHasher;
+    private readonly IValidator<LoginDto> _loginValidator;
+    private readonly IValidator<RegistrationDropshipperDto> _registrationDropshipperValidator;
+    private readonly IValidator<RegistrationSupplierDto> _registrationSupplierValidator;
     
-    public AuthService(IJwtTokenFactory jwtTokenFactory, DataContext dataContext, IMapper mapper, IPasswordHasher passwordHasher, IConfirmationCodeFactory confirmationCodeFactory, IMailSender mailSender)
+    public AuthService(IJwtTokenFactory jwtTokenFactory, DataContext dataContext, IMapper mapper, IPasswordHasher passwordHasher, IConfirmationCodeFactory confirmationCodeFactory, IMailSender mailSender, IValidator<LoginDto> loginValidator, IValidator<RegistrationDropshipperDto> registrationDropshipperValidator, IValidator<RegistrationSupplierDto> registrationSupplierValidator)
     {
         _jwtTokenFactory = jwtTokenFactory;
         _dataContext = dataContext;
@@ -31,10 +34,16 @@ public class AuthService
         _passwordHasher = passwordHasher;
         _confirmationCodeFactory = confirmationCodeFactory;
         _mailSender = mailSender;
+        _loginValidator = loginValidator;
+        _registrationDropshipperValidator = registrationDropshipperValidator;
+        _registrationSupplierValidator = registrationSupplierValidator;
     }
     
     public async Task<SuccessAuthDto> Login(LoginDto dto)
     {
+        var result = await _loginValidator.ValidateAsync(dto);
+        if (result.IsValid == false) throw new ServiceValidationException(result.Errors.First());
+        
         var user = await _dataContext.Users.Include(user => user.UserRoles)
             .FirstOrDefaultAsync(u => u.Email == dto.Email);
         if (user is null || _passwordHasher.Compare(user.Password, dto.Password) == false) throw new UserNotExistsException();
@@ -58,6 +67,9 @@ public class AuthService
 
     public async Task<SuccessAuthDto> RegistrationDropshipper(RegistrationDropshipperDto dto)
     {
+        var result = await _registrationDropshipperValidator.ValidateAsync(dto);
+        if (result.IsValid == false) throw new ServiceValidationException(result.Errors.First());
+        
         return await Registration(new Entities.User.User
             {
                 Email = dto.Email,
@@ -70,6 +82,9 @@ public class AuthService
 
     public async Task<SuccessAuthDto> RegistrationSupplier(RegistrationSupplierDto dto)
     {
+        var result = await _registrationSupplierValidator.ValidateAsync(dto);
+        if (result.IsValid == false) throw new ServiceValidationException(result.Errors.First());
+        
         return await Registration(new Entities.User.User
             {
                 Email = dto.Email,

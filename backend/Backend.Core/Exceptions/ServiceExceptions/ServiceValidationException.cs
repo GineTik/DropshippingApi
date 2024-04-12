@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace Backend.Core.Exceptions.ServiceExceptions;
 
-public class SupplierValidationException : ServiceException
+public class ServiceValidationException : ServiceException
 {
-    public SupplierValidationException(string message) : base(message)
+    public ServiceValidationException(string message) : base(message)
     {
     }
 
-    public SupplierValidationException(ValidationFailure error) : base(error.ErrorMessage)
+    public ServiceValidationException(ValidationFailure error) : base(error.ErrorMessage)
     {
     }
 }
