@@ -1,27 +1,22 @@
-import BlueButton from '@/components/buttons/old-buttons/BlueButton'
-import BaseInput from '@/components/inputs/BaseInput'
+import { Buttons } from '@/components/buttons'
+import { Inputs } from '@/components/inputs'
 import { useActions } from '@/hooks/useActions'
 import { AuthService } from '@/services/auth.service'
 import { getState } from '@/store/store'
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 import RouteConstants from '../../../../constants/RouteConstants'
-import ErrorMessage from '../../../components/error-message/ErrorMessage'
 
 const ActivationCode = () => {
 	const { auth } = useSelector(getState)
 	const { activateAccount } = useActions()
 	const [code, setCode] = useState('')
-	const [error, setError] = useState<AxiosError<any>>()
 	const router = useRouter()
 
-	const { mutateAsync: activate, isPending } = useMutation<
-		AxiosResponse,
-		AxiosError
-	>({
+	const { mutateAsync: activate, isPending } = useMutation<any, any>({
 		mutationKey: ['activate'],
 		mutationFn: () => AuthService.activate(Number(code)),
 		onSuccess: () => {
@@ -29,28 +24,26 @@ const ActivationCode = () => {
 			router.push(RouteConstants.Account)
 		},
 		onError: (err) => {
-			setError(err)
+			toast.error(err.response?.data.message)
 		}
 	})
 
 	return (
-		<form className="flex flex-col gap-3 w-72">
+		<form className="flex flex-col gap-3 w-72 text-white">
 			<h4>Введіть код</h4>
-			<BaseInput
+			<Inputs.Default
 				placeholder="999999"
 				type="number"
 				value={code}
 				onChange={(e) => setCode(e.target.value)}
 			/>
-			<BlueButton onClick={() => activate()} isPending={isPending}>
+			<Buttons.Form onClick={() => activate()}>
 				Підтвердити
-			</BlueButton>
+			</Buttons.Form>
 
 			<span className="text-gray-500 text-sm w-64">
 				Код був відправлений на почту {auth.user?.email}
 			</span>
-
-			{error && <ErrorMessage>{error}</ErrorMessage>}
 		</form>
 	)
 }

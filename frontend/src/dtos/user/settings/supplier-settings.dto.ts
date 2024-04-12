@@ -7,6 +7,7 @@ export type SupplierSettings = {
 	ymlLink: string
 	refreshTimeId: number
 	offersUpdatedAtUtc: Date
+	searchable: boolean
 	links: Array<{ name: string; url: string }>
 	tags: Array<{ name: string }>
 }
