@@ -1,7 +1,8 @@
 {
+  "/not-found": "app/not-found.js",
+  "/(home)/page": "app/(home)/page.js",
+  "/auth/[type]/page": "app/auth/[type]/page.js",
+  "/suppliers/[id]/page": "app/suppliers/[id]/page.js",
   "/suppliers/page": "app/suppliers/page.js",
-  "/api/(pages)/(general)/filtration/page": "app/api/(pages)/(general)/filtration/page.js",
-  "/account/page": "app/account/page.js",
-  "/api/(pages)/(general)/introduction/page": "app/api/(pages)/(general)/introduction/page.js",
-  "/account/settings/security/page": "app/account/settings/security/page.js"
+  "/account/page": "app/account/page.js"
 }

@@ -5,8 +5,10 @@ using Backend.Core.Services.User;
 using Backend.Core.Services.User.Dropshipper;
 using Backend.Core.Services.User.Supplier;
 using Backend.Core.Sheduler;
+using Backend.Core.Validators.User;
 using Coravel;
 using Coravel.Scheduling.Schedule.Interfaces;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +36,7 @@ public static class ServiceExtension
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScheduler();
         services.AddTransient<UnloadOfferJob>();
+        services.AddValidatorsFromAssemblyContaining<LoginValidator>();
         return services;
     }
 }

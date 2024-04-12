@@ -2,6 +2,7 @@
 import { Buttons } from "@/components/buttons"
 import EntityList from "@/components/entity-list/EntityList"
 import Section from "@/components/section/Section"
+import { functionalInDeveloping } from "@/helpers/ToastHelper"
 import { AllowedHostsService } from "@/services/user/allowed-hosts.service"
 import { ApiKeysService } from "@/services/user/api-keys.service"
 import styles from './DropshipperProfile.module.scss'
@@ -12,7 +13,7 @@ const DropshipperProfile = () => {
 			<div className={styles.orders}>
 				<div className={styles.orders_header}>
 					<h3>Замовлення</h3>
-					<Buttons.Secondary>Оформлені</Buttons.Secondary>
+					<Buttons.Secondary onClick={() => functionalInDeveloping('Оформлення замовлення')}>Оформлені</Buttons.Secondary>
 				</div>
 				<p className={styles.p}>Тут знаходяться усі замовлення, які не обробляються поставщиками автоматично. Тому вам потрібно перейти до поставщика на сайт або іншим способом надати інформацію про замовлення поставщику.</p>
 			</div>

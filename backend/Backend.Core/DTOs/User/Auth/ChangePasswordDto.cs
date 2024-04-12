@@ -1,4 +1,6 @@
-﻿namespace Backend.Core.DTOs.User.Auth;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Backend.Core.DTOs.User.Auth;
 
 public class ChangePasswordDto
 {
