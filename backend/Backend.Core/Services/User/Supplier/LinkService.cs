@@ -65,4 +65,22 @@ public class LinkService
         var result = await _dataContext.Links.Where(o => o.SupplierSettingsId == supplierId).ToListAsync();
         return result.Select(o => _mapper.Map<GetLinkDto>(o));
     }
+    
+    public async Task<IEnumerable<GetLinkDto>> GetVerifiedOfSupplier(int supplierId)
+    {
+        var result = await _dataContext.Links.Where(o => 
+            o.Verified == true && 
+            o.SupplierSettingsId == supplierId)
+        .ToListAsync();
+        return result.Select(o => _mapper.Map<GetLinkDto>(o));
+    }
+    
+    public async Task SetVerified(int id)
+    {
+        var link = await _dataContext.Links.FirstOrDefaultAsync(o => o.Id == id);
+        if (link == null) throw new LinkNotFoundException();
+
+        link.Verified = true;
+        await _dataContext.SaveChangesAsync();
+    }
 }

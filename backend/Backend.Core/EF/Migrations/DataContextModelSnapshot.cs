@@ -180,6 +180,9 @@ namespace Backend.Core.EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Verified")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("SupplierSettingsId");
@@ -292,8 +295,8 @@ namespace Backend.Core.EF.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SupplierSettingsId")
-                        .HasColumnType("int");
+                    b.Property<bool>("Verified")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -350,6 +353,21 @@ namespace Backend.Core.EF.Migrations
                     b.ToTable("UserRoles");
                 });
 
+            modelBuilder.Entity("SupplierSettingsTag", b =>
+                {
+                    b.Property<int>("SupplierSettingsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SupplierSettingsId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("SupplierSettingsTag");
+                });
+
             modelBuilder.Entity("Backend.Core.Entities.Offer.Offer", b =>
                 {
                     b.HasOne("Backend.Core.Entities.User.Supplier.SupplierSettings", "Supplier")
@@ -396,6 +414,21 @@ namespace Backend.Core.EF.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SupplierSettingsTag", b =>
+                {
+                    b.HasOne("Backend.Core.Entities.User.Supplier.SupplierSettings", null)
+                        .WithMany()
+                        .HasForeignKey("SupplierSettingsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Backend.Core.Entities.User.Supplier.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Backend.Core.Entities.User.Role", b =>

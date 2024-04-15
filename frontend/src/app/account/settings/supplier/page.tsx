@@ -77,6 +77,7 @@ const SupplierSettings = () => {
 			</>}
 			<EntityList
 				title='Силки'
+				description='Після створення наші менеджери мають підтвердити коректність даних, на це потрібно деякий час, дякую за розуміння!'
 				creationTitle='Додати нову силку'
 				readTitle='Силка'
 				getAllItems={() => LinkService.getAll(settings.id)}
@@ -86,7 +87,7 @@ const SupplierSettings = () => {
 					name: '',
 					url: ''
 				}}
-				contentOfItem={o => o.name}
+				contentOfItem={o => `${o.name} ${!o.verified ? '(не верефіковано)' : ''}`}
 				copyData={o => o.url}
 				translates={{
 					name: 'Назва',
@@ -104,7 +105,7 @@ const SupplierSettings = () => {
 				changingFields={{
 					name: '',
 				}}
-				contentOfItem={o => o.name}
+				contentOfItem={o => `${o.name} ${!o.verified ? '(не верефіковано)' : ''}`}
 				copyData={o => o.url}
 				translates={{
 					name: 'Назва',
