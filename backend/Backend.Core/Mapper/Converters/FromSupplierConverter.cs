@@ -35,8 +35,8 @@ public class FromSupplierConverter : ITypeConverter<SupplierSettings, SupplierSe
             Description = source.Description,
             Searchable = source.Searchable,
             OffersUpdatedAtUtc = source.OffersUpdatedAtUtc,
-            Links = _linkService.GetAllOfSupplier(source.Id).Result.Select(o => _mapper.Map<GetLinkDto>(o)),
-            Tags = _tagService.GetAllOfSupplier(source.Id).Result.Select(o => _mapper.Map<TagDto>(o))
+            Links = _linkService.GetVerifiedOfSupplier(source.Id).Result,
+            Tags = _tagService.GetVerifiedOfSupplier(source.Id).Result
         };
     }
 }

@@ -196,7 +196,7 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 				</div>
 			</div>
 				<div className="flex flex-wrap gap-3 w-[500px]">
-					{selectedItem && Object.keys(selectedItem).map(o => o.toLowerCase() == 'id' ? <></> : <div
+					{selectedItem && Object.keys(translates).map(o => o.toLowerCase() == 'id' ? <></> : <div
 						key={crypto.randomUUID()} 
 						className={styles.dialog__field}
 						onClick={() => copy(selectedItem[o])}

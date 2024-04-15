@@ -25,4 +25,5 @@ public class SupplierSettings : IBaseSettings
     public DateTime OffersUpdatedAtUtc { get; set; }
     
     public virtual ICollection<Link> Links { get; set; } = null!;
+    public virtual ICollection<Tag> Tags { get; set; } = null!;
 }

@@ -24,7 +24,7 @@ public static class ServiceExtension
         services.AddSingleton<IApiKeyFactory, ApiKeyFactory>();
         services.AddSingleton<IYmlParser, YmlParser>();
         services.Configure<ApiKeyOptions>(configuration.GetSection(ApiKeyOptions.Name));
-        services.Configure<MailOptions>(configuration.GetSection("Mail"));
+        services.Configure<MailOptions>(configuration.GetSection(MailOptions.Name));
         return services;
     }
 }
