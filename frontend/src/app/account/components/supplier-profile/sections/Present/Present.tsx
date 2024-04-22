@@ -5,13 +5,12 @@ import { SupplierSettings } from "@/dtos/user/settings/supplier-settings.dto"
 import { pageInDeveloping } from "@/helpers/ToastHelper"
 import { OffersService } from "@/services/user/offers.service"
 import { useQuery } from "@tanstack/react-query"
-import { AxiosResponse } from "axios"
 import Link from "next/link"
 import blocks from '../../../../../../components/blocks/Blocks.module.scss'
 import styles from "./Present.module.scss"
 
 const Present = (supplier: SupplierSettings) => {
-	const { data: count } = useQuery<AxiosResponse<number>>({
+	const { data: count } = useQuery({
 		queryKey: [`get-count-of-offers-${supplier.id}`],
 		queryFn: () => OffersService.getCount(supplier.id),
 	})

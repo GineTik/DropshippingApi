@@ -3,7 +3,7 @@ import { store } from '@/store/store'
 import axios from 'axios'
 import { AuthService } from './auth.service'
 
-export const API_URL = ' http://localhost:5081/api'
+export const API_URL = 'https://server-dropshipping-bridge.somee.com/api'
 
 const $api = axios.create({
 	withCredentials: true,

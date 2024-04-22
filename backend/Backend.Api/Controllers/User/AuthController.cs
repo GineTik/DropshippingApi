@@ -74,7 +74,9 @@ public class AuthController : Controller
         {
             Expires = DateTime.Now.AddDays(30),
             HttpOnly = true,
-            Path = "/"
+            Path = "/",
+            SameSite = SameSiteMode.None,
+            Secure = true
         });
     }
 }

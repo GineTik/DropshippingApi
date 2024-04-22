@@ -1,16 +1,22 @@
 {
   "pages": {
+    "/(home)/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/(home)/page.css",
+      "static/chunks/app/(home)/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/(home)/page": [
+    "/auth/[type]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/(home)/page.css",
-      "static/chunks/app/(home)/page.js"
+      "static/css/app/auth/[type]/page.css",
+      "static/chunks/app/auth/[type]/page.js"
     ],
     "/account/page": [
       "static/chunks/webpack.js",
@@ -23,41 +29,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/account/layout.js"
     ],
-    "/auth/[type]/page": [
+    "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/auth/[type]/page.css",
-      "static/chunks/app/auth/[type]/page.js"
-    ],
-    "/account/settings/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/account/settings/layout.css",
-      "static/chunks/app/account/settings/layout.js"
-    ],
-    "/account/settings/security/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/account/settings/security/page.css",
-      "static/chunks/app/account/settings/security/page.js"
-    ],
-    "/account/settings/supplier/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/account/settings/supplier/page.css",
-      "static/chunks/app/account/settings/supplier/page.js"
-    ],
-    "/suppliers/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/suppliers/page.css",
-      "static/chunks/app/suppliers/page.js"
-    ],
-    "/suppliers/[id]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/suppliers/[id]/page.css",
-      "static/chunks/app/suppliers/[id]/page.js"
+      "static/chunks/app/not-found.js"
     ]
   }
 }
