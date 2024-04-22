@@ -1,9 +1,9 @@
+import blocks from '@/components/blocks/Blocks.module.scss'
+import { Buttons } from '@/components/buttons'
+import Section from '@/components/section/Section'
+import { pageInDeveloping } from '@/helpers/ToastHelper'
 import Link from 'next/link'
 import RouteConstants from '../../../../../constants/RouteConstants'
-import blocks from '../../../../components/blocks/Blocks.module.scss'
-import { Buttons } from '../../../../components/buttons'
-import Section from '../../../../components/section/Section'
-import { pageInDeveloping } from '../../../../helpers/ToastHelper'
 import styles from './Present.module.scss'
 
 const Present = () => {
