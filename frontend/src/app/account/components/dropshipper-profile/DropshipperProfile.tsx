@@ -51,6 +51,7 @@ const DropshipperProfile = () => {
 					deleteItemRequest={(values) => AllowedHostsService.delete(values.host)}
 					changingFields={{
 						name: '',
+						host: '',
 						description: ''
 					}}
 					contentOfItem={o => o.name}

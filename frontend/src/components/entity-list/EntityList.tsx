@@ -1,4 +1,4 @@
-import Dialog from '@/app/account/components/dropshipper-profile/Dialog'
+import Dialog from '@/components/entity-list/Dialog'
 import { functionalInDeveloping, pageInDeveloping } from '@/helpers/ToastHelper'
 import { useTypedMutation } from '@/hooks/useTypedMutation'
 import { useQuery } from '@tanstack/react-query'

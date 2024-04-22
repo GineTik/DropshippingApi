@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npm run dev --prefix frontend && npm run dev --prefix backend",
     "frontend": "npm run dev --prefix frontend",
+    "frontend:build": "npm run build --prefix frontend",
     "backend": "npm run dev --prefix backend"
   },
   "author": "Denis Shevchuk",

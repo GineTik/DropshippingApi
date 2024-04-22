@@ -19,7 +19,7 @@ var app = builder.Build();
 
 app.UseCors(policy  =>
 {
-    policy.WithOrigins("http://localhost:3000");
+    policy.WithOrigins("http://localhost:3000", "http://denshevalogin-001-site1.gtempurl.com");
     policy.AllowCredentials();
     policy.AllowAnyHeader();
     policy.AllowAnyMethod();
@@ -32,8 +32,6 @@ app.UseExceptionHandler(exceptionHandlerApp =>
         var exceptionHandlerPathFeature =
             context.Features.Get<IExceptionHandlerPathFeature>();
 
-        Console.WriteLine(exceptionHandlerPathFeature?.Error.Message);
-
         if (exceptionHandlerPathFeature?.Error is ServiceException serviceException)
         {
             context.Response.StatusCode = StatusCodes.Status400BadRequest;
@@ -41,6 +39,15 @@ app.UseExceptionHandler(exceptionHandlerApp =>
             {
                 StatusCode = 400,
                 Message = serviceException.Message
+            });
+        }
+        else
+        {
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            await context.Response.WriteAsJsonAsync(new
+            {
+                StatusCode = 500,
+                Message = exceptionHandlerPathFeature?.Error?.ToString()
             });
         }
     });

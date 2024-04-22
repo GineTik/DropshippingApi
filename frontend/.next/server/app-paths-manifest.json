@@ -1,8 +1,7 @@
 {
-  "/suppliers/page": "app/suppliers/page.js",
-  "/suppliers/[id]/page": "app/suppliers/[id]/page.js",
+  "/not-found": "app/not-found.js",
+  "/(home)/page": "app/(home)/page.js",
   "/auth/[type]/page": "app/auth/[type]/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/account/page": "app/account/page.js",
-  "/account/settings/supplier/page": "app/account/settings/supplier/page.js"
+  "/account/page": "app/account/page.js"
 }
