@@ -1,25 +1,25 @@
 import { Buttons } from "@/components/buttons"
-import ErrorMessage from "@/components/error-message/ErrorMessage"
 import { MutationFunction, useMutation } from "@tanstack/react-query"
 import { AxiosError, AxiosResponse } from "axios"
-import { useState } from "react"
+import { PenIcon, Undo2Icon } from "lucide-react"
+import { useCallback, useState } from "react"
 import { toast } from "react-toastify"
+import styles from './Settings.module.scss'
 
 interface SettingProps {
 	title: string
 	children: any
-	buttonText: string
+	buttonText?: string
 	sendRequest: MutationFunction<AxiosResponse<any, any>>
 	onChangeSetting?: () => void
 }
 
-const Setting = ({title, children, buttonText, sendRequest: sentRequest, onChangeSetting}: SettingProps) => {
+const Setting = ({title, children,  sendRequest: sentRequest, onChangeSetting}: SettingProps) => {
 
 	const [toastId, setToastId] = useState<any>(null)
 
 	const {
-		mutateAsync: changeSetting,
-		error,
+		mutateAsync: changeSetting
 	} = useMutation<AxiosResponse, AxiosError<{ message: string }>>({
 		mutationKey: [`change-${title}`],
 		mutationFn: (v) => sentRequest(v),
@@ -33,25 +33,41 @@ const Setting = ({title, children, buttonText, sendRequest: sentRequest, onChang
 		},
 		onSettled: () => {
 			toast.clearWaitingQueue()
+			setChanging(false)
 		},
 		onError: (err) => {
 			toast.update(toastId, { render: err.response?.data.message, type: "error", isLoading: false, closeOnClick: true, autoClose: 2000 });
 		}
 	})
+	
+	const [changing, setChanging] = useState(false)
+
+	const toggleChangingMode = useCallback(() => {
+		setChanging(o => !o)
+	}, [])
 
 	return <div>
-		<form className="mb-7">
-			<h6 className="mb-2">{title}</h6>
-			<div className="flex gap-2">
-				{children}
-				
-				<Buttons.Secondary
-					onClick={(e) => changeSetting()}
+		<form className={styles.form}>
+			<h6 className={styles.form__title}>{title}</h6>
+			<div className={styles.form__content}>
+				<div className={`${styles.form__fields} ${!changing && styles.form__fields_non_updated}`}>
+					{children}
+				</div>
+
+				<Buttons.Icon
+					onClick={(e) => {
+						toggleChangingMode()
+					}}
 				>
-					{buttonText}
-				</Buttons.Secondary>
-				
-				{error && <ErrorMessage>{error}</ErrorMessage>}
+					{changing 
+						? <Undo2Icon className={styles.form__icon} /> 
+						: <PenIcon className={styles.form__icon} />}
+				</Buttons.Icon>
+
+				{changing && <Buttons.Secondary 
+				onClick={() => changeSetting()}>
+					Зберегти
+				</Buttons.Secondary>}
 			</div>
 		</form>
 	</div>

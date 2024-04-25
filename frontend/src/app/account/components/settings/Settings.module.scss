@@ -1,0 +1,32 @@
+.form {
+    @apply mb-7;
+
+    &__title {
+        @apply mb-2;
+    }
+
+    &__fields,
+    &__content {
+        @apply flex gap-2 w-full;
+
+        & input {
+            @apply max-w-full;
+        }
+    }
+
+    &__fields_non_updated {
+        & > * {
+            @apply pointer-events-none;
+        }
+
+        @apply transition; 
+
+        &:hover {
+            @apply opacity-70 cursor-not-allowed;
+        }
+    }
+
+    &__icon {
+        @apply stroke-gray-500 size-5 m-1;
+    }
+}

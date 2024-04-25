@@ -13,17 +13,17 @@ import styles from './EntityList.module.scss'
 
 interface EntityListProps {
   title: string
-  creationTitle: string
+  creationTitle?: string
   readTitle: string
   description?: string
   moreHref?: string
   contentOfItem: (item: any) => any
   getAllItems: () => Promise<any>
-  createItemRequest: (values: any) => Promise<any>
+  createItemRequest?: (values: any) => Promise<any>
   refreshKeyRequest?: (values: any) => Promise<any>
   deleteItemRequest: (values: any) => Promise<any>
   changingFields: any
-  copyData: (item: any) => any
+  copyData?: (item: any) => any
   translates: Record<string, string>
   settings?: boolean
 }
@@ -44,7 +44,7 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 		error
 	} = useTypedMutation({
 		mutationKey: [title],
-		mutationFn: () => createItemRequest(creationValues),
+		mutationFn: () => createItemRequest!(creationValues),
 		onSettled: () => {
 			setShowCreateDialog(false)
 			refetch()
@@ -124,7 +124,7 @@ const EntityList = ({title, creationTitle, readTitle, description, moreHref, con
 		<div className={`${styles.list} ${settings && styles.is_settings}`}>
 			<div className={styles.list__header}>
 				{settings ? <h6>{title}</h6> : <h3>{title}</h3>}
-				<Buttons.Icon onClick={() => setShowCreateDialog(true)}><Plus /></Buttons.Icon>
+				{createItemRequest && <Buttons.Icon onClick={() => setShowCreateDialog(true)}><Plus /></Buttons.Icon>}
 			</div>
 			<p className={styles.list__p}>
 			{description} {moreHref && <Link 

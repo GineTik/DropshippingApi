@@ -29,7 +29,7 @@ public class SupplierService
         var totalSuppliers = await _dataContext.SupplierSettings.Where(s => s.Searchable == true).CountAsync();
         var totalPages = totalSuppliers / pageSize + (totalSuppliers % pageSize == 0 ? 0 : 1);
 
-        if (page > totalPages)
+        if (page > totalPages && totalPages > 0)
             page = totalPages;
         
         var suppliers = await _dataContext.SupplierSettings.Where(s => s.Searchable == true)

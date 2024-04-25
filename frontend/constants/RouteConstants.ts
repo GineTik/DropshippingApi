@@ -3,6 +3,7 @@ export default {
 	Login: '/auth/login',
 	Registration: '/auth/registration',
 	Account: '/account',
+	OwnerPanel: '/owner-panel',
 	Suppliers: '/suppliers',
 	Supplier: '/suppliers/',
 	Api: {

@@ -19,7 +19,7 @@ var app = builder.Build();
 
 app.UseCors(policy  =>
 {
-    policy.WithOrigins("http://localhost:3000", "http://denshevalogin-001-site1.gtempurl.com");
+    policy.WithOrigins(builder.Configuration.GetSection("CORS:AllowedOrigins").Get<string[]>() ?? throw new Exception("appsettings.json: CORS:AllowedOrigins is required"));
     policy.AllowCredentials();
     policy.AllowAnyHeader();
     policy.AllowAnyMethod();
