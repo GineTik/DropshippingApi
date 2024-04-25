@@ -3,7 +3,8 @@ import { store } from '@/store/store'
 import axios from 'axios'
 import { AuthService } from './auth.service'
 
-export const API_URL = process.env.NEXT_PUBLIC_SERVER_URL + '/api'
+export const API_URL =
+	process.env.NEXT_PUBLIC_SERVER_URL && process.env.SERVER_URL + '/api'
 
 const $api = axios.create({
 	withCredentials: true,
