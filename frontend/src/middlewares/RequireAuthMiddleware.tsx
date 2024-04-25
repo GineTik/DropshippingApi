@@ -5,14 +5,18 @@ import { useSelector } from 'react-redux'
 import RouteConstants from '../../constants/RouteConstants'
 
 interface RequireAuthMiddlewareProps {
+	requireRole?: string
 	children: any
 }
 
-const RequireAuthMiddleware = ({ children }: RequireAuthMiddlewareProps) => {
+const RequireAuthMiddleware = ({ requireRole, children }: RequireAuthMiddlewareProps) => {
 	const { user } = useSelector((state: StateType) => state.auth)
 	const router = useRouter()
 
-	if (!user || (user && !user.emailIsConfirmed)) {
+	const userAuthorized = !user || (user && !user.emailIsConfirmed)
+	const roleIsCorrect = (requireRole != null && user.roles.some(o => o.toLowerCase() === requireRole.toLowerCase()))
+	
+	if (userAuthorized && roleIsCorrect) {
 		router.push(RouteConstants.Login)
 		return
 	}

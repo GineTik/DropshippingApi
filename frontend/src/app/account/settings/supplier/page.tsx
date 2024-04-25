@@ -29,16 +29,16 @@ const SupplierSettings = () => {
 
   	return (
 		<div>
-			<Setting title="Публічне ім'я" buttonText="Змінити" sendRequest={() => SupplierService.changePublicName(settings.publicName)}>
+			<Setting title="Публічне ім'я" sendRequest={() => SupplierService.changePublicName(settings.publicName)}>
 				<input className={styles.input} value={settings.publicName} onChange={(e) => changePublicName(e.target.value)} />
 			</Setting>
-			<Setting title="Апі ім'я" buttonText="Змінити" sendRequest={() => SupplierService.changeApiName(settings.apiName)}>
+			<Setting title="Апі ім'я" sendRequest={() => SupplierService.changeApiName(settings.apiName)}>
 				<input className={styles.input} value={settings.apiName} onChange={(e) => changeApiNameName(e.target.value)} />
 			</Setting>
-			<Setting title="Опис" buttonText="Змінити" sendRequest={() => SupplierService.changeDescription(settings.description)}>
+			<Setting title="Опис" sendRequest={() => SupplierService.changeDescription(settings.description)}>
 				<input className={styles.input} value={settings.description} onChange={(e) => changeDescription(e.target.value)} />
 			</Setting>
-			<Setting title="Тип загрузки yml файла" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlType(settings.ymlLoadType)}>
+			<Setting title="Тип загрузки yml файла" sendRequest={() => SupplierService.changeYmlType(settings.ymlLoadType)}>
 				<Inputs.Select 
 					onChange={(e) => changeYmlType(e.target.value)}
 					value={settings.ymlLoadType}>
@@ -53,7 +53,7 @@ const SupplierSettings = () => {
 				</Inputs.Select>
 			</Setting>
 			{settings.ymlLoadType.toLowerCase() === 'link' && <>
-				<Setting title="Силка та частота оновлення yml каталогу" buttonText="Змінити" sendRequest={() => SupplierService.changeYmlCatalogLink({ link: settings.ymlLink, refreshTimeId: settings.refreshTimeId })}>
+				<Setting title="Силка та частота оновлення yml каталогу"  sendRequest={() => SupplierService.changeYmlCatalogLink({ link: settings.ymlLink, refreshTimeId: settings.refreshTimeId })}>
 					<Inputs.InputNonWidth 
 						value={settings.ymlLink} 
 						onChange={(e) => changeYmlCatalogUrl(e.target.value)} 
