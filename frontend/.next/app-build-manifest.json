@@ -47,6 +47,12 @@
       "static/css/app/account/page.css",
       "static/chunks/app/account/page.js"
     ],
+    "/auth/[type]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/auth/[type]/page.css",
+      "static/chunks/app/auth/[type]/page.js"
+    ],
     "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

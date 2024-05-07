@@ -1,12 +1,7 @@
 'use client'
 
 import { Inputs } from '@/components/inputs'
-import { AuthService } from '@/services/auth.service'
-import { useMutation } from '@tanstack/react-query'
-import { AxiosError, AxiosResponse } from 'axios'
-import { title } from 'process'
 import { useState } from 'react'
-import { toast } from 'react-toastify'
 import Setting from "../../components/settings/Setting"
 
 const SettingsSecurity = () => {
@@ -14,23 +9,6 @@ const SettingsSecurity = () => {
         code: '',
         password: ''
     })
-
-	const [codeSended, setCodeSended] = useState(false)
-
-	const {
-		mutateAsync: sendChangePasswordRequest
-	} = useMutation<AxiosResponse, AxiosError<{ message: string }>>({
-		mutationKey: [`change-${title}`],
-		mutationFn: (v) => AuthService.sendChangePasswordRequest(),
-		onSuccess: () => {
-			setCodeSended(true)
-			toast.success('Код відправлений на почту')
-		},
-		onError: (err) => {
-			setCodeSended(false)
-			toast.error('Помилка при відправленні коду')
-		}
-	})
 
 	return (
 		<div>
