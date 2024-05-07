@@ -1,9 +1,13 @@
 import { toast } from 'react-toastify'
 
 export const pageInDeveloping = (pageName: string) => {
-	toast.error(`Сторіка "${pageName}" в розробці`)
+	toast.warning(`Сторіка "${pageName}" в розробці`)
 }
 
 export const functionalInDeveloping = (functional: string) => {
-	toast.error(`Функціонал "${functional}" в розробці`)
+	toast.warning(`Функціонал "${functional}" в розробці`)
+}
+
+export const settingsInDeveloping = () => {
+	toast.warning('Дане налаштування в розробці')
 }

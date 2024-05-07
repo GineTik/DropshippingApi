@@ -21,7 +21,7 @@ const SettingsLayout = ({children}: any) => {
                     <div className={styles.settings__tabs}>
                         <Buttons.Tab href={RouteConstants.Settings.Security}>Безпека</Buttons.Tab>
                         <Buttons.Tab onClick={() => pageInDeveloping('Платіжні дані')}>Платіжні дані</Buttons.Tab>
-                        {user.supplierSettings && <Buttons.Tab href={RouteConstants.Settings.Supplier}>Дані поставщика</Buttons.Tab>}
+                        {user?.supplierSettings && <Buttons.Tab href={RouteConstants.Settings.Supplier}>Дані поставщика</Buttons.Tab>}
                     </div>
                 </div>
                 <div className={styles.settings__content}>

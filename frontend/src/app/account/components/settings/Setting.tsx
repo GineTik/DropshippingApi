@@ -1,4 +1,5 @@
 import { Buttons } from "@/components/buttons"
+import { settingsInDeveloping } from "@/helpers/ToastHelper"
 import { MutationFunction, useMutation } from "@tanstack/react-query"
 import { AxiosError, AxiosResponse } from "axios"
 import { PenIcon, Undo2Icon } from "lucide-react"
@@ -10,11 +11,12 @@ interface SettingProps {
 	title: string
 	children: any
 	buttonText?: string
-	sendRequest: MutationFunction<AxiosResponse<any, any>>
+	sendRequest?: MutationFunction<AxiosResponse<any, any>>
 	onChangeSetting?: () => void
+	inDeveloping?: boolean
 }
 
-const Setting = ({title, children,  sendRequest: sentRequest, onChangeSetting}: SettingProps) => {
+const Setting = ({title, children,  sendRequest: sentRequest, onChangeSetting, inDeveloping}: SettingProps) => {
 
 	const [toastId, setToastId] = useState<any>(null)
 
@@ -22,7 +24,7 @@ const Setting = ({title, children,  sendRequest: sentRequest, onChangeSetting}: 
 		mutateAsync: changeSetting
 	} = useMutation<AxiosResponse, AxiosError<{ message: string }>>({
 		mutationKey: [`change-${title}`],
-		mutationFn: (v) => sentRequest(v),
+		mutationFn: (v) => sentRequest!(v),
 		onMutate: () => {
 			toast.clearWaitingQueue()
 			setToastId(toast.loading('Змінюємо'))
@@ -43,6 +45,11 @@ const Setting = ({title, children,  sendRequest: sentRequest, onChangeSetting}: 
 	const [changing, setChanging] = useState(false)
 
 	const toggleChangingMode = useCallback(() => {
+		if (inDeveloping) {
+			settingsInDeveloping()
+			return
+		}
+
 		setChanging(o => !o)
 	}, [])
 
@@ -65,7 +72,7 @@ const Setting = ({title, children,  sendRequest: sentRequest, onChangeSetting}: 
 				</Buttons.Icon>
 
 				{changing && <Buttons.Secondary 
-				onClick={() => changeSetting()}>
+				onClick={() => !inDeveloping ? changeSetting() : toast.warning('Дане налаштування в розробці')}>
 					Зберегти
 				</Buttons.Secondary>}
 			</div>
