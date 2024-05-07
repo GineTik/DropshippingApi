@@ -4,7 +4,8 @@ import axios from 'axios'
 import { AuthService } from './auth.service'
 
 export const API_URL =
-	process.env.NEXT_PUBLIC_SERVER_URL && process.env.SERVER_URL + '/api'
+	(process.env.NEXT_PUBLIC_SERVER_URL ??
+		'https://server-dropshipping-bridge.somee.com') + '/api'
 
 const $api = axios.create({
 	withCredentials: true,
